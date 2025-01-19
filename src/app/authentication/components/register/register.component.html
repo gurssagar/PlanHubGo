@@ -1,0 +1,166 @@
+
+<div class="flex justify-content-center align-items-center min-h-screen">
+    <p-card header="Register" [style]="{ width: '400px' }">
+      <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+        <!-- Full Name -->
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input
+            pInputText
+            class="w-full"
+            id="fullName"
+            formControlName="fullName"
+          />
+          <small
+            class="block p-error"
+            *ngIf="fullName.invalid && (fullName.dirty || fullName.touched)"
+          >
+            Full name is required
+          </small>
+        </div>
+  
+        <!-- Email -->
+        <div class="field">
+          <label for="email">Email</label>
+          <input pInputText class="w-full" id="email" formControlName="email" />
+          <small
+            class="block p-error"
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+          >
+            <span *ngIf="email.hasError('required')">Email is required</span>
+            <span *ngIf="email.hasError('pattern')">Email is invalid</span>
+          </small>
+        </div>
+  
+        <!-- Password -->
+        <div class="field">
+          <label for="password">Password</label>
+          <p-password
+            formControlName="password"
+            [feedback]="false"
+            [toggleMask]="true"
+            inputId="password"
+            inputStyleClass="w-full"
+            styleClass="w-full"
+          ></p-password>
+          <small
+            class="block p-error"
+            *ngIf="password.invalid && (password.dirty || password.touched)"
+          >
+            Password is required
+          </small>
+        </div>
+  
+        <!-- Confirm Password -->
+        <div class="field">
+          <label for="confirmPassword">Confirm Password</label>
+          <p-password
+            formControlName="confirmPassword"
+            [feedback]="false"
+            [toggleMask]="true"
+            inputId="confirmPassword"
+            inputStyleClass="w-full"
+            styleClass="w-full"
+          ></p-password>
+          <small
+            class="block p-error"
+            *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+          >
+            Confirm Password is required
+          </small>
+          <small
+            class="block p-error"
+            *ngIf="
+              registerForm.hasError('passwordMismatch') &&
+              password.valid &&
+              confirmPassword.valid
+            "
+          >
+            Password mismatch
+          </small>
+        </div>
+  
+        <!-- Gender -->
+        <div class="field">
+          <label for="gender">Gender</label>
+          <div>
+            <p-radioButton
+              name="gender"
+              value="Male"
+              formControlName="gender"
+              label="Male"
+            ></p-radioButton>
+            <p-radioButton
+              name="gender"
+              value="Female"
+              formControlName="gender"
+              label="Female"
+            ></p-radioButton>
+          </div>
+          <small
+            class="block p-error"
+            *ngIf="gender.invalid && (gender.dirty || gender.touched)"
+          >
+            Please select a gender
+          </small>
+        </div>
+  
+        <!-- Age -->
+        <div class="field">
+          <label for="age">Age</label>
+          <input
+            type="number"
+            pInputText
+            class="w-full"
+            id="age"
+            formControlName="age"
+          />
+          <small
+            class="block p-error"
+            *ngIf="age.invalid && (age.dirty || age.touched)"
+          >
+            <span *ngIf="age.hasError('required')">Age is required</span>
+            <span *ngIf="age.hasError('min')">Age must be at least 18</span>
+            <span *ngIf="age.hasError('max')">Age must be below 100</span>
+          </small>
+        </div>
+        <!-- Role Selection -->
+<div class="field">
+  <label for="role">Role</label>
+  <div>
+    
+    <p-radioButton
+      name="role"
+      value="Service Provider"
+      formControlName="role"
+      label="Service Provider"
+    ></p-radioButton>
+    <p-radioButton
+      name="role"
+      value="Customer"
+      formControlName="role"
+      label="Customer"
+    ></p-radioButton>
+  </div>
+  <small
+    class="block p-error"
+    *ngIf="role.invalid && (role.dirty || role.touched)"
+  >
+    Please select a role
+  </small>
+</div>
+
+  
+        <!-- Submit Button -->
+        <p-button
+          type="submit"
+          label="Register"
+          styleClass="w-full"
+          [disabled]="registerForm.invalid"
+        ></p-button>
+        <div class="mt-2">Already a member? <a routerLink="/login">Login</a></div>
+      </form>
+    </p-card>
+  </div>
+  
+  

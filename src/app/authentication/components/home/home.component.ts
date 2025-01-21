@@ -12,7 +12,7 @@ import { ButtonModule } from 'primeng/button';
 export class HomeComponent {
   private router = inject(Router);
   logout() {
-    sessionStorage.clear();
+    localStorage.clear();
     this.router.navigate(['login']);
   }
 }

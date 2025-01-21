@@ -16,3 +16,13 @@ export interface User extends RegisterPostData {
   gender: string;
   age: number;
 }
+
+export interface Provider extends RegisterPostData {
+  fullName: string;
+  email: string;
+  password: string;
+  role: string; // Add this property
+  gender: string;
+  age: number;
+  type: string;
+}

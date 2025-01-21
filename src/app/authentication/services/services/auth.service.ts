@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import {from, Observable} from 'rxjs';
 import { map } from 'rxjs/operators'; // Import map operator
 import { RegisterPostData, User } from '../../models/interfaces/auth';
 
@@ -8,24 +8,24 @@ import { RegisterPostData, User } from '../../models/interfaces/auth';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = 'http://localhost:3001';
+  private baseUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
-  registerUser(postData: RegisterPostData) {
-    return this.http.post(`${this.baseUrl}/users`, postData);
+  registerUser(userData: any) {
+    return this.http.put(`${this.baseUrl}/3`, userData);
   }
 
-  getUserDetails(email: string, password: string): Observable<User[]> {
-    return this.http.get<User[]>(
-      `${this.baseUrl}/users?email=${email}&password=${password}`
-    );
+  getUserDetails(): Observable<{ users: User[] }> {
+    return this.http.get<{ users: User[] }>(`${this.baseUrl}/3`);
+
   }
 
   // Check if email already exists in mock database
   isEmailUnique(email: string): Observable<boolean> {
-    return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}`).pipe(
-      map(users => users.length === 0) // Using the map operator here
+    return this.http.get<{users: User[]}>(`${this.baseUrl}/3`).pipe(
+        map(response => !response.users.some(user => user.email === email))
     );
   }
+
 }

@@ -1,0 +1,93 @@
+<div class="tw-max-w-6xl tw-mx-auto tw-bg-white tw-p-6 tw-rounded-lg tw-shadow-md">
+    <h1 class="tw-text-2xl tw-font-bold tw-mb-4">Enter Tour Details</h1>
+    <form [formGroup]="tourForm" (ngSubmit)="onSubmit($event)" class="tw-space-y-4 tw-grid tw-grid-cols-3">
+        <div>
+            <label for="id" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">ID</label>
+            <input formControlName="id" type="text" id="id" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="s5e6o7u8l9">
+        </div>
+        <div>
+            <label for="name" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Name</label>
+            <input formControlName="name" type="text" id="name" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="Seoul City Highlights">
+        </div>
+        <div>
+            <label for="price" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Price</label>
+            <input formControlName="price" type="number" id="price" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="1299">
+        </div>
+        <div>
+            <label for="duration" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Duration</label>
+            <input formControlName="duration" type="text" id="duration" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="3 days">
+        </div>
+        <div>
+            <label for="description" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Description</label>
+            <textarea formControlName="description" id="description" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="3" placeholder="Experience the vibrant city of Seoul..."></textarea>
+        </div>
+        <div>
+            <label for="description2" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Description 2</label>
+            <textarea formControlName="description2" id="description2" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="2" placeholder="Discover the heart of South Korea"></textarea>
+        </div>
+        <div>
+            <label for="image" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Main Image URL</label>
+            <input formControlName="image" type="url" id="image" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="https://i.ytimg.com/vi/Zvf60sr7HYA/maxresdefault.jpg">
+        </div>
+        <div>
+            <label for="images" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Gallery Images URLs (comma separated)</label>
+            <textarea formControlName="images" id="images" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="3" placeholder="https://images.unsplash.com/photo-1578844021912-4e18a3cfd1a0, https://images.unsplash.com/photo-1534326213578-c7d899132dd0, https://images.unsplash.com/photo-1541560052-34f79d1f9f4d"></textarea>
+        </div>
+        <div>
+            <label for="destination" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Destination</label>
+            <input formControlName="destination" type="text" id="destination" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="Seoul, South Korea">
+        </div>
+        <div>
+            <label for="departure" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Departure</label>
+            <input formControlName="departure" type="text" id="departure" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="Seoul, South Korea">
+        </div>
+        <div>
+            <label for="departureTime" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Departure Time</label>
+            <input formControlName="departureTime" type="datetime-local" id="departureTime" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="2024-10-05T09:00:00">
+        </div>
+        <div>
+            <label for="returnTime" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Return Time</label>
+            <input formControlName="returnTime" type="datetime-local" id="returnTime" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="2024-10-08T21:00:00">
+        </div>
+        <div>
+            <label for="dressCode" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Dress Code</label>
+            <input formControlName="dressCode" type="text" id="dressCode" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" placeholder="Smart Casual">
+        </div>
+
+        <label class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Tour Plans</label>
+
+        <div>
+            <label for="day1" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Day 1</label>
+            <textarea formControlName="day1" id="day1" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="2" placeholder="Arrival in Seoul and transfer to the hotel..."></textarea>
+        </div>
+        <div>
+            <label for="day2" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Day 2</label>
+            <textarea formControlName="day2" id="day2" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="2" placeholder="Visit Gyeongbokgung Palace..."></textarea>
+        </div>
+        <div>
+            <label for="day3" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Day 3</label>
+            <textarea formControlName="day3" id="day3" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="2" placeholder="Explore N Seoul Tower..."></textarea>
+        </div>
+        <div>
+            <label for="day4" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Day 4</label>
+            <textarea formControlName="day4" id="day4" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="2" placeholder="Day trip to the DMZ..."></textarea>
+        </div>
+        <div>
+            <label for="day5" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Day 5</label>
+            <textarea formControlName="day5" id="day5" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="2" placeholder="Visit Changdeokgung Palace..."></textarea>
+        </div>
+        <div>
+            <label for="day6" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Day 6</label>
+            <textarea formControlName="day6" id="day6" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="2" placeholder="Free day for shopping..."></textarea>
+        </div>
+        <div>
+            <label for="day7" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Day 7</label>
+            <textarea formControlName="day7" id="day7" class="tw-mt-1 tw-block tw-w-full tw-border-gray-300 tw-rounded-md tw-shadow-sm" rows="2" placeholder="Check out and transfer to the airport..."></textarea>
+        </div>
+        <div>
+            <button type="submit" class="tw-w-full tw-inline-flex tw-justify-center tw-py-2 tw-px-4 tw-border tw-border-transparent tw-shadow-sm tw-text-sm tw-font-medium tw-rounded-md tw-text-white tw-bg-indigo-600 hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>

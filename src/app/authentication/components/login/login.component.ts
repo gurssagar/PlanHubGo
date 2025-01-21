@@ -1,23 +1,27 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 import { AuthService } from '../../services/services/auth.service';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';  // Import FormsModule for ngModel
-import { PasswordModule } from 'primeng/password';  // Import PasswordModule for p-password
+import { PasswordModule } from 'primeng/password';
+import {NgIf} from "@angular/common";  // Import PasswordModule for p-password
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [
-    ButtonModule, 
-    CardModule,
-    InputTextModule,
-    FormsModule,  // Add FormsModule to support ngModel
-    PasswordModule,  // Add PasswordModule to use p-password
-  ],
+    imports: [
+        ButtonModule,
+        CardModule,
+        InputTextModule,
+        FormsModule,  // Add FormsModule to support ngModel
+        PasswordModule,
+        RouterLink,
+        NgIf,
+        // Add PasswordModule to use p-password
+    ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
@@ -26,7 +30,7 @@ export class LoginComponent {
     email: '',
     password: '',
   };
-
+  userlogin:any=[];
   constructor(
     private authService: AuthService,
     private router: Router,
@@ -36,12 +40,17 @@ export class LoginComponent {
   onLogin() {
     const { email, password } = this.login;
 
-    this.authService.getUserDetails(email, password).subscribe({
+    this.authService.getUserDetails().subscribe({
       next: (response) => {
-        if (response.length >= 1) {
-          const user = response[0];
-          sessionStorage.setItem('email', email);
-          sessionStorage.setItem('role', user.role);
+        this.userlogin=response;
+        console.log(this.userlogin);
+        const user = this.userlogin.users.find(
+            (u: { email: string; password: string }) => u.email === email && u.password === password
+        );
+        if (user) {
+
+          localStorage.setItem('email', email);
+          localStorage.setItem('role', user.role);
 
           if (user.role === 'Service Provider') {
             this.router.navigate(['service-provider']);
@@ -64,7 +73,8 @@ export class LoginComponent {
           });
         }
       },
-      error: () => {
+      error: (error) => {
+        console.log(error);
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

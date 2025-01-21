@@ -1,58 +1,50 @@
-
-<p>login works!</p>
-<div class="flex justify-content-center align-items-center min-h-screen">
-    <p-card header="Login" [style]="{ width: '400px' }">
-      <form #loginForm="ngForm" (ngSubmit)="onLogin()">
-        <div class="field">
-          <label for="email">Email</label>
-          <input
-            type="text"
-            pInputText
-            [(ngModel)]="login.email"
-            class="w-full"
-            id="email"
-            name="email"
-            #email="ngModel"
-            required
-            pattern="[a-z0-9\._%\+\-]+@[a-z0-9\.\-]+\.[a-z]{2,}$"
-          />
-          @if(email.invalid && (email.dirty || email.touched)){
-          <small class="block p-error">
-            @if(email.hasError('required')) {
-            <span>Email is required</span>
-            } @else if(email.hasError('pattern')) {
-            <span>Email is invalid</span>
-            }
-          </small>
-          }
-        </div>
-        <div class="field">
-          <label for="password">Password</label>
-          <p-password
-            [(ngModel)]="login.password"
-            [feedback]="false"
-            [toggleMask]="true"
-            inputId="password"
-            name="password"
-            #password="ngModel"
-            inputStyleClass="w-full"
-            styleClass="w-full"
-            required
-          />
-          @if(password.invalid && (password.dirty || password.touched)) {
-          <small class="block p-error"> Password is required </small>
-          }
-        </div>
-        <p-button
-          label="SIGN IN"
-          styleClass="w-full"
-          [disabled]="loginForm.invalid"
-          type="submit"
-        ></p-button>
-        <div class="mt-2">
-          Not a member? <a routerLink="/register">Register</a>
-        </div>
-      </form>
+<div class="tw-flex tw-justify-center tw-items-center tw-min-h-screen tw-bg-gray-100">
+    <p-card header="Login" [style]="{ width: '400px' }" class=" tw-shadow-lg tw-rounded-xl">
+        <form #loginForm="ngForm" (ngSubmit)="onLogin()" class="tw-space-y-4">
+            <div class="tw-field">
+                <label for="email" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Email</label>
+                <input
+                        type="text"
+                        pInputText
+                        [(ngModel)]="login.email"
+                        class="tw-mt-1 tw-block tw-w-full tw-px-3 tw-py-2 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm focus:tw-outline-none focus:tw-ring-indigo-500 focus:tw-border-indigo-500 sm:tw-text-sm"
+                        id="email"
+                        name="email"
+                        #email="ngModel"
+                        required
+                        pattern="[a-z0-9\._%\+\-]+@[a-z0-9\.\-]+\.[a-z]{2,}$"
+                />
+                <div *ngIf="email.invalid && (email.dirty || email.touched)" class="tw-text-red-500 tw-text-xs tw-mt-1">
+                    <span *ngIf="email.errors?.['required']">Email is required</span>
+                    <span *ngIf="email.errors?.['pattern']">Email is invalid</span>
+                </div>
+            </div>
+            <div class="tw-field">
+                <label for="password" class="tw-block tw-text-sm tw-font-medium tw-text-gray-700">Password</label>
+                <p-password
+                        [(ngModel)]="login.password"
+                        [feedback]="false"
+                        [toggleMask]="true"
+                        inputId="password"
+                        name="password"
+                        #password="ngModel"
+                        inputStyleClass="tw-mt-1 tw-block tw-w-full tw-px-3 tw-py-2 tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm focus:tw-outline-none focus:tw-ring-indigo-500 focus:tw-border-indigo-500 sm:tw-text-sm"
+                        styleClass="tw-w-full"
+                        required
+                ></p-password>
+                <div *ngIf="password.invalid && (password.dirty || password.touched)" class="tw-text-red-500 tw-text-xs tw-mt-1">
+                    Password is required
+                </div>
+            </div>
+            <p-button
+                    label="SIGN IN"
+                    styleClass="tw-w-full mt-4 tw-bg-indigo-600 tw-text-white tw-py-2 tw-rounded-md hover:tw-bg-indigo-700 focus:tw-outline-none focus:tw-ring-2 focus:tw-ring-offset-2 focus:tw-ring-indigo-500"
+                    [disabled]="loginForm?.invalid || false"
+                    type="submit"
+            ></p-button>
+            <div class="tw-mt-2 tw-text-center">
+                Not a member? <a routerLink="/register" class="tw-text-indigo-600 hover:tw-underline">Register</a>
+            </div>
+        </form>
     </p-card>
-  </div>
-  
+</div>

@@ -54,7 +54,6 @@ export class ProviderRegisterComponent {
       Validators.min(18),
       Validators.max(100)
     ]),
-    role: new FormControl('', [Validators.required]),
     type: new FormControl('', [Validators.required])
   }, {
     validators: passwordMismatchValidator
@@ -112,7 +111,7 @@ export class ProviderRegisterComponent {
               password: this.password.value,
               gender: this.gender.value,
               age: Number(this.age.value),
-              role: this.role.value,
+              role: 'Service Provider',
               type: this.type.value,
             };
 

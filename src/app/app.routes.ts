@@ -31,9 +31,9 @@ export const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: 'service-provider', component: ServiceProviderComponent, canActivate: [ServiceAuthGuard] },
   { path: 'cab', component: CabComponent, canActivate: [authGuard] },  // Updated route
-  { path: 'flight', component: FlightComponent, canActivate: [authGuard] },  // Updated route
-  { path: 'hotel', component: HotelComponent, canActivate: [authGuard] },  // Updated route
-  { path: 'tour-package', component: TourComponent, canActivate: [authGuard] },  // Updated route
+  //{ path: 'flight', component: FlightComponent, canActivate: [authGuard] },  // Updated route
+  //{ path: 'hotel', component: HotelComponent, canActivate: [authGuard] },  // Updated route
+  //{ path: 'tour-package', component: TourComponent, canActivate: [authGuard] },  // Updated route
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: "tour/info/:id",
@@ -68,7 +68,7 @@ export const routes: Routes = [
   {
     path:"tour/addtours",
     component:AddtoursComponent,
-    canActivate: [authGuard]
+    canActivate: [ServiceAuthGuard]
   },
   {
     path:"tour/tours/:id",

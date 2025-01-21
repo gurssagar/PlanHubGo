@@ -149,31 +149,6 @@
                 </small>
             </div>
 
-            <!-- Role Selection -->
-            <div class="tw-mb-5">
-                <label for="role" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Role</label>
-                <div class="tw-flex tw-space-x-4 tw-mt-2">
-                    <p-radioButton
-                            name="role"
-                            value="Service Provider"
-                            formControlName="role"
-                            label="Service Provider"
-                    ></p-radioButton>
-                    <p-radioButton
-                            name="role"
-                            value="Customer"
-                            formControlName="role"
-                            label="Customer"
-                    ></p-radioButton>
-                </div>
-                <small
-                        class="tw-text-red-500"
-                        *ngIf="role.invalid && (role.dirty || role.touched)"
-                >
-                    Please select a role
-                </small>
-            </div>
-
             <!-- Submit Button -->
             <p-button
                     type="submit"
@@ -181,8 +156,13 @@
                     styleClass="tw-w-full tw-bg-purple-600 tw-text-white tw-py-2 tw-rounded-md hover:tw-bg-purple-700 tw-transition-colors tw-duration-300"
                     [disabled]="registerForm.invalid"
             ></p-button>
+            <div class="">
             <div class="tw-mt-4 tw-text-center">
                 Already a member? <a routerLink="/login" class="tw-text-purple-600 hover:tw-underline">Login</a>
+            </div>
+            <div class="tw-mt-4 tw-text-center">
+                <a routerLink="/register" class="tw-text-purple-600 hover:tw-underline">Register as a User</a>
+            </div>
             </div>
         </form>
     </div>

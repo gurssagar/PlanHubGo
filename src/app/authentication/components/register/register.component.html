@@ -1,7 +1,8 @@
-<div class="tw-flex tw-justify-center tw-items-center tw-bg-gray-100 tw-min-h-screen ">
-  <div class="tw-bg-white tw-shadow-xl tw-rounded-lg tw-p-8 tw-w-full tw-max-w-md tw-transform tw-transition-all tw-duration-300 hover:tw-shadow-2xl">
+<div class="tw-flex tw-justify-center tw-items-center tw-bg-gray-100 tw-min-h-screen">
+    <div class="tw-bg-white tw-shadow-xl tw-rounded-lg tw-p-8 tw-w-full tw-max-w-md tw-transform tw-transition-all tw-duration-300 hover:tw-shadow-2xl">
         <h2 class="tw-text-3xl tw-font-extrabold tw-mb-6 tw-text-center tw-text-gray-800">Register</h2>
         <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
+            <!-- Previous form fields remain unchanged until the Type selection -->
             <!-- Full Name -->
             <div class="tw-mb-5">
                 <label for="fullName" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Full Name</label>
@@ -85,7 +86,8 @@
                 </small>
             </div>
 
-            <!-- Gender -->
+            <!-- Gender & type of Dashboard -->
+
             <div class="tw-mb-5">
                 <label for="gender" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Gender</label>
                 <div class="tw-flex tw-space-x-4 tw-mt-2">
@@ -130,31 +132,6 @@
                 </small>
             </div>
 
-            <!-- Role Selection -->
-            <div class="tw-mb-5">
-                <label for="role" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Role</label>
-                <div class="tw-flex tw-space-x-4 tw-mt-2">
-                    <p-radioButton
-                            name="role"
-                            value="Service Provider"
-                            formControlName="role"
-                            label="Service Provider"
-          ></p-radioButton>
-                    <p-radioButton
-                            name="role"
-                            value="Customer"
-                            formControlName="role"
-                            label="Customer"
-                    ></p-radioButton>
-                </div>
-                <small
-                        class="tw-text-red-500"
-                        *ngIf="role.invalid && (role.dirty || role.touched)"
-                >
-                    Please select a role
-                </small>
-            </div>
-
             <!-- Submit Button -->
             <p-button
                     type="submit"
@@ -162,8 +139,13 @@
                     styleClass="tw-w-full tw-bg-purple-600 tw-text-white tw-py-2 tw-rounded-md hover:tw-bg-purple-700 tw-transition-colors tw-duration-300"
                     [disabled]="registerForm.invalid"
             ></p-button>
-            <div class="tw-mt-4 tw-text-center">
-                Already a member? <a routerLink="/login" class="tw-text-purple-600 hover:tw-underline">Login</a>
+            <div class="">
+                <div class="tw-mt-4 tw-text-center">
+                    Already a member? <a routerLink="/login" class="tw-text-purple-600 hover:tw-underline">Login</a>
+                </div>
+                <div class="tw-mt-4 tw-text-center">
+                     <a routerLink="/provider-register" class="tw-text-purple-600 hover:tw-underline">Register as a Service Provider</a>
+                </div>
             </div>
         </form>
     </div>

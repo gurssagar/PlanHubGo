@@ -2,7 +2,6 @@ import {Component, Inject, PLATFORM_ID} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import * as L from 'leaflet';
 import {isPlatformBrowser, NgForOf, NgIf} from '@angular/common';
-import {MapComponent} from "../map/map.component";
 
 // @ts-ignore
 @Component({
@@ -10,7 +9,7 @@ import {MapComponent} from "../map/map.component";
   standalone: true,
   imports: [
     RouterLink,
-    MapComponent,
+
     NgForOf,
     NgIf,
   ],

@@ -41,9 +41,11 @@ export class ManageBookingComponent implements OnInit {
     });
   }
 
-  public name="9289829766";
+  public name:any=localStorage.getItem('email') ? localStorage.getItem('email') : '';
+
   ngOnInit(): void {
     // To get The image and other details from getTours
+    console.log(this.name);
     forkJoin({
       userBookings: this.tourService.getUserBookings(),
       bookings: this.tourService.getBookings(),
@@ -52,7 +54,7 @@ export class ManageBookingComponent implements OnInit {
       map(({ userBookings, bookings, tours }) => {
         // Get user's booking IDs
         const userBookingIds = userBookings[this.name].map((b: { bookingId: string }) => b.bookingId);
-
+        console.log('User booking IDs:', userBookings);
         // Get full booking details for user's bookings
         const userBookingDetails = userBookingIds.map((id: string) => bookings[id]);
 
@@ -69,6 +71,7 @@ export class ManageBookingComponent implements OnInit {
     this.tourService.getUserBookings().subscribe(
       data => {
         this.bookings = data[this.name];
+        console.log(this.bookings);
         // Loop through each booking to get bookingId
         this.bookings.forEach((booking: any) => {
 
@@ -81,10 +84,10 @@ export class ManageBookingComponent implements OnInit {
                   this.tourService.getTours().subscribe(
                     (data) => {
                       this.bookingData = data.a;
+
                       this.bookingData.forEach(
                         (tour: any) => {
                           if (tour.id === booking.tourId) {
-
 
                           }
                         }
@@ -192,7 +195,7 @@ export class ManageBookingComponent implements OnInit {
   loadBookings(): void {
     this.bookingFinal = [];
     this.tourService.getUserBookings().subscribe(data => {
-      const name = "9289829766";
+      const name = localStorage.getItem('email');
       this.bookings = data[this.name];
       this.bookings.forEach((booking: any) => {
         this.tourService.getBookings().subscribe(data => {

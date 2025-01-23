@@ -32,8 +32,8 @@ export class BookComponent implements OnInit {
     // Initialize form group with validation
     this.bookingForm = this.fb.group({
       name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      confirmEmail: ['', [Validators.required, Validators.email]],
+      email: localStorage.getItem('email'),
+      confirmEmail: localStorage.getItem('email'),
       phone: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
       date: ['', Validators.required],
       tickets: [1, [Validators.required, Validators.min(1)]],

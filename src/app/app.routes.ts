@@ -20,13 +20,14 @@ import {ToursComponent} from "./tour/components/tours/tours.component";
 import {BookComponent} from "./tour/components/book/book.component";
 import {ManageBookingComponent} from "./tour/components/manage-booking/manage-booking.component";
 import {ProviderRegisterComponent} from "./authentication/components/provider-register/provider-register.component";
+import {DashboardComponent} from "./authentication/components/dashboard/dashboard.component";
 
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'provider-register', component: ProviderRegisterComponent },
-
+  { path:'dashboard', component: DashboardComponent },
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: 'service-provider', component: ServiceProviderComponent, canActivate: [ServiceAuthGuard] },

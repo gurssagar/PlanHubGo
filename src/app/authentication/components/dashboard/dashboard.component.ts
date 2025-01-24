@@ -21,6 +21,8 @@ export class DashboardComponent {
         role:string="";
         id:string='';
         password:string="";
+        image:string="";
+        description:string="";
         constructor( private authService: AuthService){}
         ngOnInit(): void {
             this.email = localStorage.getItem('email');
@@ -34,7 +36,11 @@ export class DashboardComponent {
                         this.role = user.role;
                         this.id = user.id;
                         this.password = user.password;
+                        this.image=user.profileImage;
+                        this.description=user.description;
+                        console.log(this.image);
                     }
+
                 });
 
             });

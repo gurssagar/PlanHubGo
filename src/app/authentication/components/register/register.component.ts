@@ -17,6 +17,9 @@ import { RegisterPostData } from '../../models/interfaces/auth';
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common';
 import {DropdownModule} from "primeng/dropdown";
+import {InputTextareaModule} from "primeng/inputtextarea";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+
 
 @Component({
   selector: 'app-register',
@@ -31,12 +34,24 @@ import {DropdownModule} from "primeng/dropdown";
     RadioButtonModule,
     CommonModule,
     DropdownModule,
+    InputTextareaModule
     // Include RadioButtonModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+
+  //s3 client
+  private s3Client = new S3Client({
+    region: "your-region",
+    credentials: {
+      accessKeyId: "zod2Wdh1FGRyTTdU",
+      secretAccessKey: "obGjYuDtXKMk4F3uhDxgI3mhkNAvSRnHhnsPWl7Q"
+    }
+  });
+
+
   private registerService = inject(AuthService);
   private messageService = inject(MessageService);
   private router = inject(Router);
@@ -62,6 +77,11 @@ export class RegisterComponent {
       Validators.min(18),
       Validators.max(100)
     ]),
+    profileImage: new FormControl(null),
+    description: new FormControl('', [
+      Validators.required,
+      Validators.maxLength(500)
+    ])
 
   }, {
     validators: passwordMismatchValidator
@@ -75,7 +95,9 @@ export class RegisterComponent {
   get email() {
     return this.registerForm.get('email')!;
   }
-
+  get description() {
+    return this.registerForm.get('description')!;
+  }
   get password() {
     return this.registerForm.get('password')!;
   }
@@ -121,6 +143,7 @@ export class RegisterComponent {
               age: Number(this.age.value),
               role: 'Customer',
               type: 'none',
+              description: this.description.value
             };
 
             // Add new user to existing users array

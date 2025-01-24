@@ -21,7 +21,9 @@ import {BookComponent} from "./tour/components/book/book.component";
 import {ManageBookingComponent} from "./tour/components/manage-booking/manage-booking.component";
 import {ProviderRegisterComponent} from "./authentication/components/provider-register/provider-register.component";
 import {DashboardComponent} from "./authentication/components/dashboard/dashboard.component";
-
+import {TourcompanyComponent} from "./tour/components/tourcompany/tourcompany.component";
+import {ShowcompanyComponent} from "./tour/components/showcompany/showcompany.component";
+import {AdminDashboardComponent} from "./tour/components/admin-dashboard/admin-dashboard.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -85,5 +87,20 @@ export const routes: Routes = [
     path:"tour/manage",
     component:ManageBookingComponent,
     canActivate: [authGuard]
-  }
+  },
+  {
+    path:'tour/tourcompany',
+    component:TourcompanyComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'tour/showcompany',
+    component:ShowcompanyComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'admins',
+    component:AdminDashboardComponent,
+  },
+
 ];

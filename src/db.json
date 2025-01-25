@@ -174,7 +174,7 @@
           "day7": "Check out and transfer to the airport. Farewell, Sydney!"
         },
         "id": "q7r8s9t0",
-        "name": "Sydney Escapade",
+        "name": "Sydney Escape",
         "price": 2399,
         "duration": "6 days",
         "description": "Explore the stunning beauty of Sydney",
@@ -206,7 +206,7 @@
           "day6": "Free day for relaxation or exploring the local markets.",
           "day7": "Check out and transfer to the airport for departure. Farewell, Bali!"
         },
-        "id": "q7r8s9t0",
+        "id": "b1l2i3t4",
         "name": "Bali Getaway",
         "price": 1799,
         "duration": "6 days",
@@ -338,7 +338,7 @@
           "day6": "Free day for relaxation or optional activities like fishing or yoga sessions.",
           "day7": "Check out and transfer to Malé for departure. Farewell, Maldives paradise!"
         },
-        "id": "a1b2c3d4",
+        "id": "m1d2v3s4",
         "name": "Maldives Retreat",
         "price": 2499,
         "duration": "7 days",
@@ -998,6 +998,18 @@
       "tickets": 1,
       "message": "",
       "bookingDate": "2025-01-23T12:53:25.646Z"
+    },
+    "q7r8s9t0_BOOKING_1737744983701_705": {
+      "bookingId": "q7r8s9t0_BOOKING_1737744983701_705",
+      "tourId": "q7r8s9t0",
+      "name": "Gursagar Singh",
+      "email": "gursagar@skiff.com",
+      "confirmEmail": "gursagar@skiff.com",
+      "phone": "9289829766",
+      "date": "2025-01-13",
+      "tickets": 12,
+      "message": "adasdasda",
+      "bookingDate": "2025-01-24T18:56:23.701Z"
     }
   },
   {
@@ -1028,6 +1040,11 @@
     "t3chnobromos1@gmail.com": [
       {
         "bookingId": "o7p8q9r0_BOOKING_1737636805646_210"
+      }
+    ],
+    "gursagar@skiff.com": [
+      {
+        "bookingId": "q7r8s9t0_BOOKING_1737744983701_705"
       }
     ]
   },

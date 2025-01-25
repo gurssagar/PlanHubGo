@@ -2,18 +2,23 @@ import { Component } from '@angular/core';
 import { UserinfoComponent } from '../userinfo/userinfo.component';
 import {TourService} from "../../../tour/components/tour.service";
 import {AuthService} from "../../services/services/auth.service";
+import {ManageBookingComponent} from "../../../tour/components/manage-booking/manage-booking.component";
+import {NgIf} from "@angular/common";
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
     imports: [
-      UserinfoComponent
+        UserinfoComponent,
+        ManageBookingComponent,
+        NgIf
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
     emaildata:any=[]
+    ref:any='';
         email:any;
         name:string="";
         age:number=0;
@@ -23,6 +28,18 @@ export class DashboardComponent {
         password:string="";
         image:string="";
         description:string="";
+        changeTour(){
+            this.ref="tour";
+        }
+        changeHotel(){
+            this.ref="hotel";
+        }
+        changeCab() {
+            this.ref = "cab";
+        }
+        changeFlight() {
+            this.ref = "flight";
+        }
         constructor( private authService: AuthService){}
         ngOnInit(): void {
             this.email = localStorage.getItem('email');

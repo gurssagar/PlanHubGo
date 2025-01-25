@@ -84,7 +84,7 @@ export class RegisterComponent {
       }
   );
 
-  private selectedFile: File | null = null;
+  private selectedFile: any | null = null;
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -115,7 +115,7 @@ export class RegisterComponent {
     }
   }
 
-  async uploadImageToS3(file: File): Promise<string> {
+  async uploadImageToS3(file: any): Promise<string> {
     const bucketName = 'phg';
     const key = `uploads/${Date.now()}-${file.name}`;
 

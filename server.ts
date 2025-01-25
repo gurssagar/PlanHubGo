@@ -54,5 +54,3 @@ function run(): void {
 }
 
 run();
-
-

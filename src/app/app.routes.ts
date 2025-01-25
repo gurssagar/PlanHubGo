@@ -21,6 +21,11 @@ import {BookComponent} from "./tour/components/book/book.component";
 import {ManageBookingComponent} from "./tour/components/manage-booking/manage-booking.component";
 import {ProviderRegisterComponent} from "./authentication/components/provider-register/provider-register.component";
 import {DashboardComponent} from "./authentication/components/dashboard/dashboard.component";
+
+import {TourcompanyComponent} from "./tour/components/tourcompany/tourcompany.component";
+import {ShowcompanyComponent} from "./tour/components/showcompany/showcompany.component";
+import {AdminDashboardComponent} from "./tour/components/admin-dashboard/admin-dashboard.component";
+
 import { AboutComponent } from './hotels/components/about/about.component';
 import { ContactComponent } from './hotels/components/contact/contact.component';
 import { SectionComponent } from './hotels/components/section/section.component';
@@ -37,6 +42,7 @@ import { AdminBookingDetailsComponent } from './hotels/components/admin-panel/ad
 import { ServiceHotelComponent } from './hotels/components/service-provider-panel/s-hotel/s-hotel.component';
 import { LocationComponent as location } from './hotels/components/location/location.component';
 import { ServiceProviderComponent as serviceProvider } from './hotels/components/service-provider-panel/service-provider/s-provider.component';
+
 
 
 export const routes: Routes = [
@@ -135,5 +141,20 @@ export const routes: Routes = [
     path:"tour/manage",
     component:ManageBookingComponent,
     canActivate: [authGuard]
-  }
+  },
+  {
+    path:'tour/tourcompany',
+    component:TourcompanyComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'tour/showcompany',
+    component:ShowcompanyComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path:'admins',
+    component:AdminDashboardComponent,
+  },
+
 ];

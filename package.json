@@ -23,6 +23,7 @@
     "@angular/platform-server": "^17.3.0",
     "@angular/router": "^17.3.0",
     "@angular/ssr": "^17.3.11",
+    "@aws-sdk/client-s3": "^3.733.0",
     "@primeng/themes": "^19.0.5",
     "@types/googlemaps": "^3.43.3",
     "angular-responsive-carousel": "^2.1.2",

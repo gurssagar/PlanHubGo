@@ -7,18 +7,20 @@ import { BookComponent } from "../book/book.component";
 import { ActivatedRoute } from "@angular/router";
 import { TourService } from "../tour.service";
 import {MenuComponent} from "../menu/menu.component";
+import {ShowcompanyComponent} from "../showcompany/showcompany.component";
 
 @Component({
   selector: 'app-tours',
   standalone: true,
-  imports: [
-    InfoComponent,
-    TourPlanComponent,
-    GalleryComponent,
-    LocationComponent,
-    BookComponent,
-    MenuComponent
-  ],
+    imports: [
+        InfoComponent,
+        TourPlanComponent,
+        GalleryComponent,
+        LocationComponent,
+        BookComponent,
+        MenuComponent,
+        ShowcompanyComponent
+    ],
   templateUrl: './tours.component.html',
   styleUrl: './tours.component.css'
 })

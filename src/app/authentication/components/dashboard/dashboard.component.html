@@ -1,5 +1,5 @@
 <div>
-    <div class="tw-z-20 tw-bg-white fixed w-[200px] h-screen tw-shadow-lg tw-p-6 tw-border-r-2 tw-border-gray-400">
+    <div class="-tw-mt-12 tw-z-20 tw-bg-white fixed w-[200px] h-screen tw-shadow-lg tw-p-6 tw-border-r-2 tw-border-gray-400">
         <div class="tw-mb-8 tw-pr-16">
             <h1 class=" tw-font-bold tw-text-xl tw-text-blue-600">PlanHubGo</h1>
             <p class="tw-text-gray-500 tw-text-sm  tw-mt-1">Dashboard</p>
@@ -13,28 +13,28 @@
                 <span>User</span>
             </a>
 
-            <a class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-700 tw-rounded-lg hover:tw-bg-blue-50 hover:tw-text-blue-600 tw-transition-all">
+            <a (click)="changeHotel()" class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-700 tw-rounded-lg hover:tw-bg-blue-50 hover:tw-text-blue-600 tw-transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5 tw-mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                 </svg>
                 <span>Hotel</span>
             </a>
 
-            <a class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-700 tw-rounded-lg hover:tw-bg-blue-50 hover:tw-text-blue-600 tw-transition-all">
+            <a (click)="changeFlight()" class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-700 tw-rounded-lg hover:tw-bg-blue-50 hover:tw-text-blue-600 tw-transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5 tw-mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                 </svg>
                 <span>Flight</span>
             </a>
 
-            <a class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-700 tw-rounded-lg hover:tw-bg-blue-50 hover:tw-text-blue-600 tw-transition-all">
+            <a (click)="changeTour()" class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-700 tw-rounded-lg hover:tw-bg-blue-50 hover:tw-text-blue-600 tw-transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5 tw-mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
                 </svg>
                 <span>Tour</span>
             </a>
 
-            <a class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-700 tw-rounded-lg hover:tw-bg-blue-50 hover:tw-text-blue-600 tw-transition-all">
+            <a (change)="changeCab()" class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-700 tw-rounded-lg hover:tw-bg-blue-50 hover:tw-text-blue-600 tw-transition-all">
                 <svg xmlns="http://www.w3.org/2000/svg" class="tw-w-5 tw-h-5 tw-mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
                 </svg>
@@ -45,7 +45,7 @@
 
     <div class="tw-ml-[250px] tw-p-6 tw-h-screen tw-py-40">
         <div class="tw-flex tw-gap-20 ">
-        <img src="/assets/images/hotel.jpeg" class="tw-w-40 tw-h-40 tw-rounded-xl tw-border-gray-300 tw-border-2 tw-object-cover tw-mb-4">
+        <img src="{{image}}" class="tw-w-40 tw-h-40 tw-rounded-full tw-border-gray-300 tw-border-2 tw-object-cover tw-mb-4">
             <div class="tw-space-y-4">
             <div class="tw-ml-4 tw-grid tw-grid-cols-4 tw-gap-x-20">
                 <div class="">
@@ -97,7 +97,7 @@
                         Age
                     </div>
                     <div class="text-xl ">
-                        22
+                        {{age}}
                     </div>
 
                 </div>
@@ -106,7 +106,7 @@
                         Gender
                     </div>
                     <div class="text-xl ">
-                        Male
+                        {{gender}}
                     </div>
 
                 </div>
@@ -118,7 +118,7 @@
                     Description
                 </div>
                 <div class="text-xl ">
-                    Description
+                   {{description}}
                 </div>
             </div>
             <div class="tw-ml-4 tw-grid tw-grid-cols-2 tw-gap-x-20 tw-gap-y-4">
@@ -129,5 +129,10 @@
             </div>
             </div>
         </div>
+        <div *ngIf="ref=='tour'">
+            <app-manage-booking/>
+        </div>
     </div>
 </div>
+
+

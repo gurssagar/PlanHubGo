@@ -21,6 +21,22 @@ import {BookComponent} from "./tour/components/book/book.component";
 import {ManageBookingComponent} from "./tour/components/manage-booking/manage-booking.component";
 import {ProviderRegisterComponent} from "./authentication/components/provider-register/provider-register.component";
 import {DashboardComponent} from "./authentication/components/dashboard/dashboard.component";
+import { AboutComponent } from './hotels/components/about/about.component';
+import { ContactComponent } from './hotels/components/contact/contact.component';
+import { SectionComponent } from './hotels/components/section/section.component';
+import { SearchResultsComponent } from './hotels/components/search-results/search-results.component';
+import { BookingFormComponent } from './hotels/components/booking-form/booking-form.component';
+import { PageComponent } from './hotels/components/page/page.component';
+import { HotelRoomComponent } from './hotels/components/hotel-room/hotel-room.component';
+import { BookingHistoryComponent } from './hotels/components/booking-history/booking-history.component';
+import { AdSidebarComponent } from './hotels/components/admin-panel/ad-sidebar/ad-sidebar.component';
+import { AdminPanelComponent } from './hotels/components/admin-panel/admin-panel.component';
+import { AdHotelDeatilsComponent } from './hotels/components/admin-panel/ad-hotel-deatils/ad-hotel-deatils.component';
+import { AdRoomDeatilsComponent } from './hotels/components/admin-panel/ad-room-deatils/ad-room-deatils.component';
+import { AdminBookingDetailsComponent } from './hotels/components/admin-panel/ad-booking-details/ad-booking-details.component';
+import { ServiceHotelComponent } from './hotels/components/service-provider-panel/s-hotel/s-hotel.component';
+import { LocationComponent as location } from './hotels/components/location/location.component';
+import { ServiceProviderComponent as serviceProvider } from './hotels/components/service-provider-panel/service-provider/s-provider.component';
 
 
 export const routes: Routes = [
@@ -28,6 +44,40 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'provider-register', component: ProviderRegisterComponent },
   { path:'dashboard', component: DashboardComponent },
+  { path: 'about', component: AboutComponent },
+  { path: 'contact', component: ContactComponent },
+
+  { path: 'hotel', component: SectionComponent, canActivate: [authGuard] },  
+  { path: 'search-results', component: SearchResultsComponent, canActivate: [authGuard] },
+  { path: 'location', component: location, canActivate: [authGuard] }, 
+  { path: 'room/:roomId/booking-form', component: BookingFormComponent, canActivate: [authGuard] },
+  {
+    path: 'page', component: PageComponent, canActivate: [authGuard],
+    children: [
+      { path: 'hotel-room/:hotelId', 
+        component: HotelRoomComponent, canActivate: [authGuard] },
+    ]
+  },
+  { path: 'booking-history', component: BookingHistoryComponent, canActivate: [authGuard] },
+  { path: 'ad-sidebar', component: AdSidebarComponent, canActivate: [authGuard]},
+  {
+    path: 'admin-panel', component: AdminPanelComponent, canActivate: [authGuard],
+    children: [
+      { path: 'ad-hotel-deatils', component: AdHotelDeatilsComponent, canActivate: [authGuard] },
+      { path: 'ad-room-details', component: AdRoomDeatilsComponent, canActivate: [authGuard] },
+      { path: 'ad-booking-history', component: AdminBookingDetailsComponent, canActivate: [authGuard]},
+    ]
+  },
+  {
+    path: 's-provider', component: serviceProvider, canActivate: [ServiceAuthGuard],
+    children: [
+      {
+        path: 'service-hotel',
+        component: ServiceHotelComponent, canActivate: [ServiceAuthGuard],
+      },
+    ]
+  },
+
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: 'service-provider', component: ServiceProviderComponent, canActivate: [ServiceAuthGuard] },

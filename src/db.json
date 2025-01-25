@@ -28,8 +28,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Adventure Travels"
+        }
       },
       {
         "tourplans": {
@@ -61,8 +60,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Global Tours"
+        }
       },
       {
         "tourplans": {
@@ -94,8 +92,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Wanderlust Adventures"
+        }
       },
       {
         "tourplans": {
@@ -127,8 +124,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "City Explorers"
+        }
       },
       {
         "tourplans": {
@@ -160,8 +156,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Adventure Travels"
+        }
       },
       {
         "tourplans": {
@@ -171,10 +166,10 @@
           "day4": "Take a ferry to Manly Beach and explore the local markets.",
           "day5": "Visit the Blue Mountains and explore the Three Sisters and Echo Point.",
           "day6": "Free day for shopping or relaxing on Bondi Beach.",
-          "day7": "Check out and transfer to the airport. Farewell, Sydney!"
+          "day7": "Check out and transfer to the airport for departure. Farewell, Sydney!"
         },
         "id": "q7r8s9t0",
-        "name": "Sydney Escape",
+        "name": "Sydney Escapade",
         "price": 2399,
         "duration": "6 days",
         "description": "Explore the stunning beauty of Sydney",
@@ -193,8 +188,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Global Tours"
+        }
       },
       {
         "tourplans": {
@@ -206,7 +200,7 @@
           "day6": "Free day for relaxation or exploring the local markets.",
           "day7": "Check out and transfer to the airport for departure. Farewell, Bali!"
         },
-        "id": "b1l2i3t4",
+        "id": "q7r8s9t0",
         "name": "Bali Getaway",
         "price": 1799,
         "duration": "6 days",
@@ -226,8 +220,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Wanderlust Adventures"
+        }
       },
       {
         "tourplans": {
@@ -259,8 +252,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "City Explorers"
+        }
       },
       {
         "tourplans": {
@@ -292,8 +284,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Adventure Travels"
+        }
       },
       {
         "tourplans": {
@@ -325,8 +316,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Global Tours"
+        }
       },
       {
         "tourplans": {
@@ -338,7 +328,7 @@
           "day6": "Free day for relaxation or optional activities like fishing or yoga sessions.",
           "day7": "Check out and transfer to Malé for departure. Farewell, Maldives paradise!"
         },
-        "id": "m1d2v3s4",
+        "id": "a1b2c3d4",
         "name": "Maldives Retreat",
         "price": 2499,
         "duration": "7 days",
@@ -358,8 +348,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Wanderlust Adventures"
+        }
       },
       {
         "tourplans": {
@@ -391,8 +380,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "City Explorers"
+        }
       },
       {
         "tourplans": {
@@ -410,7 +398,7 @@
         "duration": "6 days",
         "description": "Where East meets West",
         "description2": "Discover the Hagia Sophia, Blue Mosque, and the bustling Grand Bazaar in Istanbul.",
-        "image": "https://images.alphacoders.com/,533/533992.jpg",
+        "image": "https://images.alphacoders.com/533/533992.jpg",
         "images": [
           "https://t3.ftcdn.net/jpg/00/87/16/40/360_F_87164057_AAF0KRfPw8ifqoBRjyxOAgzKcvKux0Hy.jpg",
           "https://c4.wallpaperflare.com/wallpaper/826/906/436/morning-in-istanbul-wallpaper-preview.jpg",
@@ -424,8 +412,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Adventure Travels"
+        }
       },
       {
         "tourplans": {
@@ -457,8 +444,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Global Tours"
+        }
       },
       {
         "tourplans": {
@@ -490,8 +476,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Wanderlust Adventures"
+        }
       },
       {
         "tourplans": {
@@ -523,8 +508,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "City Explorers"
+        }
       },
       {
         "tourplans": {
@@ -556,8 +540,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Adventure Travels"
+        }
       },
       {
         "tourplans": {
@@ -589,8 +572,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Global Tours"
+        }
       },
       {
         "tourplans": {
@@ -612,7 +594,7 @@
         "images": [
           "https://i.pinimg.com/originals/da/e5/27/dae5273af301e86ccce5e97ab33cdabd.jpg",
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkd00leDyl3rAvMhvKihZPH6HIt248P90inA&s",
-          "https://cdn.pixabay.com/photo/2020/04/22/06/18/phi-phi-island-50,76128_640.jpg"
+          "https://cdn.pixabay.com/photo/2020/04/22/06/18/phi-phi-island-5076128_640.jpg"
         ],
         "destination": "Phuket, Thailand",
         "departure": "Bangkok, Thailand",
@@ -622,8 +604,7 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "Wanderlust Adventures"
+        }
       },
       {
         "tourplans": {
@@ -655,8 +636,55 @@
         "center": {
           "latitude": 48.8575,
           "longitude": 2.3514
-        },
-        "tourcompany": "City Explorers"
+        }
+      },
+      {
+        "id": "sdasdas",
+        "name": "sdasdasdas",
+        "price": 12312,
+        "duration": "2",
+        "description": "asdlasjkdas",
+        "description2": "asd,asjhda",
+        "image": "https://dasdasdasdasdasd.com",
+        "images": "https://dajdskas.com",
+        "destination": "asdasd",
+        "departure": "sdadas",
+        "departureTime": "2025-01-15T04:00",
+        "returnTime": "2025-01-10T04:00",
+        "dressCode": "sadasd",
+        "day1": "sknadasd",
+        "day2": "asjkhdhuasud",
+        "day3": "djgahsda",
+        "day4": "dyugasfyx",
+        "day5": "dsakdhyfdw",
+        "day6": "dhbasuygdays",
+        "day7": "sdkasdajsgd",
+        "center": {
+          "latitude": 48.8575,
+          "longitude": 2.3514
+        }
+      },
+      {
+        "id": "ab12",
+        "name": "Bangalore",
+        "price": 1500,
+        "duration": "2",
+        "description": "v",
+        "description2": "s",
+        "image": "",
+        "images": "",
+        "destination": "",
+        "departure": "",
+        "departureTime": "",
+        "returnTime": "",
+        "dressCode": "",
+        "day1": "",
+        "day2": "",
+        "day3": "",
+        "day4": "",
+        "day5": "",
+        "day6": "",
+        "day7": ""
       }
     ]
   },
@@ -982,34 +1010,10 @@
       "email": "gursagar1107@protonmail.com",
       "confirmEmail": "gursagar1107@protonmail.com",
       "phone": "9289829766",
-      "date": "2025-01-30",
+      "date": "2025-01-14",
       "tickets": 1,
       "message": "",
-      "bookingDate": "2025-01-23T12:40:11.285Z"
-    },
-    "o7p8q9r0_BOOKING_1737636805646_210": {
-      "bookingId": "o7p8q9r0_BOOKING_1737636805646_210",
-      "tourId": "o7p8q9r0",
-      "name": "Gursagar Singh",
-      "email": "t3chnobromos1@gmail.com",
-      "confirmEmail": "t3chnobromos1@gmail.com",
-      "phone": "9289829766",
-      "date": "2025-01-22",
-      "tickets": 1,
-      "message": "",
-      "bookingDate": "2025-01-23T12:53:25.646Z"
-    },
-    "q7r8s9t0_BOOKING_1737744983701_705": {
-      "bookingId": "q7r8s9t0_BOOKING_1737744983701_705",
-      "tourId": "q7r8s9t0",
-      "name": "Gursagar Singh",
-      "email": "gursagar@skiff.com",
-      "confirmEmail": "gursagar@skiff.com",
-      "phone": "9289829766",
-      "date": "2025-01-13",
-      "tickets": 12,
-      "message": "adasdasda",
-      "bookingDate": "2025-01-24T18:56:23.701Z"
+      "bookingDate": "2025-01-23T07:14:33.026Z"
     }
   },
   {
@@ -1035,16 +1039,6 @@
       },
       {
         "bookingId": "i9j0k1l2_BOOKING_1737616473026_710"
-      }
-    ],
-    "t3chnobromos1@gmail.com": [
-      {
-        "bookingId": "o7p8q9r0_BOOKING_1737636805646_210"
-      }
-    ],
-    "gursagar@skiff.com": [
-      {
-        "bookingId": "q7r8s9t0_BOOKING_1737744983701_705"
       }
     ]
   },
@@ -1121,51 +1115,6 @@
         }
       },
       {
-        "id": "1605",
-        "fullName": "Gursagar Singh",
-        "email": "t3chnobromos1@gmail.com",
-        "password": "sagar2003",
-        "gender": "Male",
-        "age": 22,
-        "role": "Customer",
-        "type": "none",
-        "description": "Hello"
-      },
-      {
-        "id": "y25c",
-        "fullName": "Gursagar Singh",
-        "email": "t3chnobromos12@gmail.com",
-        "password": "Sagar2003@",
-        "gender": "Male",
-        "age": 22,
-        "role": "Customer",
-        "type": "none",
-        "description": "dasdasd"
-      },
-      {
-        "id": "ekf8",
-        "fullName": "d",
-        "email": "sadasdas@gmail.con",
-        "password": "Sagar2003@",
-        "gender": "Male",
-        "age": 22,
-        "role": "Customer",
-        "type": "none",
-        "description": "sdasdas",
-        "profileImage": "https://phg.s3.tebi.io/uploads/1737743403460-Blue Modern Travel Agency Logo.png"
-      },
-      {
-        "id": "ebvp",
-        "fullName": "Gursagar Singh",
-        "email": "gursagar@skiff.com",
-        "password": "Sagar2003@",
-        "gender": "Male",
-        "age": 22,
-        "role": "Customer",
-        "type": "none",
-        "description": "Hey I am Gursagar A angular Developer 24 years old",
-        "profileImage": "https://phg.s3.tebi.io/uploads/1737744711135-DSC_1760 (2) (1).JPG"
-
         "id": "dzuh",
         "fullName": "r",
         "email": "ridamsinha20@gmail.com",
@@ -5379,46 +5328,7 @@
       {
         "provider_id": "Provider2",
         "name": "Travel Agency Y"
-
       }
     ]
-  },
-  [
-    {
-      "nameOfCompany": "Adventure Travels",
-      "description": "Leading provider of adventure travel experiences.",
-      "address": "123 Adventure Lane, Wanderlust City, WL 45678",
-      "phone": "+1-234-567-8900",
-      "email": "contact@adventuretravels.com",
-      "website": "https://www.adventuretravels.com",
-      "registrationId": "AT-987654321"
-    },
-    {
-      "nameOfCompany": "Global Tours",
-      "description": "Your gateway to global exploration and cultural immersion.",
-      "address": "456 World Avenue, Explorer Town, ET 67890",
-      "phone": "+44-789-012-3456",
-      "email": "info@globaltours.com",
-      "website": "https://www.globaltours.com",
-      "registrationId": "GT-234567890"
-    },
-    {
-      "nameOfCompany": "Wanderlust Adventures",
-      "description": "Crafting unforgettable journeys for the modern traveler.",
-      "address": "789 Wander Lane, Journey City, JC 90123",
-      "phone": "+61-2-9876-5432",
-      "email": "travel@wanderlustadventures.com",
-      "website": "https://www.wanderlustadventures.com",
-      "registrationId": "WA-345678901"
-    },
-    {
-      "nameOfCompany": "City Explorers",
-      "description": "Discovering the heart and soul of cities around the world.",
-      "address": "101 Urban Street, Metroville, MV 23456",
-      "phone": "+1-555-123-4567",
-      "email": "explore@cityexplorers.com",
-      "website": "https://www.cityexplorers.com",
-      "registrationId": "CE-456789012"
-    }
-  ]
+  }
 ]

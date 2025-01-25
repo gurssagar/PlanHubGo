@@ -132,40 +132,6 @@
                 </small>
             </div>
 
-            <!-- Description -->
-            <div class="tw-mb-5">
-                <label for="description" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Description</label>
-                <textarea
-                        pInputTextarea
-                        class="tw-mt-1 tw-block tw-w-full tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm focus:tw-ring-purple-500 focus:tw-border-purple-500"
-                        id="description"
-                        formControlName="description"
-                        rows="4"
-                ></textarea>
-                <small
-                        class="tw-text-red-500"
-                        *ngIf="description.invalid && (description.dirty || description.touched)"
-                >
-                    <span *ngIf="description.hasError('required')">Description is required</span>
-                    <span *ngIf="description.hasError('maxlength')">Description must be less than 500 characters</span>
-                </small>
-            </div>
-
-
-            <!-- Image Upload -->
-            <div class="tw-mb-5">
-                <label class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Profile Image</label>
-                <input
-                        type="file"
-                        accept="image/*"
-                        (change)="onFileSelected($event)"
-                        class="tw-mt-1 tw-block tw-w-full"
-                />
-                <small class="tw-text-gray-500">Supported formats: JPG, PNG, GIF (Max 5MB)</small>
-            </div>
-
-
-
             <!-- Submit Button -->
             <p-button
                     type="submit"

@@ -49,21 +49,12 @@
                                 <input id="name" formControlName="name" type="text"
                                        class="tw-border tw-border-gray-300 tw-rounded-lg tw-p-3 focus:tw-ring-2 focus:tw-ring-blue-500"
                                        placeholder="John Doe" />
-                                <div *ngIf="bookingForm.get('name')?.invalid && bookingForm.get('name')?.touched"
-                                     class="tw-text-red-500 tw-text-sm tw-mt-1">
-                                    Full name is required
-                                </div>
                             </div>
                             <div class="tw-flex tw-flex-col">
                                 <label for="phone" class="tw-text-gray-700 tw-font-medium tw-mb-2">Phone Number</label>
                                 <input id="phone" formControlName="phone" type="tel"
                                        class="tw-border tw-border-gray-300 tw-rounded-lg tw-p-3 focus:tw-ring-2 focus:tw-ring-blue-500"
                                        placeholder="+1 (234) 567-8900" />
-                                <div *ngIf="bookingForm.get('phone')?.invalid && bookingForm.get('phone')?.touched"
-                                     class="tw-text-red-500 tw-text-sm tw-mt-1">
-                                    <span *ngIf="bookingForm.get('phone')?.errors?.['required']">Phone number is required</span>
-                                    <span *ngIf="bookingForm.get('phone')?.errors?.['pattern']">Please enter a valid 10-digit phone number</span>
-                                </div>
                             </div>
                         </div>
 
@@ -97,11 +88,6 @@
                                 <input id="tickets" formControlName="tickets" type="number"
                                        class="tw-border tw-border-gray-300 tw-rounded-lg tw-p-3 focus:tw-ring-2 focus:tw-ring-blue-500"
                                        min="1" />
-                                <div *ngIf="bookingForm.get('tickets')?.invalid && bookingForm.get('tickets')?.touched"
-                                     class="tw-text-red-500 tw-text-sm tw-mt-1">
-                                    <span *ngIf="bookingForm.get('tickets')?.errors?.['required']">Number of tickets is required</span>
-                                    <span *ngIf="bookingForm.get('tickets')?.errors?.['min']">Minimum 1 ticket required</span>
-                                </div>
                             </div>
                         </div>
 
@@ -115,6 +101,10 @@
 
                     <!-- Action Buttons -->
                     <div class="tw-flex tw-flex-col tw-items-center tw-space-y-4">
+                        <button type="button"
+                                class="tw-bg-blue-600 hover:tw-bg-blue-700 tw-text-white tw-py-3 tw-px-6 tw-rounded-lg tw-w-full tw-max-w-[300px] tw-font-medium tw-transition tw-duration-200">
+                            Check Availability
+                        </button>
                         <button type="submit"
                                 class="tw-bg-green-600 hover:tw-bg-green-700 tw-text-white tw-py-3 tw-px-6 tw-rounded-lg tw-w-full tw-max-w-[300px] tw-font-medium tw-transition tw-duration-200">
                             Proceed to Payment

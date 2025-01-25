@@ -57,16 +57,16 @@ export class TourService {
   }
 
   addTourCompany(companyDetails: any): Observable<any> {
-    const url = 'http://localhost:3000/4';
+    const url = 'http://localhost:3000/5';
     return this.http.put(url, companyDetails);
   }
 
   getTourCompanies(): Observable<any> {
-    const url = 'http://localhost:3000/4';
+    const url = 'http://localhost:3000/5';
     return this.http.get(url);
   }
   DeleteTourCompany(): Observable<any> {
-    const url = 'http://localhost:3000/4';
+    const url = 'http://localhost:3000/5';
     return this.http.get(url);
   }
   getUsers(): Observable<any> {

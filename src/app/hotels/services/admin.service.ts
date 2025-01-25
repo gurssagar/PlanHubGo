@@ -14,7 +14,7 @@ interface RoomWithHotelId extends Room {
   providedIn: 'root',
 })
 export class AdminService {
-  private apiUrl = 'http://localhost:3000/4'; // Updated API URL
+  private apiUrl = 'http://localhost:3000/5'; // Updated API URL
 
   constructor(private http: HttpClient) {}
 

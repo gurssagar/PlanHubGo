@@ -1,6 +1,19 @@
 <div class="service-provider-page">
 
 
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Welcome to the Service Provider Dashboard</h1>
+    <nav>
+      <a [routerLink]="['/cab']" routerLinkActive="active">Cab Service</a>
+      <a [routerLink]="['/flight']" routerLinkActive="active">Flight Service</a>
+      <a [routerLink]="['/s-provider']" routerLinkActive="active">Hotel Service</a>
+      <a [routerLink]="['/tour-package']" routerLinkActive="active">Tour Service</a>
+      <button (click)="logout()">Logout</button>
+    </nav>
+  </header>
+
+
   <!-- Cab Service Section -->
   <section class="service-section cab-service">
     <h2>Cab Services</h2>

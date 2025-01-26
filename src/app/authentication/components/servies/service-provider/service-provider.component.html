@@ -1,0 +1,105 @@
+<div class="service-provider-page">
+
+
+  <!-- Header Section -->
+  <header class="header">
+    <h1>Welcome to the Service Provider Dashboard</h1>
+    <nav>
+      <a [routerLink]="['/cab']" routerLinkActive="active">Cab Service</a>
+      <a [routerLink]="['/flight']" routerLinkActive="active">Flight Service</a>
+      <a [routerLink]="['/s-provider']" routerLinkActive="active">Hotel Service</a>
+      <a [routerLink]="['/tour-package']" routerLinkActive="active">Tour Service</a>
+      <button (click)="logout()">Logout</button>
+    </nav>
+  </header>
+
+
+  <!-- Cab Service Section -->
+  <section class="service-section cab-service">
+    <h2>Cab Services</h2>
+    <p>
+      Our cab service ensures safe, reliable, and affordable transportation options. Whether you're commuting daily or planning a long journey, we have you covered.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3>Affordable Fares</h3>
+        <p>Our pricing is competitive, offering value for every ride you take.</p>
+      </div>
+      <div class="card">
+        <h3>24/7 Availability</h3>
+        <p>Book a cab anytime, anywhere. Our drivers are always ready.</p>
+      </div>
+      <div class="card">
+        <h3>Safety First</h3>
+        <p>We prioritize your safety with experienced drivers and well-maintained vehicles.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Flight Service Section -->
+  <section class="service-section flight-service">
+    <h2>Flight Services</h2>
+    <p>
+      Book flights seamlessly with our easy-to-use platform. Enjoy a hassle-free experience with competitive pricing and flexible options.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3>Competitive Prices</h3>
+        <p>Find the best deals on domestic and international flights.</p>
+      </div>
+      <div class="card">
+        <h3>Flexible Scheduling</h3>
+        <p>Book flights that suit your travel plans with ease.</p>
+      </div>
+      <div class="card">
+        <h3>24/7 Support</h3>
+        <p>Our support team is here to assist you with all your flight queries.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hotel Service Section -->
+  <section class="service-section hotel-service">
+    <h2>Hotel Services</h2>
+    <p>
+      Discover the best hotels for your stay. From luxury accommodations to budget-friendly options, find the perfect place to relax.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3>Wide Range of Options</h3>
+        <p>Choose from a variety of hotels to fit your needs and budget.</p>
+      </div>
+      <div class="card">
+        <h3>Easy Booking</h3>
+        <p>Book your stay with just a few clicks. It's fast and secure.</p>
+      </div>
+      <div class="card">
+        <h3>Comfort Guaranteed</h3>
+        <p>Stay at top-rated hotels offering premium comfort and amenities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tour Package Section -->
+  <section class="service-section tour-package">
+    <h2>Tour Packages</h2>
+    <p>
+      Explore exciting destinations with our custom tour packages. We handle all the details so you can focus on making memories.
+    </p>
+    <div class="cards">
+      <div class="card">
+        <h3>Custom Itineraries</h3>
+        <p>Tailor your tour package to include destinations you love.</p>
+      </div>
+      <div class="card">
+        <h3>All-Inclusive Deals</h3>
+        <p>Get the best value with packages that cover everything you need.</p>
+      </div>
+      <div class="card">
+        <h3>Experienced Guides</h3>
+        <p>Enjoy guided tours with experts who know the destination inside out.</p>
+      </div>
+    </div>
+  </section>
+
+</div>

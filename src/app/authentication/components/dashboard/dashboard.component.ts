@@ -1,69 +1,65 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/services/auth.service';
-import { DEFAULT_PROFILE_IMAGE } from '../../models/interfaces/auth';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { UserinfoComponent } from '../userinfo/userinfo.component';
+import {TourService} from "../../../tour/components/tour.service";
+import {AuthService} from "../../services/services/auth.service";
+import {ManageBookingComponent} from "../../../tour/components/manage-booking/manage-booking.component";
+import {NgIf} from "@angular/common";
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css'],
+    selector: 'app-dashboard',
+    standalone: true,
+    imports: [
+        UserinfoComponent,
+        ManageBookingComponent,
+        NgIf
+    ],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css'
 })
-export class DashboardComponent implements OnInit {
-  profile: any = {}; // User profile data
-  isEditing: boolean = false; // Edit mode
-  profilePicture: string | null = ''; // Profile picture
+export class DashboardComponent {
+    emaildata:any=[]
+    ref:any='';
+        email:any;
+        name:string="";
+        age:number=0;
+        gender:string="";
+        role:string="";
+        id:string='';
+        password:string="";
+        image:string="";
+        description:string="";
+        changeTour(){
+            this.ref="tour";
+        }
+        changeHotel(){
+            this.ref="hotel";
+        }
+        changeCab() {
+            this.ref = "cab";
+        }
+        changeFlight() {
+            this.ref = "flight";
+        }
+        constructor( private authService: AuthService){}
+        ngOnInit(): void {
+            this.email = localStorage.getItem('email');
+            this.authService.getUserDetails().subscribe(data => {
+                this.emaildata = data.users;
+                this.emaildata.forEach((user:any) => {
+                    if (user.email === this.email) {
+                        this.name = user.fullName;
+                        this.age = user.age;
+                        this.gender = user.gender;
+                        this.role = user.role;
+                        this.id = user.id;
+                        this.password = user.password;
+                        this.image=user.profileImage;
+                        this.description=user.description;
+                        console.log(this.image);
+                    }
 
-  constructor(private authService: AuthService, private router: Router) {}
+                });
 
-  ngOnInit() {
-    const userId = sessionStorage.getItem('userId');
-    console.log(userId)
-    if (!userId) {
-      this.router.navigate(['/login']);
-      return;
-    }
-
-    this.authService.getUser().subscribe({
-      next: (user) => {
-        console.log(user)
-        this.profile = user;
-        this.profilePicture = user.profileImage || DEFAULT_PROFILE_IMAGE; // Use default image
-      },
-      error: (err) => {
-        console.error('Failed to load user data:', err);
-      },
-    });
-  }
-
-  startEditing() {
-    this.isEditing = true;
-  }
-
-  saveProfile() {
-    const updatedProfile = {
-      ...this.profile,
-      profileImage: this.profilePicture,
-    };
-
-    this.authService.updateUserDetails(this.profile.id, updatedProfile).subscribe({
-      next: () => {
-        this.profile = updatedProfile;
-        alert('Profile updated successfully!');
-        this.isEditing = false;
-      },
-      error: (err) => {
-        console.error('Failed to update profile:', err);
-        alert('Failed to update profile.');
-      },
-    });
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-  }
+            });
+        }
 }

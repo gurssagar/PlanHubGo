@@ -1,4 +1,5 @@
-<div class="container">
+<div *ngIf="!isChildRoute">
+  <div class="container">
     <h1 class="title">{{ providerData.name }} Dashboard</h1>
 
   <div class="stats-grid">
@@ -76,5 +77,143 @@
             </tr>
         </tbody>
     </table>
-    <router-outlet></router-outlet>
+  </div>
+</div>
+
+<!-- Full-page outlet for child routes -->
+<div class="container">
+  <router-outlet *ngIf="isChildRoute"></router-outlet>
+</div>
+
+<!-- Floating Button -->
+<button class="floating-btn" (click)="openAddHotelPopup()">
+  <i class="fa-solid fa-plus"></i>
+</button>
+
+<!-- Hotel Add Popup -->
+<div class="hotel-add-popup" *ngIf="showAddHotelPopup">
+<div class="popup-content-add" (click)="$event.stopPropagation()">
+  <h3>Add New Hotel</h3>
+  <form (ngSubmit)="addHotel()" #hotelForm="ngForm" novalidate>
+    
+    <!-- Hotel Name -->
+    <label for="hotelName">Hotel Name</label>
+    <input type="text" id="hotelName" [(ngModel)]="newHotel.name" name="name" required />
+    <div *ngIf="hotelForm.submitted && !hotelForm.controls['name']?.valid">
+      <small class="error-message">Hotel name is required.</small>
+    </div>
+
+    <!-- Description -->
+    <label for="hotelDescription">Description</label>
+    <textarea id="hotelDescription" [(ngModel)]="newHotel.description" name="description" required></textarea>
+    <div *ngIf="hotelForm.submitted && !hotelForm.controls['description']?.valid">
+      <small class="error-message">Description is required.</small>
+    </div>
+
+    <!-- Price Per Night -->
+    <label for="hotelPricePerNight">Price Per Night</label>
+    <input type="number" id="hotelPricePerNight" [(ngModel)]="newHotel.pricePerNight" name="pricePerNight" required [min]="1" />
+    <div *ngIf="hotelForm.submitted && !hotelForm.controls['pricePerNight']?.valid">
+      <small class="error-message">Price per night is required and should be a positive number.</small>
+    </div>
+
+    <!-- City -->
+    <label for="hotelCity">City</label>
+    <input type="text" id="hotelCity" [(ngModel)]="newHotel.city" name="city" required />
+    <div *ngIf="hotelForm.submitted && !hotelForm.controls['city']?.valid">
+      <small class="error-message">City is required.</small>
+    </div>
+
+    <!-- Rooms Available -->
+    <!-- <label for="roomsAvailable">Rooms Available</label>
+    <input type="number" id="roomsAvailable" [(ngModel)]="newHotel.roomsAvailable" name="roomsAvailable" required [min]="1" />
+    <div *ngIf="hotelForm.submitted && !hotelForm.controls['roomsAvailable']?.valid">
+      <small class="error-message">Rooms available is required and should be a positive number.</small>
+    </div> -->
+
+    <!-- Check-in Time -->
+    <label for="checkin">Check-in Time</label>
+    <div class="time-select">
+      <select id="checkinHour" [(ngModel)]="checkinHour" name="checkinHour" required>
+        <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
+      </select>
+      :
+      <select id="checkinMinute" [(ngModel)]="checkinMinute" name="checkinMinute" required>
+        <option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</option>
+      </select>
+      <select id="checkinPeriod" [(ngModel)]="checkinPeriod" name="checkinPeriod" required>
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+    </div>
+    <div *ngIf="hotelForm.submitted && !hotelForm.controls['checkinHour']?.valid">
+      <small class="error-message">Check-in time is required.</small>
+    </div>
+
+    <!-- Checkout Time -->
+    <label for="checkout">Checkout Time</label>
+    <div class="time-select">
+      <select id="checkoutHour" [(ngModel)]="checkoutHour" name="checkoutHour" required>
+        <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
+      </select>
+      :
+      <select id="checkoutMinute" [(ngModel)]="checkoutMinute" name="checkoutMinute" required>
+        <option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</option>
+      </select>
+      <select id="checkoutPeriod" [(ngModel)]="checkoutPeriod" name="checkoutPeriod" required>
+        <option value="AM">AM</option>
+        <option value="PM">PM</option>
+      </select>
+    </div>
+    <div *ngIf="hotelForm.submitted && !hotelForm.controls['checkoutHour']?.valid">
+      <small class="error-message">Checkout time is required.</small>
+    </div>
+
+    <!-- Location -->
+    <label for="location">Location</label>
+    <input type="text" id="location" [(ngModel)]="newHotel.location" name="location" placeholder="Share only the url of embeded map" required />
+    <div *ngIf="hotelForm.submitted && !hotelForm.controls['location']?.valid">
+      <small class="error-message">Location is required.</small>
+    </div>
+
+    <!-- Rules -->
+    <label for="rules">Rules</label>
+    <div class="dynamic-input" *ngFor="let rule of newHotel.rules; let i = index">
+      <input type="text" [(ngModel)]="newHotel.rules[i]" name="rules-{{i}}" placeholder="Enter a rule" required />
+      <div *ngIf="hotelForm.submitted && !hotelForm.controls['rules-' + i]?.valid">
+        <small class="error-message">Each rule is required.</small>
+      </div>
+      <button type="button" (click)="removeRule(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addRule()">Add Rule</button>
+
+    <!-- Amenities -->
+    <label for="amenities">Amenities</label>
+    <div class="dynamic-input" *ngFor="let amenity of newHotel.amenities; let i = index">
+      <input type="text" [(ngModel)]="newHotel.amenities[i].name" name="amenity-name-{{i}}"
+        placeholder="Amenity Name" required />
+      <input type="text" [(ngModel)]="newHotel.amenities[i].description" name="amenity-description-{{i}}"
+        placeholder="Amenity Description" required />
+      <input type="text" [(ngModel)]="newHotel.amenities[i].icon" name="amenity-icon-{{i}}"
+        placeholder="Icon Class (e.g., 'fas fa-wifi')" />
+      <button type="button" (click)="removeAmenity(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addAmenity()">Add Amenity</button>
+
+    <!-- Images -->
+    <label for="images">Hotel Images</label>
+    <div class="dynamic-input" *ngFor="let image of newHotel.images; let i = index">
+      <input type="url" [(ngModel)]="newHotel.images[i]" name="images-{{i}}" placeholder="Image URL" required />
+      <div *ngIf="hotelForm.submitted && !hotelForm.controls['images-' + i]?.valid">
+        <small class="error-message">Image URL is required.</small>
+      </div>
+      <button type="button" (click)="removeImage(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addImage()">Add Image</button>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-success" [disabled]="!hotelForm.valid || newHotel.pricePerNight <= 0">Add Hotel</button>
+    <button type="button" class="btn btn-danger" (click)="closeAddHotelPopup()">Cancel</button>
+  </form>
+</div>
 </div>

@@ -86,4 +86,5 @@ export interface Hotel {
   ratings: Ratings;
   reviews: Review[];
   bankOffer: BankOffer[];
+  status: string;
 }

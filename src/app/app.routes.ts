@@ -56,7 +56,7 @@ export const routes: Routes = [
   { path: 'hotel', component: SectionComponent, canActivate: [authGuard] },  
   { path: 'search-results', component: SearchResultsComponent, canActivate: [authGuard] },
   { path: 'location', component: location, canActivate: [authGuard] }, 
-  { path: 'room/:roomId/booking-form', component: BookingFormComponent, canActivate: [authGuard] },
+  { path: 'hotel/room/:roomId/booking-form', component: BookingFormComponent, canActivate: [authGuard] },
   {
     path: 'page', component: PageComponent, canActivate: [authGuard],
     children: [

@@ -192,9 +192,7 @@ export class BookingHistoryComponent implements OnInit {
 
   checkForCompletedBookings(): void {
     const completedBooking = this.bookingHistory.find(booking =>
-      booking.status === 'Completed' && 
-      booking.reviewSubmitted !== 'Rejected' && 
-      !booking.reviewSubmitted // Ensures it only opens for unsubmitted reviews
+      booking.status === 'Completed' && !booking.reviewSubmitted && !this.reviewClosedBookings.has(booking.id)
     );
     if (completedBooking) {
       this.openReviewPopup(completedBooking);
@@ -210,14 +208,8 @@ export class BookingHistoryComponent implements OnInit {
 
   closeReviewPopup(): void {
     if (this.reviewBooking) {
-      this.hotelSearchService.cancelBookingReview(this.reviewBooking.id).subscribe(
-        () => {
-          console.log('Booking review cancelled successfully.');
-        },
-        (error) => {
-         console.error('Error cancelling booking review:', error);
-        }
-      );
+      this.reviewClosedBookings.add(this.reviewBooking.id);  // Mark the booking as reviewed
+      localStorage.setItem('closedBookings', JSON.stringify(Array.from(this.reviewClosedBookings)));
     }
     this.showReviewPopup = false;
     this.reviewBooking = null;
@@ -328,4 +320,3 @@ export class BookingHistoryComponent implements OnInit {
     this.selectedBooking = null;
   }
 }
-

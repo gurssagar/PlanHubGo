@@ -15,7 +15,6 @@ export class HeaderComponent {
 
   onNavigate(event: Event): void {
     const selectedValue = (event.target as HTMLSelectElement).value;
-    console.log(selectedValue);
     if (selectedValue) {
       this.router.navigate([selectedValue]);
     }

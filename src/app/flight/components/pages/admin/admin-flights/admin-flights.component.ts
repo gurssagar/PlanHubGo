@@ -100,33 +100,16 @@ export class AdminFlightsComponent implements OnInit {
 
   onAnalysisView(id:String){
     this.isShowAnalysis = true
-    this.manageFlightsService.getSpecificbooking().subscribe((data)=>{
-        const tempo=data.bookings
-      this.flightList.forEach(flight => {
-        tempo.forEach((flightItem: any) => {
-          console.log(flightItem.flightID);
-          console.log(flight.id)
-          if(flight.id==flightItem.flightID){
-            console.log(true)
-            this.calculateSummary();
-          }
-        })
-        return data.bookings;
-        /*if(flight.id==data.bookings.id){
-          this.calculateSummary();
-        }*/
-      })
-
-
-      this.bookings = data.bookings;
-
+    this.manageFlightsService.getSpecificbooking(id).subscribe((data)=>{
+      this.bookings = data;
+      this.calculateSummary();
     })
   }
 
   onBookingAnalysis(){
     this.isBookingAnalysis = true
     this.manageFlightsService.getAllBooking().subscribe((data)=>{
-      this.bookings = data.bookings;
+      this.bookings = data;
       this.calculateSummary();
     })
   }
@@ -141,7 +124,7 @@ export class AdminFlightsComponent implements OnInit {
 
   calculateSummary(): void {
     this.totalBookings = this.bookings.length;
-    console.log(this.totalBookings);
+
     this.confirmedBookings = this.bookings.filter(
       booking => booking.bookingStatus === 'Confirmed'
     ).length;
@@ -185,17 +168,13 @@ export class AdminFlightsComponent implements OnInit {
 
   ngOnInit() {
     this.getFlightDetails();
-    this.updatePaginatedFlights();
-    this.manageFlightsService.getAllBooking().subscribe((data)=>{
-      this.bookings = data.bookings;
-    })
+    this.updatePaginatedFlights()
   }
 
   getFlightDetails() {
     this.manageFlightsService.getFlights().subscribe((data:any) => {
-      this.flightList = data.flights
-      this.filteredFlights = data.flights
-
+      this.flightList = data
+      this.filteredFlights = data
       this.updatePaginatedFlights()
     });
   }

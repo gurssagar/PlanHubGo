@@ -320,4 +320,3 @@ export class BookingHistoryComponent implements OnInit {
     this.selectedBooking = null;
   }
 }
-

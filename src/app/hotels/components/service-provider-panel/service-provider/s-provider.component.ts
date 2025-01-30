@@ -605,7 +605,7 @@ generateUniqueRoomId(callback: (uniqueId: string) => void): void {
   }
 
   viewDetails(providerId: string, hotelId: string): void {
-    this.router.navigate(['/s-provider/service-hotel'], {
+    this.router.navigate(['/hotel-service/service-hotel'], {
       queryParams: { providerId, hotelId },
     });
   }

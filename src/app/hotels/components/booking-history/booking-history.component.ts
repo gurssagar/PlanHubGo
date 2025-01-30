@@ -7,7 +7,7 @@ import { Booking } from '../../models/interfaces';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-booking-history',
+  selector: 'hotel-app-booking-history',
   standalone: true,
   imports: [CommonModule, FormatDatePipe, FormsModule],
   templateUrl: './booking-history.component.html',

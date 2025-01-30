@@ -18,7 +18,7 @@ export class TourService {
     return from(fetch(this.apiUrl).then(response => response.json()));
   }
 
-  updateTour(tourId: string, tourData: any): Observable<any> {
+  updateTour( tourData: any): Observable<any> {
     const url = 'http://localhost:3000/0';
     return this.http.put(url, tourData);
   }

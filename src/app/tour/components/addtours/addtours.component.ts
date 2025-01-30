@@ -104,7 +104,7 @@ export class AddtoursComponent implements OnInit {
 
     console.log('Sending updated tour data to the server:', tourData);
 
-    this.tourService.updateTour('a', tourData).subscribe({
+    this.tourService.updateTour( tourData).subscribe({
       next: response => {
         alert('Tour updated successfully.');
         // Optionally reset the form or fetch updated tours from the server

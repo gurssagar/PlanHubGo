@@ -4,6 +4,13 @@ import {TourService} from "../../../tour/components/tour.service";
 import {AuthService} from "../../services/services/auth.service";
 import {ManageBookingComponent} from "../../../tour/components/manage-booking/manage-booking.component";
 import {NgIf} from "@angular/common";
+import {
+    FlightBookingHistoryComponent
+} from "../../../flight/components/pages/customer/booking-history/booking-history.component";
+import {
+    CancelBookingComponent
+} from "../../../flight/components/pages/customer/cancel-booking/cancel-booking.component";
+import {BookingHistoryComponent} from "../../../hotels/components/booking-history/booking-history.component";
 
 @Component({
     selector: 'app-dashboard',
@@ -11,7 +18,10 @@ import {NgIf} from "@angular/common";
     imports: [
         UserinfoComponent,
         ManageBookingComponent,
-        NgIf
+        NgIf,
+        FlightBookingHistoryComponent,
+        CancelBookingComponent,
+        BookingHistoryComponent
     ],
     templateUrl: './dashboard.component.html',
     styleUrl: './dashboard.component.css'

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RouterLink, RouterOutlet} from '@angular/router';
+import {Router, RouterLink, RouterOutlet} from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
@@ -16,6 +16,18 @@ import {NgIf} from "@angular/common";  // Import FormsModule here
 })
 export class AppComponent {
   title = 'angular-18-primeng-app';
+  showHeaderAndFooter: boolean = true;
+
+  constructor(private router: Router) {
+    this.router.events.subscribe(() => {
+      // List of admin routes where header and footer should be hidden
+      const adminRoutes = ['/admin-panel', '/ad-hotel-deatils', '/ad-room-details'];
+      this.showHeaderAndFooter = !adminRoutes.some(route =>
+        this.router.url.startsWith(route)
+      );
+    });
+  }
+
   isLoggedIn: boolean | undefined;
   login(){
   if(localStorage.getItem('email')){

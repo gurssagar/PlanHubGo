@@ -1437,15 +1437,15 @@
             "roomBooked": 1,
             "price": 2740,
             "status": "Completed",
-            "reviewSubmitted": false
+            "reviewSubmitted": "Rejected"
           }
         ],
         "ratings": {
-          "averageRating": 3.4,
-          "ratingsCount": 10,
+          "averageRating": 3.3,
+          "ratingsCount": 11,
           "ratingBreakdown": {
             "1": 1,
-            "2": 2,
+            "2": 3,
             "3": 2,
             "4": 2,
             "5": 3
@@ -1521,13 +1521,20 @@
             "rating": 5,
             "comment": "ff",
             "date": "2025-01-19T18:37:42.574Z"
+          },
+          {
+            "id": "hT01-rW011",
+            "author": "Ridam Aditya Sinha",
+            "rating": 2,
+            "comment": "good",
+            "date": "2025-01-30T17:34:53.272Z"
           }
         ],
         "bankOffer": {
           "discount": 288,
           "details": "Pay using HDFC Credit Card EMI to avail the offer."
         },
-        "status": "Inactive"
+        "status": "Active"
       },
       {
         "id": "hT09",
@@ -4307,7 +4314,7 @@
         "name": "Chennai Riverside Suites",
         "description": "Charming colonial-style hotel in Chennai with sprawling lawns, vintage furnishings, and authentic Chettinad cuisine.",
         "pricePerNight": 2700,
-        "roomsAvailable": 7,
+        "roomsAvailable": 6,
         "rooms": [
           {
             "roomId": "r001",
@@ -4322,7 +4329,7 @@
               "Parking",
               "Free Cancellation"
             ],
-            "availableRooms": 4,
+            "availableRooms": 3,
             "images": [
               "https://images.unsplash.com/photo-1661872952496-e4e3833d2fdf?q=80&w=1632&auto=format&fit=crop"
             ]
@@ -4390,7 +4397,26 @@
           "https://images.unsplash.com/photo-1501117716987-c8c394bb29df?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
           "https://images.unsplash.com/photo-1507652313519-d4e9174996dd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTAwfHxob3RlbHxlbnwwfHwwfHx8MA%3D%3D"
         ],
-        "bookings": [],
+        "bookings": [
+          {
+            "id": "hT013-b001",
+            "userId": "User786293721",
+            "hotelId": "hT013",
+            "roomId": "r001",
+            "fullName": "Ridam Aditya Sinha",
+            "email": "ridamsinha20@gmail.com",
+            "mobile": "09532911742",
+            "idProof": "C:\\fakepath\\Capture001.png",
+            "couponCode": "",
+            "checkInDate": "2025-01-30",
+            "checkOutDate": "2025-01-31",
+            "bookingDate": "2025-01-30T17:32:14.141Z",
+            "roomBooked": 1,
+            "price": 4240,
+            "status": "Cancelled",
+            "reviewSubmitted": false
+          }
+        ],
         "ratings": {
           "averageRating": 4.6,
           "ratingsCount": 6,

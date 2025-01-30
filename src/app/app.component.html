@@ -1,4 +1,4 @@
-<div class="tw-z-10  fixed tw-w-full tw-top-0 tw-left-0  tw-bg-white tw-shadow-lg">
+<div class="tw-z-10  fixed tw-w-full tw-top-0 tw-left-0  tw-bg-white tw-shadow-lg" *ngIf="showHeaderAndFooter">
     <div class="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6">
         <div class="tw-flex tw-justify-between tw-items-center tw-py-4">
             <!-- Logo -->
@@ -52,7 +52,7 @@
 <p-toast></p-toast>
 </div>
 <!-- Footer -->
-<footer class="tw-z-50 tw-bg-[#123462] tw-text-white tw-mt-20">
+<footer class="tw-z-50 tw-bg-[#123462] tw-text-white tw-mt-20" *ngIf="showHeaderAndFooter">
     <div class="tw-max-w-7xl tw-mx-auto tw-px-4 tw-py-12 sm:tw-px-6">
         <div class="tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-4 tw-gap-8">
             <div class="tw-space-y-4">

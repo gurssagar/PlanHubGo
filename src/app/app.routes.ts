@@ -86,7 +86,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'hotel', component: serviceProvider, canActivate: [ServiceAuthGuard],
+    path: 'hotel-service', component: serviceProvider, canActivate: [ServiceAuthGuard],
     children: [
       {
         path: 'service-hotel',

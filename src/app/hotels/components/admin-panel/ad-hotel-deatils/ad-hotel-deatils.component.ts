@@ -18,10 +18,11 @@ export class AdHotelDeatilsComponent implements OnInit {
   searchQuery: string = '';
   selectedHotel: Hotel | null = null;
   showDeletePopup = false;
+  showPermaDeletePopup = false;
   hotelToDeleteId: string | null = null;
   providers: Provider[] = [];
-  groupedHotels: { providerName: string; hotels: Hotel[] }[] = [];
-  originalGroupedHotels: { providerName: string; hotels: Hotel[] }[] = [];
+  groupedHotels: { providerName: string; provider_id: string; hotels: Hotel[] }[] = [];
+  originalGroupedHotels: { providerName: string; provider_id: string; hotels: Hotel[] }[] = [];
 
   hours: string[] = Array.from({ length: 12 }, (_, i) => (i + 1).toString());
   minutes: string[] = ['00', '15', '30', '45'];
@@ -52,9 +53,11 @@ export class AdHotelDeatilsComponent implements OnInit {
     bookings: [], // Empty array for now
     ratings: { averageRating: 0, ratingsCount: 0, ratingBreakdown: {"1": 0, "2": 0, "3": 0, "4": 0, "5": 0} },
     reviews: [], // Empty array for now
-    bankOffer: [] // Empty array for now
+    bankOffer: [], // Empty array for now
+    status: 'Active',
   };
-  
+  showMoreOptions: { [hotelId: string]: boolean } = {};
+  selectedHotelId: string | null = null;
 
   constructor(private adminService: AdminService) {}
 
@@ -75,17 +78,21 @@ export class AdHotelDeatilsComponent implements OnInit {
               const providerName = provider?.name || 'Unknown Provider';
   
               if (!acc[providerName]) {
-                acc[providerName] = [];
+                acc[providerName] = {
+                  provider_id: provider?.provider_id || 'Unknown Provider ID',
+                  hotels: [],
+                };
               }
-              acc[providerName].push(hotel);
+              acc[providerName].hotels.push(hotel);
   
               return acc;
-            }, {} as { [key: string]: Hotel[] });
+            }, {} as { [key: string]: { provider_id: string; hotels: Hotel[] } });
   
             // Convert grouped object into an array
-            this.groupedHotels = Object.entries(grouped).map(([providerName, hotels]) => ({
+            this.groupedHotels = Object.entries(grouped).map(([providerName, data]) => ({
               providerName,
-              hotels,
+              provider_id: data.provider_id,
+              hotels: data.hotels,
             }));
             this.originalGroupedHotels = [...this.groupedHotels];
           },
@@ -102,6 +109,55 @@ export class AdHotelDeatilsComponent implements OnInit {
 
   toggleSidebar(): void {
     this.sidebarCollapsed = !this.sidebarCollapsed;
+  }
+
+  // Toggle the visibility of more options for a hotel
+  toggleMoreOptions(hotelId: string) {
+    this.showMoreOptions[hotelId] = !this.showMoreOptions[hotelId];
+  }
+
+  // Revoke the hotel, changing its status back to Active
+  revokeHotel(hotelId: string) {
+    // Call your service to update the hotel status
+    this.adminService.updateHotelStatus(hotelId, 'Active').subscribe(() => {
+      // Update the UI or perform necessary actions after revocation
+      console.log('Hotel status changed to Active');
+      this.ngOnInit();
+      this.showMoreOptions[hotelId] = false;
+    });
+  }
+
+  // Confirm deletion of the hotel (hard delete)
+  confirmHardDelete(hotelId: string) {
+    this.showPermaDeletePopup = true;
+    this.selectedHotelId = hotelId; // Set the hotel to be deleted
+  }
+
+  closeHardDeletePopup(): void {
+    this.showPermaDeletePopup = false;
+    this.selectedHotelId = null;
+  }
+
+  ParmanentdeleteHotel(): void {
+    if (this.selectedHotelId) {
+      this.adminService.PermanentdeleteHotel(this.selectedHotelId).subscribe(
+        () => {
+          this.groupedHotels = this.groupedHotels.map(group => {
+            return {
+              ...group,
+              hotels: group.hotels.filter(hotel => hotel.id !== this.selectedHotelId) // Filter hotels within the group
+            };
+          });
+          console.log("Hotel status changed successfully");
+          this.ngOnInit();
+          this.closeHardDeletePopup(); // Close popup after deletion
+        },
+        (error) => {
+          console.error('Error deleting hotel:', error);
+          this.closeHardDeletePopup(); // Close popup even if error occurs
+        }
+      );
+    }
   }
 
   filterHotels(): void {
@@ -135,10 +191,11 @@ export class AdHotelDeatilsComponent implements OnInit {
     // Initialize newHotel with the required properties
     this.newHotel = {
       ...this.newHotel,
-      name: '',
+      provider_id: '',
+      name: this.capitalizeEachWord(''),
       description: '',
       pricePerNight: 0,
-      city: '',
+      city: this.capitalizeEachWord(''),
       roomsAvailable: 0,
       amenities: [],
       checkin: '',
@@ -157,9 +214,22 @@ export class AdHotelDeatilsComponent implements OnInit {
     this.showAddHotelPopup = false;
   }
 
-  
+  capitalizeEachWord(str: string): string {
+    return str
+      .split(' ') // Split the string into words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()) // Capitalize each word
+      .join(' '); // Join the words back into a single string
+  } 
+
   // Add a new hotel to the database
   addHotel(): void {
+    if (!this.newHotel.provider_id) {
+      alert('Please select a provider.');
+      return;
+    }
+    
+    this.newHotel.name = this.capitalizeEachWord(this.newHotel.name);
+    this.newHotel.city = this.capitalizeEachWord(this.newHotel.city);
     this.newHotel.checkin = `${this.checkinHour}:${this.checkinMinute} ${this.checkinPeriod}`;
     this.newHotel.checkout = `${this.checkoutHour}:${this.checkoutMinute} ${this.checkoutPeriod}`;
     
@@ -268,12 +338,14 @@ export class AdHotelDeatilsComponent implements OnInit {
     if (this.hotelToDeleteId) {
       this.adminService.deleteHotel(this.hotelToDeleteId).subscribe(
         () => {
-          this.groupedHotels = this.groupedHotels.map(group => {
-            return {
-              ...group,
-              hotels: group.hotels.filter(hotel => hotel.id !== this.hotelToDeleteId) // Filter hotels within the group
-            };
-          });
+          // this.groupedHotels = this.groupedHotels.map(group => {
+          //   return {
+          //     ...group,
+          //     hotels: group.hotels.filter(hotel => hotel.id !== this.hotelToDeleteId) // Filter hotels within the group
+          //   };
+          // });
+          console.log("Hotel status changed successfully");
+          this.ngOnInit();
           this.closeDeletePopup(); // Close popup after deletion
         },
         (error) => {

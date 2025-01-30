@@ -53,6 +53,18 @@ import {TourDashboardComponent} from "./tour/components/tour-dashboard/tour-dash
 import {HotelDashboardComponent} from "./hotels/components/hotel-dashboard/hotel-dashboard.component";
 
 
+//cab components
+import { HomepageComponent } from './cab/components/homepage/homepage.component';
+import { CabComponent as CabMainComponent} from './cab/components/cab/cab.component';
+import { HistoryComponent as CabHistoryComponent } from './cab/components/history/history.component';
+import { CancellationComponent as CabCancellationComponent } from './cab/components/cancellation/cancellation.component';
+import { DashboardComponent as CabDashboardComponent } from './cab/components/admin/dashboard/dashboard.component';
+import { RideManageComponent as CabRideManageComponent } from './cab/components/admin/ride-manage/ride-manage.component';
+import { CustomerComponent as CabCustomerComponent } from './cab/components/admin/customer/customer.component';
+import { EmployeeComponent as CabEmployeeComponent } from './cab/components/admin/employee/employee.component';
+import { MapsandcabsComponent } from './cab/components/mapsandcabs/mapsandcabs.component';
+
+
 
 
 export const routes: Routes = [
@@ -98,7 +110,7 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: 'service-provider', component: ServiceProviderComponent, canActivate: [ServiceAuthGuard] },
-  { path: 'cab', component: CabComponent, canActivate: [authGuard] },  // Updated route
+  { path: 'cab', component: HomepageComponent, canActivate: [authGuard] },  // Updated route
   //{ path: 'flight', component: FlightComponent, canActivate: [authGuard] },  // Updated route
   //{ path: 'hotel', component: HotelComponent, canActivate: [authGuard] },  // Updated route
   //{ path: 'tour-package', component: TourComponent, canActivate: [authGuard] },  // Updated route
@@ -172,6 +184,18 @@ export const routes: Routes = [
     path:'admins',
     component:AdminDashboardComponent,
   },
+    
+  //cab routes
+    { path: 'cab-home', component: HomepageComponent, canActivate: [authGuard] },
+    { path: 'search', component: CabMainComponent, canActivate: [authGuard] },
+    { path: 'history', component: CabHistoryComponent, canActivate: [authGuard] },
+    { path: 'updates', component: MapsandcabsComponent, canActivate: [authGuard] },
+      { path: 'cancellation', component: CabCancellationComponent, canActivate: [authGuard] },
+    { path: 'cab-admin', component: CabDashboardComponent, canActivate: [authGuard] },
+      { path: 'ride-manage', component: CabRideManageComponent, canActivate: [authGuard] },
+    { path: 'customer', component: CabCustomerComponent, canActivate: [authGuard] },
+    { path: 'employee', component: CabEmployeeComponent, canActivate: [authGuard] },
+    
 
 
 

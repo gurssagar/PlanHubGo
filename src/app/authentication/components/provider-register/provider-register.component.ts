@@ -34,7 +34,7 @@ export class ProviderRegisterComponent {
   private router = inject(Router);
 
   types = [
-    {name: 'Tour Guide'},
+    {name: 'Tour Booking'},
     {name: 'Cab Booking'},
     {name: 'Hotel Booking'},
     {name: 'Flight Booking'},
@@ -46,20 +46,31 @@ export class ProviderRegisterComponent {
       Validators.required,
       Validators.pattern(/[a-z0-9\._%\+\-]+@[a-z0-9\.\-]+\.[a-z]{2,}$/)
     ]),
+    type : new FormControl('', [Validators.required]),
+    phone : new FormControl('', [Validators.required]),
+    website : new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required]),
-    gender: new FormControl('', [Validators.required]),
-    age: new FormControl('', [
-      Validators.required,
-      Validators.min(18),
-      Validators.max(100)
-    ]),
-    type: new FormControl('', [Validators.required])
+    description : new FormControl('', ),
+    address : new FormControl('', [Validators.required]),
+
   }, {
     validators: passwordMismatchValidator
   });
 
   // Getter methods for form controls
+  get address() {
+    return this.registerForm.get('address')!;
+  }
+  get description() {
+    return this.registerForm.get('description')!;
+  }
+  get phone() {
+    return this.registerForm.get('phone')!;
+  }
+  get website() {
+    return this.registerForm.get('website')!;
+  }
   get fullName() {
     return this.registerForm.get('fullName')!;
   }
@@ -76,13 +87,7 @@ export class ProviderRegisterComponent {
     return this.registerForm.get('confirmPassword')!;
   }
 
-  get gender() {
-    return this.registerForm.get('gender')!;
-  }
 
-  get age() {
-    return this.registerForm.get('age')!;
-  }
 
   get role() {
     return this.registerForm.get('role')!;
@@ -109,10 +114,11 @@ export class ProviderRegisterComponent {
               fullName: this.fullName.value,
               email: this.email.value,
               password: this.password.value,
-              gender: this.gender.value,
-              age: Number(this.age.value),
               role: 'Service Provider',
               type: this.type.value,
+              phone: this.phone.value,
+              website: this.website.value,
+              description: this.description.value
             };
 
             // Add new user to existing users array

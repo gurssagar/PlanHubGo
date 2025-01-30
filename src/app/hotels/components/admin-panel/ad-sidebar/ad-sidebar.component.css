@@ -25,6 +25,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   margin-bottom: 15px;
   height: 60px;
+  cursor: pointer;
 }
 
 .logo_name {
@@ -98,10 +99,14 @@
 }
 
 .nav_image img {
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  object-fit: cover;
+  /* height: 35px;
+  width: 35px; */
+  /* border-radius: 50%; */
+  /* object-fit: cover; */
+  height: 69px;
+  width: 228px;
+  margin-left: 0px;
+  border-radius: 10px;
 }
 
 .sidebar ul {

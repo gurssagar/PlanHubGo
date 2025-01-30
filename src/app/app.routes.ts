@@ -5,7 +5,7 @@ import { HomeComponent } from './authentication/components/home/home.component';
 import { LoginComponent } from './authentication/components/login/login.component';
 import { RegisterComponent } from './authentication/components/register/register.component';
 import { CabComponent } from './authentication/components/servies/cab/cab.component';
-import { FlightComponent } from './authentication/components/servies/flight/flight.component';
+import { FlightComponent } from "./flight/components/pages/customer/flight/flight.component";
 import { HotelComponent } from './authentication/components/servies/hotel/hotel.component';
 import { ServiceProviderComponent } from './authentication/components/servies/service-provider/service-provider.component';
 import { TourComponent } from './authentication/components/servies/tour/tour.component';
@@ -25,7 +25,7 @@ import {DashboardComponent} from "./authentication/components/dashboard/dashboar
 import {TourcompanyComponent} from "./tour/components/tourcompany/tourcompany.component";
 import {ShowcompanyComponent} from "./tour/components/showcompany/showcompany.component";
 import {AdminDashboardComponent} from "./tour/components/admin-dashboard/admin-dashboard.component";
-
+import {FlightBookingHistoryComponent} from "./flight/components/pages/customer/booking-history/booking-history.component"
 import { AboutComponent } from './hotels/components/about/about.component';
 import { ContactComponent } from './hotels/components/contact/contact.component';
 import { SectionComponent } from './hotels/components/section/section.component';
@@ -42,6 +42,16 @@ import { AdminBookingDetailsComponent } from './hotels/components/admin-panel/ad
 import { ServiceHotelComponent } from './hotels/components/service-provider-panel/s-hotel/s-hotel.component';
 import { LocationComponent as location } from './hotels/components/location/location.component';
 import { ServiceProviderComponent as serviceProvider } from './hotels/components/service-provider-panel/service-provider/s-provider.component';
+import {CancelBookingComponent} from "./flight/components/pages/customer/cancel-booking/cancel-booking.component";
+import {roleGuardGuard} from "./flight/services/role-guard/role-guard.guard";
+import {FlightBookingComponent} from "./flight/components/pages/customer/flight-booking/flight-booking.component";
+import {AdminFlightsComponent} from "./flight/components/pages/admin/admin-flights/admin-flights.component";
+import {EditServiceComponent} from "./flight/components/pages/admin/edit-service/edit-service.component";
+import {NotFoundComponent} from "./flight/components/not-found/not-found.component";
+import {FlightDashboardComponent} from "./flight/components/pages/customer/flight-dashboard/flight-dashboard.component";
+import {TourDashboardComponent} from "./tour/components/tour-dashboard/tour-dashboard.component";
+import {HotelDashboardComponent} from "./hotels/components/hotel-dashboard/hotel-dashboard.component";
+
 
 
 
@@ -52,11 +62,12 @@ export const routes: Routes = [
   { path:'dashboard', component: DashboardComponent },
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
-
+//hotel
+  {path:'hotel/dashboard',component:HotelDashboardComponent,canActivate: [authGuard]},
   { path: 'hotel', component: SectionComponent, canActivate: [authGuard] },  
   { path: 'search-results', component: SearchResultsComponent, canActivate: [authGuard] },
   { path: 'location', component: location, canActivate: [authGuard] }, 
-  { path: 'room/:roomId/booking-form', component: BookingFormComponent, canActivate: [authGuard] },
+  { path: 'hotel/room/:roomId/booking-form', component: BookingFormComponent, canActivate: [authGuard] },
   {
     path: 'page', component: PageComponent, canActivate: [authGuard],
     children: [
@@ -75,7 +86,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 's-provider', component: serviceProvider, canActivate: [ServiceAuthGuard],
+    path: 'hotel-service', component: serviceProvider, canActivate: [ServiceAuthGuard],
     children: [
       {
         path: 'service-hotel',
@@ -95,6 +106,11 @@ export const routes: Routes = [
   {
     path: "tour/info/:id",
     component: InfoComponent,
+    canActivate: [authGuard]
+  },
+  {
+    path: "tour/dashboard",
+    component: TourDashboardComponent,
     canActivate: [authGuard]
   },
   {
@@ -145,7 +161,7 @@ export const routes: Routes = [
   {
     path:'tour/tourcompany',
     component:TourcompanyComponent,
-    canActivate: [authGuard]
+    canActivate: [ServiceAuthGuard]
   },
   {
     path:'tour/showcompany',
@@ -156,5 +172,64 @@ export const routes: Routes = [
     path:'admins',
     component:AdminDashboardComponent,
   },
+
+
+
+
+    //Flight
+
+
+  {
+    path: "flight",
+    children: [
+      {
+        path: "dashboard",
+        component: FlightDashboardComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path:"",
+        component: FlightComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: ":id",
+        component: FlightBookingComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: "booking/cancel",
+        component: CancelBookingComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: "booking/history",
+        component: FlightBookingHistoryComponent,
+        canActivate: [authGuard]
+      }
+    ]
+  },
+  {
+    path: "admin/flight",
+    children: [
+      {
+        path:"",
+        component: AdminFlightsComponent,
+        canActivate: [authGuard]
+      },
+      {
+        path: "edit/:id",
+        component: EditServiceComponent,
+        canActivate: [authGuard]
+      },
+    ]
+  },
+  {
+    path: "not-found",
+    component: NotFoundComponent
+  },
+  {
+    path: "**", redirectTo: 'not-found', pathMatch: 'full'
+  }
 
 ];

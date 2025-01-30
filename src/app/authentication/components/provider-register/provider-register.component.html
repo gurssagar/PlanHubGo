@@ -86,6 +86,77 @@
                 </small>
             </div>
 
+            <!-- Phone Number -->
+            <div class="tw-mb-5">
+                <label for="phone" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Phone Number</label>
+                <p-password
+                        formControlName="phone"
+                        [feedback]="false"
+                        [toggleMask]="true"
+                        inputId="phone"
+                        inputStyleClass="tw-mt-1 tw-block tw-w-full tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm focus:tw-ring-purple-500 focus:tw-border-purple-500"
+                        styleClass="tw-w-full"
+                ></p-password>
+                <small
+                        class="tw-text-red-500"
+                        *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                >
+                    Phone number is required
+                </small>
+            </div>
+            <!-- Website Address -->
+            <div class="tw-mb-5">
+                <label for="website" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Website Address</label>
+                <input
+                        type="text"
+                        pInputText
+                        class="tw-mt-1 tw-block tw-w-full tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm focus:tw-ring-purple-500 focus:tw-border-purple-500"
+                        id="website"
+                        formControlName="website"
+                />
+                <small
+                        class="tw-text-red-500"
+                        *ngIf="website.invalid && (website.dirty || website.touched)"
+                >
+                    Website address is required
+                </small>
+            </div>
+
+            <div class="tw-mb-5">
+                <label for="description" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Description</label>
+                <input
+                        type="text"
+                        pInputText
+                        class="tw-mt-1 tw-block tw-w-full tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm focus:tw-ring-purple-500 focus:tw-border-purple-500"
+                        id="description"
+                        formControlName="description"
+                />
+                <small
+                        class="tw-text-red-500"
+                        *ngIf="description.invalid && (description.dirty || description.touched)"
+                >
+                    Description is required
+                </small>
+            </div>
+            <!-- Address -->
+            <div class="tw-mb-5">
+                <label for="address" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Description</label>
+                <input
+                        type="text"
+                        pInputText
+                        class="tw-mt-1 tw-block tw-w-full tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm focus:tw-ring-purple-500 focus:tw-border-purple-500"
+                        id="address"
+                        formControlName="description"
+                />
+                <small
+                        class="tw-text-red-500"
+                        *ngIf="description.invalid && (description.dirty || description.touched)"
+                >
+                    Description is required
+                </small>
+            </div>
+
+
             <!-- Gender & type of Dashboard -->
             <div class="flex">
                 <div>
@@ -105,49 +176,8 @@
                     </small>
                 </div>
                 </div>
-                <div class="tw-mb-5">
-                    <label for="gender" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Gender</label>
-                    <div class="tw-flex tw-space-x-4 tw-mt-2">
-                        <p-radioButton
-                            name="gender"
-                            value="Male"
-                            formControlName="gender"
-                            label="Male"
-                        ></p-radioButton>
-                        <p-radioButton
-                            name="gender"
-                            value="Female"
-                            formControlName="gender"
-                            label="Female"
-                        ></p-radioButton>
-                    </div>
-                    <small
-                        class="tw-text-red-500"
-                        *ngIf="gender.invalid && (gender.dirty || gender.touched)"
-                    >
-                    Please select a gender
-                    </small>
-                </div>
 
-            <!-- Age -->
-            <div class="tw-mb-5">
-                <label for="age" class="tw-block tw-text-sm tw-font-semibold tw-text-gray-700">Age</label>
-                <input
-                        type="number"
-                        pInputText
-                        class="tw-mt-1 tw-block tw-w-full tw-border tw-border-gray-300 tw-rounded-md tw-shadow-sm focus:tw-ring-purple-500 focus:tw-border-purple-500"
-                        id="age"
-                        formControlName="age"
-                />
-                <small
-                        class="tw-text-red-500"
-                        *ngIf="age.invalid && (age.dirty || age.touched)"
-                >
-                    <span *ngIf="age.hasError('required')">Age is required</span>
-                    <span *ngIf="age.hasError('min')">Age must be at least 18</span>
-                    <span *ngIf="age.hasError('max')">Age must be below 100</span>
-                </small>
-            </div>
+
 
             <!-- Submit Button -->
             <p-button

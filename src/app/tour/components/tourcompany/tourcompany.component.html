@@ -9,9 +9,10 @@
 
     </div>
 </div>
-<div *ngIf="crud==0">
+<div >
 <div class="tw-py-20 tw-ml-[200px]">
     <div class="tw-mx-10">
+        <div class="tw-py-4 tw-font-bold tw-text-3xl">About User</div>
         <div class="tw-grid tw-grid-cols-8 tw-rounded-2xl tw-bg-black tw-text-white tw-text-center tw-text-2xl tw-font-bold tw-py-10">
             <div class="tw-text-lg">Name Of Company</div>
             <div class="tw-text-lg">Description</div>
@@ -23,19 +24,99 @@
             <div class="tw-text-lg">Email</div>
             <div class="tw-text-lg">Edit</div>
         </div>
-        <div *ngFor="let tourCompany of companies" class="tw-py-10">
+        <div *ngFor="let tourCompany of finalCompanies" class="tw-py-10">
             <div class="tw-grid tw-grid-cols-8 tw-rounded-2xl tw-text-center tw-font-bold tw-py-10">
-                <div class="tw-text-[16px]">{{tourCompany.nameOfCompany}}</div>
+                <div class="tw-text-[16px]">{{tourCompany.fullName}}</div>
                 <div class="tw-text-[16px]">{{tourCompany.description}}</div>
                 <div class="tw-text-[16px]">{{tourCompany.address}}</div>
                 <div class="tw-text-[16px]">{{tourCompany.phone}}</div>
                 <div class="tw-text-[16px]">{{tourCompany.website}}</div>
-                <div class="tw-text-[16px]">{{tourCompany.registrationId}}</div>
+                <div class="tw-text-[16px]">{{tourCompany.id}}</div>
                 <div class="tw-text-[16px]">{{tourCompany.email}}</div>
                 <div class="tw-text-[16px]">
                     <button class="tw-bg-blue-500 tw-text-white tw-px-4 tw-py-2 tw-rounded">Edit</button>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="tw-mx-10">
+        <div class="tw-py-4 tw-font-bold tw-text-3xl">All Tours</div>
+        <div class="tw-grid tw-grid-cols-8 tw-rounded-2xl tw-bg-black tw-text-white tw-text-center tw-text-2xl tw-font-bold tw-py-10">
+            <div class="tw-text-lg">Name Of Tour</div>
+            <div class="tw-text-lg">Description</div>
+            <div class="tw-text-lg">Departure</div>
+            <div class="tw-text-lg">Arrival</div>
+
+            <div class="tw-text-lg">Duration</div>
+            <div class="tw-text-lg">Tour ID</div>
+            <div class="tw-text-lg">Tour Company</div>
+            <div class="tw-text-lg">Edit</div>
+        </div>
+        <div *ngFor="let tourCompany of records" class="tw-py-10">
+            <div class="tw-grid tw-grid-cols-8 tw-rounded-2xl tw-text-center tw-font-bold tw-py-10">
+                <div class="tw-text-[16px]">{{tourCompany.name}}</div>
+                <div class="tw-text-[16px]">{{tourCompany.description}}</div>
+                <div class="tw-text-[16px]">{{tourCompany.departure}}</div>
+                <div class="tw-text-[16px]">{{tourCompany.destination}}</div>
+                <div class="tw-text-[16px]">{{tourCompany.duration}}</div>
+                <div class="tw-text-[16px]">{{tourCompany.id}}</div>
+                <div class="tw-text-[16px]">{{tourCompany.tourcompany}}</div>
+                <div class="tw-text-[16px]">
+                    <button class="tw-bg-blue-500 tw-text-white tw-px-4 tw-py-2 tw-rounded" (click)="openForm()">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="crud === 2" class="tw-py-20 tw-ml-[200px]">
+        <div class="tw-mx-10">
+            <h3 class="tw-text-2xl font-bold mb-4">Update Tour Plan</h3>
+            <form [formGroup]="tourCompanyForm" >
+                <!-- Add dynamic form fields for each day -->
+                <div *ngIf="tourData.days" class="tw-grid tw-grid-cols-2 gap-4">
+                    <div *ngFor="let day of tourData.days" class="tw-mx-10">
+                        <div class="tw-py-4">
+                            <label>Day {{day}}:</label>
+                            <textarea formControlName="description{{day}}"
+                            ></textarea>
+                        </div>
+                        <div class="tw-py-4">
+                            <label>Activities/Highlights:</label>
+                            <textarea formControlName="activities{{day}}"
+                            ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add other form fields for basic info -->
+                <div class="tw-grid tw-gap-4">
+                    <div>
+                        <label for="name">Tour Name:</label>
+                        <input id="name" formControlName="name" type="text"
+                        >
+                    </div>
+                    <div>
+                        <label for="price">Price (INR):</label>
+                        <input id="price" formControlName="price" type="number"
+                        >
+                    </div>
+                    <div>
+                        <label for="duration">Duration:</label>
+                        <select formControlName="duration"
+                                class="tw-border tw-rounded">
+                            <option value="1 day">1 Day</option>
+                            <option value="2 days">2 Days</option>
+                            <option value="3 days">3 Days</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Add image upload section -->
+                <div class="tw-py-4">
+                    <label for="imageUpload">Upload Tour Images:</label>
+                    <input id="imageUpload" formControlName="image" type="file"
+                           multiple accept="image/*">
+                </div>
+                <button type="submit"
+                        class="tw-bg-blue-500 tw-text-white tw-px-4 tw-py-2 tw-rounded">Update Tour</button>
+            </form>
         </div>
     </div>
 </div>
@@ -80,3 +161,12 @@
         </form>
     </div>
 </div>
+<div class="tw-ml-60">
+    <app-addtours/>
+</div>
+
+
+
+
+
+

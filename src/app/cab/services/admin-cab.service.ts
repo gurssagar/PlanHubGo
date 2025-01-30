@@ -32,4 +32,22 @@ export class AdminCabService {
       map(employees => employees.length)
     );
   }
+  getEmployeeList(): Promise<Employee[]> {
+    return this.http.get<Employee[]>(this.employeeApiUrl).toPromise().then(employees => {
+      return employees || []; // Return an empty array if employees is undefined
+    });
+  }
+  
+  updateEmployee(employeeId: string, employeeData: Employee): Promise<Employee> {
+    return this.http.put<Employee>(`${this.employeeApiUrl}/${employeeId}`, employeeData).toPromise().then(employee => {
+      if (!employee) {
+        throw new Error('Employee not found');
+      }
+      return employee;
+    });
+  }
+  
+  deleteEmployee(employeeId: string): Promise<void> {
+    return this.http.delete<void>(`${this.employeeApiUrl}/${employeeId}`).toPromise();
+  }
 }

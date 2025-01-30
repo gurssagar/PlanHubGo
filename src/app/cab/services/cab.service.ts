@@ -235,4 +235,35 @@ export class CabService {
     const data = await response.json();
     return data.map((location: any) => Object.values(location)[0]); // Extract location names
   }
+  async deleteCab(cabId: string): Promise<void> {
+    try {
+      const response = await fetch(`${this.url}/${cabId}`, {
+        method: 'DELETE'
+      });
+      if(!response.ok) {
+        throw new Error(`Failed to delete cab with ID: ${cabId}`);
+      }
+    } catch(error) {
+        console.error('Error deleting cab', error);
+        throw error
+    }
+  }
+
+  async updateCab(cabId: string, cabData: CabCardDetails): Promise<void> {
+    try {
+      const response = await fetch(`${this.url}/${cabId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(cabData),
+      });
+      if (!response.ok) {
+        throw new Error(`Failed to update cab with ID: ${cabId}`);
+      }
+    } catch (error) {
+      console.error('Error updating cab', error);
+        throw error
+    }
+  }
 }

@@ -144,3 +144,7 @@
 .location-button svg {
          color: #4CAF50;
 }
+.instruction.error {
+         color: #dc3545;
+         font-weight: bold;
+}

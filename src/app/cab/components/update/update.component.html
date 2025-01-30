@@ -29,14 +29,15 @@
 
          <div *ngIf="routeInstructions.length" class="route-instructions">
                   <h3>Navigation Instructions</h3>
-                  <div *ngFor="let instruction of routeInstructions" class="instruction">
-                           {{ instruction }}
+                  <div *ngFor="let instruction of routeInstructions" class="instruction"
+                       [class.error]="instruction.startsWith('Error:')">
+                    {{ instruction }}
                   </div>
-                  <div class="route-summary">
-                           Total Distance: {{ routeDistance }}
-                           Estimated Time: {{ routeTime }}
+                  <div *ngIf="routeDistance" class="route-summary">
+                    Total Distance: {{ routeDistance }}
+                    Estimated Time: {{ routeTime }}
                   </div>
-         </div>
+                </div>
          <button (click)="getCurrentLocation()" class="location-button">
                   <img 
                   src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrHFIwJrI072B_Xn8Z8yLmZhRv0XOctNcNkA&s"

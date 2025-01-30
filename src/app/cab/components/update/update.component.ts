@@ -102,28 +102,98 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
 
   private async calculateRoute(start: [number, number], end: [number, number]): Promise<void> {
     try {
+      this.routeInstructions = ['Calculating route...'];
       const response = await this.routeService.getRoute(start, end);
-      const routeCoords = response.features[0].geometry.coordinates.map((coord: [number, number]) => 
-        fromLonLat(coord)
+      console.log("Full API response:", response);
+  
+      // Check if response and routes exist
+      if (!response || !response.routes || !response.routes[0]) {
+        throw new Error('Invalid route data from API');
+      }
+  
+      const route = response.routes[0];
+      
+      // The geometry comes as an encoded string that needs to be decoded
+      // You need to decode the geometry string to get the coordinates
+      if (!route.geometry) {
+        throw new Error('No geometry data in route');
+      }
+  
+      // Convert encoded polyline to coordinates
+      // You'll need to add a polyline decoder here
+      const coordinates = this.decodeGeometry(route.geometry);
+      
+      // Convert coordinates to the correct projection
+      const routeCoords = coordinates.map(coord => 
+        fromLonLat([coord[0], coord[1]])
       );
-         
-      const routeFeature = new Feature({
-        geometry: new LineString(routeCoords)
-      });
-         
+  
+      // Update map with route
+      const routeLine = new LineString(routeCoords);
       this.routeSource.clear();
-      this.routeSource.addFeature(routeFeature);
-         
-      const route = response.features[0].properties;
-      this.routeDistance = `${(route.distance / 1000).toFixed(1)} km`;
-      this.routeTime = `${Math.round(route.duration / 60)} minutes`;
-         
-      this.routeInstructions = response.features[0].properties.segments
-        .flatMap((segment: any) => segment.steps)
-        .map((step: any) => step.instruction);
+      this.routeSource.addFeature(new Feature(routeLine));
+  
+      // Update UI
+      this.routeDistance = `${(route.summary.distance / 1000).toFixed(1)} km`;
+      this.routeTime = `${Math.ceil(route.summary.duration / 60)} min`;
+      this.routeInstructions = route.segments[0].steps.map(step => step.instruction);
+  
     } catch (error) {
-      console.error('Error calculating route:', error);
+      console.error('Routing error:', error);
+      this.routeInstructions = ['Failed to calculate route'];
+      this.routeDistance = '';
+      this.routeTime = '';
+      this.routeSource.clear();
     }
+  }
+  
+  // Add this method to decode the geometry string
+  private decodeGeometry(str: string): [number, number][] {
+    let index = 0;
+    let lat = 0;
+    let lng = 0;
+    const coordinates: [number, number][] = [];
+    let shift = 0;
+    let result = 0;
+    let byte = null;
+    let latitude_change: number;
+    let longitude_change: number;
+    const factor = Math.pow(10, 5);
+  
+    // Coordinates have variable length when encoded, so just keep
+    // track of whether we've hit the end of the string. In each
+    // loop iteration, a single coordinate is decoded.
+    while (index < str.length) {
+      // Reset shift, result, and byte
+      byte = null;
+      shift = 0;
+      result = 0;
+  
+      do {
+        byte = str.charCodeAt(index++) - 63;
+        result |= (byte & 0x1f) << shift;
+        shift += 5;
+      } while (byte >= 0x20);
+  
+      latitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
+  
+      shift = result = 0;
+  
+      do {
+        byte = str.charCodeAt(index++) - 63;
+        result |= (byte & 0x1f) << shift;
+        shift += 5;
+      } while (byte >= 0x20);
+  
+      longitude_change = ((result & 1) ? ~(result >> 1) : (result >> 1));
+  
+      lat += latitude_change;
+      lng += longitude_change;
+  
+      coordinates.push([lng / factor, lat / factor]);
+    }
+  
+    return coordinates;
 }
 
   startRouting(): void {
@@ -160,7 +230,7 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
             const startGeometry = this.startPoint.getGeometry();
             if (startGeometry instanceof Point) {
               const startCoords = toLonLat(startGeometry.getCoordinates()) as [number,number];
-              this.calculateRoute(startCoords, coords);
+              this.calculateRoute(startCoords, coords).catch(error => console.error("Error after calculateRoute:", error));
               if (this.drawInteraction) {
                 this.map?.removeInteraction(this.drawInteraction);
               }

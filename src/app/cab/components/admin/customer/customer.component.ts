@@ -26,8 +26,8 @@ import{CtmFormComponent} from '../ctm-form/ctm-form.component';
 <!--cards-->
 <div class="details">
   <app-ctm-details class="cards-per"></app-ctm-details>
-  <app-ctm-details class="card-per"></app-ctm-details>
-  <app-ctm-details class="card-per"></app-ctm-details>
+  <!-- <app-ctm-details class="card-per"></app-ctm-details>
+  <app-ctm-details class="card-per"></app-ctm-details> -->
 </div>
 @if (isPopupVisible==true)
   {<app-ctm-form [onClose]="closePopup"></app-ctm-form>}

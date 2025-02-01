@@ -1,4 +1,4 @@
-<div class="search-results-container">
+<div class="search-results-container hide">
   <div class="filter-panel">
     <h3>Refine Your Search</h3>
     <form [formGroup]="filterForm" (ngSubmit)="onNewSearch()">
@@ -76,6 +76,9 @@
   </div>
 
   <div class="results-content">
+    <div class="menu">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAExJREFUSEtjZKAxYKSx+QyjFhAM4QEJov8EnYVfAYqjsfmA5hZQ6AFU7QMSBzT3Ac3jgOYW0DyIhr4FNI8Dmlsw9ONg1AcoIUDz0hQAbegGGXzv/l0AAAAASUVORK5CYII="/>
+  </div>
     <button class="back-button2" (click)="goBack()">
       <i class="fas fa-arrow-left"></i> Back
     </button>

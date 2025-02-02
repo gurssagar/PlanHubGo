@@ -200,6 +200,13 @@ h2.tag-head.text-center.mb-5{
     .card-list {
         margin: 0 auto;
     }
+    .images {
+        margin: 0 auto;
+    }
+    .images .image-box {
+        width: 22vw;
+        height: 250px;
+    }
 }
 
 
@@ -214,10 +221,6 @@ h2.tag-head.text-center.mb-5{
     .card-list {
         grid-template-columns: repeat(3, 1fr);
     }
-    .images .image-box {
-        width: 45vw;
-        height: 50vh;
-    }
     .card-item h3 {
         font-size: 2.5vw;
     }
@@ -225,12 +228,11 @@ h2.tag-head.text-center.mb-5{
         font-size: 2vw;
     }
     .images {
-        justify-content: center;
+        margin: 0 auto;
     }
     .images .image-box {
-        width: 25vw;
-        height: 220px;
-        margin: 0 auto;
+        width: 26vw;
+        height: 250px;
     }
     .images .image-box h6 {
         font-size: 1.2rem;
@@ -255,12 +257,14 @@ h2.tag-head.text-center.mb-5{
         font-size: 2.5vw;
     }
     .images {
-        justify-content: center;
-        gap: 0;
+        padding-left: 9px;
+        padding-right: 9px;
+        gap: 9px;
+        margin: 0 auto;
     }
     .images .image-box {
-        width: 22vw;
-        height: 160px;
+        width: 25vw;
+        height: 180px;
     }
     .images .image-box h6 {
         font-size: 1rem;
@@ -285,8 +289,9 @@ h2.tag-head.text-center.mb-5{
         font-size: 2vw;
     }
     .images {
-        justify-content: center;
-        gap: 0;
+        padding-left: 9px;
+        padding-right: 9px;
+        gap: 9px;
     }
     .images .image-box {
         width: 25vw;

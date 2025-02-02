@@ -3,11 +3,12 @@ import { ManageFlightsService } from '../../../../services/admin/manage-flights.
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import {DashboardComponent} from "../../../../../authentication/components/dashboard/dashboard.component";
 
 @Component({
   selector: 'app-admin-flights',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule, DashboardComponent],
   templateUrl: './admin-flights.component.html',
   styleUrl: './admin-flights.component.css'
 })
@@ -100,16 +101,33 @@ export class AdminFlightsComponent implements OnInit {
 
   onAnalysisView(id:String){
     this.isShowAnalysis = true
-    this.manageFlightsService.getSpecificbooking(id).subscribe((data)=>{
-      this.bookings = data;
-      this.calculateSummary();
+    this.manageFlightsService.getSpecificbooking().subscribe((data)=>{
+        const tempo=data.bookings
+      this.flightList.forEach(flight => {
+        tempo.forEach((flightItem: any) => {
+          console.log(flightItem.flightID);
+          console.log(flight.id)
+          if(flight.id==flightItem.flightID){
+            console.log(true)
+            this.calculateSummary();
+          }
+        })
+        return data.bookings;
+        /*if(flight.id==data.bookings.id){
+          this.calculateSummary();
+        }*/
+      })
+
+
+      this.bookings = data.bookings;
+
     })
   }
 
   onBookingAnalysis(){
     this.isBookingAnalysis = true
     this.manageFlightsService.getAllBooking().subscribe((data)=>{
-      this.bookings = data;
+      this.bookings = data.bookings;
       this.calculateSummary();
     })
   }
@@ -124,7 +142,7 @@ export class AdminFlightsComponent implements OnInit {
 
   calculateSummary(): void {
     this.totalBookings = this.bookings.length;
-
+    console.log(this.totalBookings);
     this.confirmedBookings = this.bookings.filter(
       booking => booking.bookingStatus === 'Confirmed'
     ).length;
@@ -168,13 +186,17 @@ export class AdminFlightsComponent implements OnInit {
 
   ngOnInit() {
     this.getFlightDetails();
-    this.updatePaginatedFlights()
+    this.updatePaginatedFlights();
+    this.manageFlightsService.getAllBooking().subscribe((data)=>{
+      this.bookings = data.bookings;
+    })
   }
 
   getFlightDetails() {
     this.manageFlightsService.getFlights().subscribe((data:any) => {
-      this.flightList = data
-      this.filteredFlights = data
+      this.flightList = data.flights
+      this.filteredFlights = data.flights
+
       this.updatePaginatedFlights()
     });
   }

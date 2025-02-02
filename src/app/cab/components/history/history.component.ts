@@ -24,13 +24,14 @@ export class HistoryComponent {
 
   constructor(private cabService: CabService) {
     if (typeof window !== 'undefined') {
-      this.userEmail = sessionStorage.getItem('userEmail');
+      this.userEmail = localStorage.getItem('email');
     }
     this.loadUserBookings();
   }
 
   async loadUserBookings() {
     if (this.userEmail) {
+      console.log(true)
       try {
         this.userBookings = await this.cabService.getBookingsByUserEmail(this.userEmail);
         this.totalPages = Math.ceil(this.userBookings.length / this.itemsPerPage);

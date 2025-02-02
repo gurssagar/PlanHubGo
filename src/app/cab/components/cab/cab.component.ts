@@ -47,14 +47,15 @@ export class CabComponent {
   cabservice: CabService = inject(CabService);
   hasSearched: boolean = false;
   errorMessage: string = '';
-
-
+  CabCardDetailsList:any="CabCardDetailsList"
+  allCabs:any
   constructor() {
     this.loadInitialCabs();
   }
   async loadInitialCabs() {
     try {
       this.cabCardDetailsList = await this.cabservice.getcabCardDetailsList();
+      console.log(this.cabCardDetailsList[this.CabCardDetailsList]);
       // this.filteredDetailsList = [...this.cabCardDetailsList];
       // console.log('Successfully connected to db.json. Data:', this.cabCardDetailsList);
     } catch (error) {
@@ -74,8 +75,10 @@ export class CabComponent {
       }
       console.log('Search criteria received:', searchCriteria);
 
-      const allCabs = await this.cabservice.getcabCardDetailsList();
-      this.filteredDetailsList = allCabs.filter(cab => {
+      this.allCabs = await this.cabservice.getcabCardDetailsList();
+      this.allCabs = this.allCabs[this.CabCardDetailsList];
+      console.log(this.allCabs);
+      this.filteredDetailsList = this.allCabs.filter((cab: CabCardDetails) => {
         // Only check for a match if the criteria is provided
         const rideTypeMatch = !searchCriteria.rideType || (searchCriteria.rideType && cab.rideType.toLowerCase().includes(searchCriteria.rideType.toLowerCase()));
 
@@ -98,8 +101,7 @@ export class CabComponent {
     } catch (error) {
       console.error('Error during search:', error);
     }
-  }
-}
+  }}
 // this.filteredDetailsList = this.cabCardDetailsList.filter(cab => {
 //   const rideTypeMatch = cab.rideType.toLowerCase().includes(searchCriteria.rideType.toLowerCase());
 //   const pickupMatch = cab.pickupLocation.toLowerCase().trim() === searchCriteria.pickupLocation.toLowerCase().trim();

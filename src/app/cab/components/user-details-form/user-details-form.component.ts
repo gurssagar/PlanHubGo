@@ -19,6 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-details-form.component.css']
 })
 export class UserDetailsFormComponent {
+  emails:any=localStorage.getItem('email');
   @Output() formSubmit = new EventEmitter<{ name: string; email: string }>();
   @Output() close = new EventEmitter<void>();
   submitted = false;
@@ -28,7 +29,7 @@ export class UserDetailsFormComponent {
 //  constructor(private router: Router) {}
   onSubmit(event: Event) {
     event.preventDefault();
-    this.formSubmit.emit({ name: this.name, email: this.email });
+    this.formSubmit.emit({ name: this.name, email:this.emails });
   }
 
   onClose() {

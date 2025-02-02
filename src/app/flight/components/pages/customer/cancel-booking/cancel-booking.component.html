@@ -15,56 +15,23 @@
       </div>
     <ul class="booking-list" *ngIf="combinedData.length > 0">
         <li *ngFor="let data of combinedData" class="booking-item">
-            <div class="route-details">
-                <div class="departure">
-                    <h1 class="place">{{data.departure.place}}</h1>
-                    <p class="label">Departure</p>
-                </div>
-                <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                <div class="destination">
-                    <h1 class="place">{{data.destination.place}}</h1>
-                    <p class="label">Destination</p>
-                </div>
-            </div>
-            <hr class="divider" />
-            <div class="flight-details">
-                <div class="airline">
-                    <img class="airline-img" [src]="data.logo" [alt]="data.airline"/>
-                    <p class="airline-name">{{data.airline}}</p>
-                    <p class="flight-number">FNO: {{data.flightNumber}}</p>
-                </div>
-                <div >
-                    <p class="label">Date</p>
-                    <p class="value">{{data.departure.date}}</p>
-                </div>
-                <div>
-                    <p class="label">Time</p>
-                    <p class="value">{{data.departure.time}}</p>
-                </div>
-                <div>
-                    <p class="label">Tickets</p>
-                    <p class="value">{{data.bookings.passengers.length}}</p>
-                </div>
-                <div>
-                    <p class="label">Total Price</p>
-                    <p class="value">$ {{data.bookings.totalAmount}}</p>
-                </div>
-            </div>
+
             <button 
           type="button"
           class="button"
-          [disabled]="data.bookings.bookingStatus === 'Cancelled'||data.bookings.bookingStatus === 'Travel Ended'"
-          (click)="onCancellingBooking(data.bookings.id)">
+          [disabled]="data.bookingStatus === 'Cancelled'||data.bookingStatus === 'Travel Ended'"
+          (click)="onCancellingBooking(data.id)">
           {{
-            data.bookings.bookingStatus === 'Cancelled'
+            data.bookingStatus === 'Cancelled'
               ? 'Cancelled'
-              : data.bookings.bookingStatus === 'Travel Ended'
+              : data.bookingStatus === 'Travel Ended'
               ? 'Travel Ended'
               : 'Cancel Booking'
           }}
-        </button>
-        </li>
-    </ul>
+              </button>
+
+              </li>
+          </ul>
 </div>
 </div>
 

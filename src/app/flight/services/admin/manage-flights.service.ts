@@ -11,7 +11,7 @@ export class ManageFlightsService {
   constructor(private http: HttpClient) {}
 
   getFlights(): Observable<any> {
-    return this.http.get(`${this.apiURL}/flights`);
+    return this.http.get(`${this.apiURL}/6`);
   }
 
   getSpecificFlights(id:any): Observable<any> {
@@ -19,11 +19,11 @@ export class ManageFlightsService {
   }
 
   getAllBooking(): Observable<any> {
-    return this.http.get(`${this.apiURL}/bookings`);
+    return this.http.get(`${this.apiURL}/6`);
   }
 
-  getSpecificbooking(id:String): Observable<any> {
-    return this.http.get(`${this.apiURL}/bookings?flightID=${id}`);
+  getSpecificbooking(): Observable<any> {
+    return this.http.get(`${this.apiURL}/6`);
   }
 
   getFlightById(flightId: string): Observable<any> {

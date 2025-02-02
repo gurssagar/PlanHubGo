@@ -5,11 +5,12 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators'; // Import the map operator
 import { CabCardDetails } from '../model/cabcard-details';
 import { Employee } from '../model/employee';
+import { AnyPtrRecord } from 'node:dns';
 
 @Injectable({ providedIn: 'root' })
 export class AdminCabService {
-  private apiUrl = 'http://localhost:3000/CabCardDetailsList';
-  private employeeApiUrl = 'http://localhost:3000/cabEmployee';
+  private apiUrl = 'http://localhost:3000/7';
+  private employeeApiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {}
 
@@ -21,22 +22,16 @@ export class AdminCabService {
     return this.http.post<Employee>(this.employeeApiUrl, employeeData);
   }
 
-  getCabCount(): Observable<number> {
-    return this.http.get<CabCardDetails[]>(this.apiUrl).pipe(
-      map(cabs => cabs.length)
-    );
+   getCabCount(){
+    return this.http.get<CabCardDetails[]>(this.apiUrl)
   }
 
-  getEmployeeCount(): Observable<number> {
-    return this.http.get<Employee[]>(this.employeeApiUrl).pipe(
-      map(employees => employees.length)
-    );
+  getEmployeeCount(){
+    return this.http.get<Employee[]>(this.apiUrl)
   }
-  getEmployeeList(): Promise<Employee[]> {
-    return this.http.get<Employee[]>(this.employeeApiUrl).toPromise().then(employees => {
-      return employees || []; // Return an empty array if employees is undefined
-    });
-  }
+  getEmployeeList(): Observable<any> {
+  return this.http.get(this.apiUrl)
+}
   
   updateEmployee(employeeId: string, employeeData: Employee): Promise<Employee> {
     return this.http.put<Employee>(`${this.employeeApiUrl}/${employeeId}`, employeeData).toPromise().then(employee => {

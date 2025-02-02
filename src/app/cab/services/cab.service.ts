@@ -9,11 +9,29 @@ import { Inject, PLATFORM_ID } from '@angular/core';
 })
 export class CabService {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
-  private url = 'http://localhost:3000/CabCardDetailsList';
-  private url2 = 'http://localhost:3000';
-
+  private url = 'http://localhost:3000/7';
+  private url2 = 'http://localhost:3000/7';
+  response:any
+  bookingData:any
+  availCabs:any
+  bookedCabs:any
+  userDetails:any
+  bookingDat:any
+  bookedCab:any
+  availCab:any
+  userDetail:any
+  datae:any
+  bookingDataa:any
+  finres:any
+  finalBookingss:any=[]
+  cabfinData:any=[]
+  bookedCabsResponse:any
+  tempo:any
+  cabInfo:any=[]
+  cabDetailss:any
+  finalCabCard:any
   async getcabCardDetailsList(): Promise<CabCardDetails[]> {
-    const data = await fetch(this.url);
+    const data = await fetch(`${this.url2}`);
     return await data.json();
   }
 
@@ -22,17 +40,32 @@ export class CabService {
     return allCabs.find(cabCardDetails => cabCardDetails.rideType === rideType);
   }
   async getCabDetailsById(id: string): Promise<CabCardDetails | undefined> {
-    const response = await fetch(`${this.url}/${id}`);
-    if (!response.ok) {
-      console.error(`Error fetching cab details: ${response.statusText}`);
+    this.response = await fetch(`${this.url}`);
+    const reso = await this.response.json();
+    const res = reso['CabCardDetailsList'];
+    console.log('response:', res);
+    res.forEach((cab: any) => {
+      if (cab.id === id) {
+        console.log('cabDetails:', cab);
+        this.finres=cab;
+      }
+    });
+    if (!this.response.ok) {
+      console.error(`Error fetching cab details: ${this.response.statusText}`);
       return undefined;
     }
-    return await response.json();
+    return this.finres;
   }
 
   async bookCab(cabId: string, userDetails: { name: string; email: string }): Promise<void> {
     try {
       const cabDetails = await this.getCabDetailsById(cabId);
+      const finalCabDetails = {
+        ...cabDetails,
+        Booked: true,
+        available: false,
+        Cancelled: false
+      }
       if (!cabDetails) {
         throw new Error('Cab not found!');
       }
@@ -40,44 +73,54 @@ export class CabService {
       const bookingId = uuidv4();
       const bookingData = {
         id: bookingId,
-        cab: cabDetails, 
+        cab: finalCabDetails,
         user: userDetails,
         timestamp: Date.now() 
       };
-  
-      // Save booking data
-      await fetch(`${this.url2}/Bookings`, { 
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bookingData)
-      });
-  
-      // Remove from available cabs
-      await fetch(`${this.url2}/CabCardDetailsList/${cabId}`, {
-        method: 'DELETE'
-      });
-  
+      this.bookingData=await fetch(`${this.url2}`);
+      this.bookingData=await this.bookingData.json();
+      this.datae=await fetch(`${this.url2}`);
+      this.datae=await this.datae.json();
+      const Book:any="Bookings"
+      this.bookingDat=this.bookingData[Book];
+      console.log(this.bookingData,"a")
+      this.bookingDat.push(bookingData);
       // Add to booked cabs
-      cabDetails.Booked = true;
-      cabDetails.available = false;
-      await fetch(`${this.url2}/BookedCabList`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(bookingData)
+      this.bookedCabs=await fetch(`${this.url2}`);
+      this.bookedCabs=await this.bookedCabs.json();
+      this.bookedCab=this.bookedCabs['BookedCabList'];
+      this.bookedCab.push(bookingData);
+      // Remove from available cabs
+      this.availCabs=await fetch(`${this.url2}`);
+      this.availCabs=await this.availCabs.json();
+      this.availCab=this.availCabs['CabCardDetailsList'];
+      this.availCab.forEach((cab: any, index: number) => {
+        if (cab.id === cabId) {
+          this.availCab.splice(index, 1);
+        }
       });
-  
       // Save user details
-      await fetch(`${this.url2}/UserDetails`, {
-        method: 'POST',
+      this.userDetails=await fetch(`${this.url2}`);
+      this.userDetails=await this.userDetails.json();
+      this.userDetail=this.userDetails['UserDetails'];
+      this.userDetail.push(userDetails);
+      console.log(this.userDetail)
+      console.log(userDetails)
+
+      
+      
+      const finalDat={...this.datae,Bookings:this.bookingDat,CabCardDetailsList:this.availCab,UserDetails:this.userDetail,BookedCabList:this.bookedCab};
+      console.log(finalDat)
+
+      // Save booking data
+      await fetch(`${this.url2}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(userDetails)
+        body: JSON.stringify(finalDat)
       });
+      
   
       // Store email in session storage
       sessionStorage.setItem('userEmail', userDetails.email);
@@ -101,7 +144,7 @@ export class CabService {
         return [];
       }
   
-      const userEmail = sessionStorage.getItem('userEmail');
+      const userEmail = localStorage.getItem('email');
       const userBookings: string[] = JSON.parse(localStorage.getItem('userBookings') || '[]');
   
       if (!userEmail || !userBookings.length) {
@@ -109,28 +152,22 @@ export class CabService {
         return [];
       }
   
-      const response = await fetch(`${this.url2}/BookedCabList`);
+      const response = await fetch(`${this.url2}`);
+      const newRes=await response.json();
+      console.log(newRes)
+      const finalRes=newRes['BookedCabList'];
       if (!response.ok) {
         throw new Error('Failed to fetch booked cabs');
       }
   
-      const bookedCabs: {
-        id: string;
-        cab: CabCardDetails;
-        user: {
-          name: string;
-          email: string;
-        };
-        timestamp: number;
-      }[] = await response.json();
   
       // Filter booked cabs based on user email and booking IDs
-      const userCabs = bookedCabs.filter(booking => 
+      const userCabs = finalRes.filter((booking:any) => 
         booking.user.email === userEmail && 
         userBookings.includes(booking.id)
       );
   
-      return userCabs.map(booking => ({
+      return userCabs.map((booking:any) => ({
         ...booking.cab,
         Booked: true,
         available: false
@@ -144,10 +181,12 @@ export class CabService {
 
   async cancelBooking(cabId: string): Promise<void> {
     try {
-      const userEmail = sessionStorage.getItem('userEmail');
+      const userEmail = localStorage.getItem('email');
+      console.log(userEmail)
       const userBookings: string[] = JSON.parse(localStorage.getItem('userBookings') || '[]');
   
-      if (!userEmail || !userBookings.length) {
+      if (!userEmail ) {
+        console.log('No booking credentials found');
         throw new Error('No booking credentials found');
       }
   
@@ -163,9 +202,11 @@ export class CabService {
       }
   
       // Find the booking in BookedCabList that matches the cab ID
-      const bookedCabsResponse = await fetch(`${this.url2}/BookedCabList`);
+      const bookedCabsResponse = await fetch(`${this.url2}`);
       const bookedCabs: BookedCab[] = await bookedCabsResponse.json();
-      const booking = bookedCabs.find((b: BookedCab) => 
+      const cabbooks:any='BookedCabList';
+      const finalbookedCabs:any=bookedCabs[cabbooks];
+      const booking = finalbookedCabs.find((b: BookedCab) => 
         b.cab.id === cabId && 
         b.user.email === userEmail && 
         userBookings.includes(b.id)
@@ -176,26 +217,67 @@ export class CabService {
       }
   
       // Remove from BookedCabList
-      await fetch(`${this.url2}/BookedCabList/${booking.id}`, {
-        method: 'DELETE'
+      this.availCabs=await fetch(`${this.url2}`);
+      this.availCabs=await this.availCabs.json();
+      this.availCab=this.availCabs['BookedCabList'];
+      this.availCab.forEach((cab: any, index: number) => {
+        if (cab.id === cabId) {
+          this.availCab.splice(index, 1);
+        }
       });
+
   
       // Update status in Bookings
-      const bookingResponse = await fetch(`${this.url2}/Bookings/${booking.id}`);
+      const bookingResponse = await fetch(`${this.url2}`);
+      
       if (bookingResponse.ok) {
         const bookingRecord = await bookingResponse.json();
-        bookingRecord.cab.Cancelled = true;
-        await fetch(`${this.url2}/Bookings/${booking.id}`, {
+        this.bookingDataa=await fetch(`${this.url2}`);
+        this.bookingDataa=await this.bookingDataa.json();
+        const bookingRes:any=bookingRecord['Bookings'];
+        this.finalBookingss=bookingRes.map((book:any)=>{
+          if(book.id===booking.id){
+            book.cab.Booked = false;
+            book.cab.Cancelled=true;
+            book.cab.available = true;
+          }
+          return book;
+        })
+
+        const cabDetails:any = bookingRecord['Bookings'];
+        cabDetails.forEach((cabs: any, index: number) => {
+          this.cabInfo.push(cabs.cab);
+        });
+        this.cabInfo.forEach((cabs: any, index: number) => {
+          if (cabs.id === cabId) {
+            cabs = {
+                ...cabs,
+                Booked: false,
+                available: true,
+                Cancelled: true
+            };
+            this.tempo=cabs;
+          }
+        })
+        console.log(this.tempo)
+        this.cabDetailss = bookingRecord['CabCardDetailsList'];
+        this.finalCabCard=[...this.cabDetailss,this.tempo]
+        console.log("CabCardDetailsList",this.finalCabCard)
+
+        console.log(this.finalBookingss,'fional')
+        const allUpdatedBookings = {...this.bookingDataa,Bookings:this.finalBookingss,BookedCabList:this.availCab,CabCardDetailsList:this.finalCabCard};
+        console.log(allUpdatedBookings,"all")
+        await fetch(`${this.url2}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify(bookingRecord)
+          body: JSON.stringify(allUpdatedBookings)
         });
       }
   
       // Add cab back to available list
-      const cabDetails = booking.cab;
+      /*const cabDetails = booking.cab;
       cabDetails.Booked = false;
       cabDetails.available = true;
       cabDetails.Cancelled = true;
@@ -207,7 +289,7 @@ export class CabService {
         },
         body: JSON.stringify(cabDetails)
       });
-  
+      */
       // Update booking IDs in localStorage
       const updatedBookings = userBookings.filter((bookingId: string) => bookingId !== booking.id);
       localStorage.setItem('userBookings', JSON.stringify(updatedBookings));
@@ -219,9 +301,12 @@ export class CabService {
 }
   // finding the cabs for history according to useremail
   async getBookingsByUserEmail(email: string): Promise<Booking[]> { 
-    const response = await fetch(`${this.url2}/Bookings`);
-    const bookings: Booking[] = await response.json(); // Specify the type here
-    return bookings.filter(booking => booking.user.email === email);
+    const response = await fetch(`${this.url2}`);
+    const bookings: Booking[] = await response.json();
+    const book:any='Bookings'
+    const newRes:any=bookings[book];
+    console.log(newRes)
+    return newRes.filter((booking:any) => booking.user.email === email);
   }
 
   async getPickupLocations(): Promise<string[]> {

@@ -110,7 +110,6 @@ export const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [authGuard] },
   { path: 'service-provider', component: ServiceProviderComponent, canActivate: [ServiceAuthGuard] },
-  { path: 'cab', component: HomepageComponent, canActivate: [authGuard] },  // Updated route
   //{ path: 'flight', component: FlightComponent, canActivate: [authGuard] },  // Updated route
   //{ path: 'hotel', component: HotelComponent, canActivate: [authGuard] },  // Updated route
   //{ path: 'tour-package', component: TourComponent, canActivate: [authGuard] },  // Updated route
@@ -165,6 +164,7 @@ export const routes: Routes = [
     component:BookComponent,
     canActivate: [authGuard]
   },
+
   {
     path:"tour/manage",
     component:ManageBookingComponent,
@@ -186,7 +186,7 @@ export const routes: Routes = [
   },
     
   //cab routes
-    { path: 'cab-home', component: HomepageComponent, canActivate: [authGuard] },
+    { path: 'cab', component: HomepageComponent, canActivate: [authGuard] },
     { path: 'search', component: CabMainComponent, canActivate: [authGuard] },
     { path: 'history', component: CabHistoryComponent, canActivate: [authGuard] },
     { path: 'updates', component: MapsandcabsComponent, canActivate: [authGuard] },
@@ -195,7 +195,7 @@ export const routes: Routes = [
       { path: 'ride-manage', component: CabRideManageComponent, canActivate: [authGuard] },
     { path: 'customer', component: CabCustomerComponent, canActivate: [authGuard] },
     { path: 'employee', component: CabEmployeeComponent, canActivate: [authGuard] },
-    
+
 
 
 

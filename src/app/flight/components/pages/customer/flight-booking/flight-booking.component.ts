@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FlightBookingService } from '../../../../services/customer/flight-booking.service';
 import { HeaderComponent } from '../header/header.component';
 import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
+import {randomUUID} from "node:crypto";
 
 @Component({
   selector: 'app-flight-booking',
@@ -16,27 +17,38 @@ import { NgxSpinnerComponent, NgxSpinnerService } from 'ngx-spinner';
 })
 export class FlightBookingComponent implements OnInit {
   flightBookingForm: FormGroup;
-  flights:any = {}
-  isBooked = false
-  isBookingFailure = false
-  similerFlights:any[] = []
-  isFailure = false
-  id:any = ""
+  flights: any = {};
+  isBooked = false;
+  isBookingFailure = false;
+  similerFlights: any[] = [];
+  isFailure = false;
+  id: any = "";
+  temopraryData: any = {};
+  temp2: any = [];
+  temp3: any = [];
+  temp4:any={};
 
-  ngOnInit(): void {
-    this.getFlightsDetails()
-  }
-
-  constructor(private fb: FormBuilder, private router: Router, private route: ActivatedRoute, private spinner: NgxSpinnerService, private http: HttpClient, private flightBookingService: FlightBookingService) {
+  constructor(
+      private fb: FormBuilder,
+      private router: Router,
+      private route: ActivatedRoute,
+      private spinner: NgxSpinnerService,
+      private http: HttpClient,
+      private flightBookingService: FlightBookingService
+  ) {
     this.flightBookingForm = this.fb.group({
       passengers: this.fb.array([this.createPassengerForm()])
     });
-  
-    this.route.paramMap.subscribe((params) => {
-      this.id = this.route.snapshot.paramMap.get("id");
+
+    this.route.paramMap.subscribe(() => {
+      this.id = this.route.snapshot.paramMap.get('id');
       console.log("Route parameter changed, new ID:", this.id);
       this.getFlightsDetails();
     });
+  }
+
+  ngOnInit(): void {
+    this.getFlightsDetails();
   }
 
   get passengers(): FormArray {
@@ -44,7 +56,7 @@ export class FlightBookingComponent implements OnInit {
   }
 
   createPassengerForm(): FormGroup {
-    const uniqueID = this.generatePassengerID()
+    const uniqueID = this.generatePassengerID();
     return this.fb.group({
       id: [uniqueID],
       name: ['', Validators.required],
@@ -67,92 +79,117 @@ export class FlightBookingComponent implements OnInit {
     this.passengers.removeAt(index);
   }
 
-  onBookingToggle(){
-    this.isBookingFailure = !this.isBookingFailure
+  onBookingToggle(): void {
+    this.isBookingFailure = !this.isBookingFailure;
   }
 
   onSubmit(): void {
     if (this.flightBookingForm.valid) {
-      const data = Date.now()
-      const id = this.route.snapshot.paramMap.get('id')
-      const formattedDate = new Intl.DateTimeFormat('en-US', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false,
-      }).format(new Date());
       const booking = {
-        id: `B${data}`,
-        flightID: id,
-        userID: "U1001",
-        totalAmount: this.flights.price * this.passengers.length,
-        bookingStatus: "Confirmed",
-        date:formattedDate,
+
+        date:Date.now(),
+        flightID: this.id,
+        userEmail:localStorage.getItem('email'),
+        totalAmount: this.flights.price,
+        bookingStatus:"Confirmed",
         passengers: [...this.flightBookingForm.value.passengers]
-      }
-      console.log(booking)
-      this.flightBookingService.postBookingDetails(booking).subscribe((data:any)=>{
-        this.isBooked = true
-        setTimeout(()=>{
-          this.isBooked = false
-          this.router.navigateByUrl("flight/booking/history")
-        },2000)
-      })
+      };
+
+      this.flightBookingService.getFlights().subscribe((data: any) => {
+        this.temp4 = data;
+        const updatedBookings = [...this.temp4.bookings, booking];
+        const updatedBookingsData = { bookings: updatedBookings, flights: data.flights };
+        console.log("booking data", updatedBookingsData);
+        this.flightBookingService.postBookingDetails(updatedBookingsData).subscribe(
+            () => {
+              this.isBooked = true;
+              setTimeout(() => {
+                this.isBooked = false;
+              }, 2000);
+            },
+            (error) => {
+              console.error('Error in posting booking:', error);
+              this.isBookingFailure = true;
+              setTimeout(() => {
+                this.isBookingFailure = false;
+              }, 2000);
+            }
+        );
+      });
     } else {
-      this.isBookingFailure  = true
-      setTimeout(()=>{
-        this.isBookingFailure  = false
-      },2000)
+      this.isBookingFailure = true;
+      setTimeout(() => {
+        this.isBookingFailure = false;
+      }, 2000);
     }
   }
 
-  getSmilarFlights(departure: any){
-    const id = this.route.snapshot.paramMap.get('id')
-    let bookingDetails = []
-    this.flightBookingService.getSpecificBooking(id).subscribe((data)=>{
-      bookingDetails = data
-    })
-    this.flightBookingService.getSpecificDeparture(departure).subscribe((data:any)=>{
-      this.similerFlights = data.filter((eachItem:any) => eachItem.id !== id && eachItem.isActive!==false);
-      console.log(data)
-    })
+
+  getSmilarFlights(departure: string): void {
+    this.similerFlights = [];
+
+    this.flightBookingService.getSpecificBooking().subscribe((data: any) => {
+      this.temp2 = data.bookings;
+      console.log("All bookings:", this.temp2);
+    });
+
+    this.flightBookingService.getSpecificDeparture().subscribe((data: any) => {
+      this.temp3 = data.flights;
+      console.log("All flights by departure:", this.temp3);
+
+      // Collect the entire flight object if it matches the departure place
+      this.temp3.forEach((flightItem: any) => {
+        if (flightItem.departure.place === departure) {
+          console.log("Matching flight:", flightItem);
+          this.similerFlights.push(flightItem);
+        }
+      });
+
+      console.log("List of similar flights:", this.similerFlights);
+    });
   }
 
-  navigateToFlight(id: string): void {
-    console.log("Navigating to flight:", id);
-    this.id = id;
-    this.router.navigate(['/flight', id]);
+  navigateToFlight(flightId: string): void {
+    console.log("Navigating to flight:", flightId);
+    // Reassign ID and navigate
+    this.id = flightId;
+    this.router.navigate(['/flight', flightId]);
+    // Fetch details for the new flight
     this.getFlightsDetails();
-    // setTimeout(()=>{
-    //   location.reload()
-    // },100)
   }
 
-  getFlightsDetails() {
-    this.spinner.show()
+  getFlightsDetails(): void {
+    this.spinner.show();
     this.id = this.route.snapshot.paramMap.get('id');
     console.log("Getting details for flight ID:", this.id);
-    this.flightBookingService.getSpecificFlights(this.id).subscribe(
-      (data: any) => {
-        console.log("Flight details:", data);
-        this.flights = data;
-        this.getSmilarFlights(data.departure.place);
-        this.isFailure = false
-        setTimeout(()=>{
-          this.spinner.hide()
-        }, 1000)
-      },
-      (error) => {
-        console.error("Error fetching flight details:", error)
-        this.isFailure = true
-      }
+
+    this.flightBookingService.getSpecificFlights().subscribe(
+        (response: any) => {
+          // If response contains an array of flights, assign it
+          this.temopraryData = response.flights || [];
+
+          this.temopraryData.forEach((eachItem: any) => {
+            if (eachItem.id === this.id) {
+              this.flights = eachItem;
+              console.log("Selected flight:", this.flights);
+              this.getSmilarFlights(this.flights.departure.place);
+            }
+          });
+
+          this.isFailure = false;
+          setTimeout(() => {
+            this.spinner.hide();
+          }, 1000);
+        },
+        (error) => {
+          console.error("Error fetching flight details:", error);
+          this.isFailure = true;
+          this.spinner.hide();
+        }
     );
   }
 
-  onRetry(){
+  onRetry(): void {
     this.getFlightsDetails();
   }
 }

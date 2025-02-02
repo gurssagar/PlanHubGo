@@ -54,14 +54,22 @@ export class FlightComponent {
   loadFlightsAndBookings() {
     this.flightBookingService.getFlights().subscribe({
       next: (flightsData) => {
-        this.flights = flightsData.filter((data:any)=>(data.isActive !== false));
+        this.flights = flightsData.flights.filter((data:any)=>(data.isActive !== false));
         this.isfailure = false;
+        console.log(this.flights);
   
         // Fetch user bookings
         this.flightBookingService.getBookings().subscribe({
           next: (bookingsData) => {
-            this.userBookedFlights = bookingsData.map((booking: any) => booking.flightID);
-  
+            for(let i = 0; i < bookingsData.bookings.length; i++) {
+              if(bookingsData.bookings[i].userEmail == localStorage.getItem('email')) {
+                this.userBookedFlights.push(bookingsData.bookings[i].flightID);
+
+              }
+            }
+
+            console.log(this.userBookedFlights);
+
             // Filter available flights
             this.filterAvailableFlights();
   

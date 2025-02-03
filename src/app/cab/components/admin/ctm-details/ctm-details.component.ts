@@ -16,7 +16,7 @@ import { CommonModule,  } from '@angular/common';
     <div class="tw-card tw-bg-white tw-shadow-md tw-rounded-lg" *ngFor="let employee of paginatedEmployees">
       <!-- Image -->
       <img
-        [src]="employee.Gender === 'Female'?'https://img.freepik.com/free-vector/young-woman-white_25030-39527.jpg?ga=GA1.1.1791716734.1735568001&semt=ais_hybrid':'../../../../../assets/Young_man.jpg'"
+        [src]="employee.Gender === 'Female'?'https://img.freepik.com/free-vector/young-woman-white_25030-39527.jpg?ga=GA1.1.1791716734.1735568001&semt=ais_hybrid':'../../../../../assets/images/Young_man.jpg'"
         alt="Person"
         class="tw-w-full tw-h-48 tw-object-cover tw-rounded-t-lg"
       />

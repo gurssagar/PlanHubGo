@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RouteResponse } from '../Components/update/routing';
+import { RouteResponse } from '../components/update/routing';
 
 @Injectable({
   providedIn: 'root'

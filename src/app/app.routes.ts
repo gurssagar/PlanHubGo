@@ -63,7 +63,7 @@ import { RideManageComponent as CabRideManageComponent } from './cab/components/
 import { CustomerComponent as CabCustomerComponent } from './cab/components/admin/customer/customer.component';
 import { EmployeeComponent as CabEmployeeComponent } from './cab/components/admin/employee/employee.component';
 import { MapsandcabsComponent } from './cab/components/mapsandcabs/mapsandcabs.component';
-
+import { ServiceProviderDashboardComponent } from './cab/components/service-provider-dashboard/service-provider-dashboard.component';
 
 
 
@@ -195,6 +195,11 @@ export const routes: Routes = [
       { path: 'ride-manage', component: CabRideManageComponent, canActivate: [authGuard] },
     { path: 'customer', component: CabCustomerComponent, canActivate: [authGuard] },
     { path: 'employee', component: CabEmployeeComponent, canActivate: [authGuard] },
+    {
+      path:'service-provider-cab',
+      component:ServiceProviderDashboardComponent
+    },
+
 
 
 

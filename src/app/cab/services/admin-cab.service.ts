@@ -1,26 +1,64 @@
-// admin-cab.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators'; // Import the map operator
+import { Observable, from } from 'rxjs';
 import { CabCardDetails } from '../model/cabcard-details';
 import { Employee } from '../model/employee';
-import { AnyPtrRecord } from 'node:dns';
 
 @Injectable({ providedIn: 'root' })
 export class AdminCabService {
   private apiUrl = 'http://localhost:3000/7';
-  private employeeApiUrl = 'http://localhost:3000';
+  private employeeApiUrl = 'http://localhost:3000/7';
 
   constructor(private http: HttpClient) {}
 
+
   createNewCab(cabData: CabCardDetails): Observable<CabCardDetails> {
-    return this.http.post<CabCardDetails>(this.apiUrl, cabData);
+    return from(fetch(this.apiUrl).then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    }).then(data => {
+      const updatedData = {...data, CabCardDetailsList: [...data.CabCardDetailsList, cabData]};
+      return fetch(this.apiUrl, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updatedData)
+      }).then(res => {
+        if(!res.ok)
+        {
+             throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return cabData;
+      })
+    }));
   }
 
   createEmployee(employeeData: Employee): Observable<Employee> {
-    return this.http.post<Employee>(this.employeeApiUrl, employeeData);
-  }
+    return from(fetch(this.employeeApiUrl).then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+    }).then(data => {
+        const updatedData = {...data, UserDetails: [...data.UserDetails, employeeData]};
+        return fetch(this.employeeApiUrl, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updatedData)
+        }).then(res => {
+            if (!res.ok) {
+                throw new Error(`HTTP error! Status: ${res.status}`);
+            }
+            return employeeData;
+        });
+    }));
+}
+
 
    getCabCount(){
     return this.http.get<CabCardDetails[]>(this.apiUrl)
@@ -43,6 +81,6 @@ export class AdminCabService {
   }
   
   deleteEmployee(employeeId: string): Promise<void> {
-    return this.http.delete<void>(`${this.employeeApiUrl}/${employeeId}`).toPromise();
+     return this.http.delete<void>(`${this.employeeApiUrl}/${employeeId}`).toPromise();
   }
 }

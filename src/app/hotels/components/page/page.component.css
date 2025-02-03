@@ -93,7 +93,7 @@
 .h-page {
   background-color: #f1f1f1;
   padding-bottom: 50px;
-  margin-top: 73px;
+  margin-top: 96px;
 }
 
 .main-page {
@@ -540,9 +540,10 @@ h3.mb-0 {
 
 
 
+
 /******************************************* Rating ***********************************/
 
-/*
+
 .rating {
   display: flex;
   align-items: center;
@@ -564,6 +565,7 @@ h3.mb-0 {
 .rating-box3 {
   width: 35%;
   height: 90%;
+
 }
 
 .star i {
@@ -578,7 +580,6 @@ h3.mb-0 {
   height: 90%;
   border-radius: 12px;
 }
-*/
 
 /* Back Button Styling */
 .back-btn {
@@ -659,6 +660,7 @@ button.btn.btn-outline-primary {
 .carousel-control-next {
   right: 10px;
 }
+
 
 
 

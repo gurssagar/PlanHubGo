@@ -7,6 +7,7 @@ import { ServiceProviderService } from '../../../services/service-provider.servi
 import { Amenity, Booking, Hotel, Provider, Room } from '../../../models/interfaces';
 import { filter } from 'rxjs';
 import { AdminService } from '../../../services/admin.service';
+import { HotelIdService } from '../../../services/hotel-id.service';
 
 // Extended Room interface to include hotelId
   interface RoomWithHotelId extends Room {
@@ -85,7 +86,7 @@ export class ServiceProviderComponent implements OnInit {
   hotels: { id: string; name: string }[] = [];
   showMenu = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private serviceProviderService: ServiceProviderService, private adminService: AdminService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private serviceProviderService: ServiceProviderService, private adminService: AdminService, private hotelIdService: HotelIdService) { }
 
   async ngOnInit(): Promise<void> {
     try {
@@ -605,8 +606,10 @@ generateUniqueRoomId(callback: (uniqueId: string) => void): void {
   }
 
   viewDetails(providerId: string, hotelId: string): void {
-    this.router.navigate(['/hotel-service/service-hotel'], {
-      queryParams: { providerId, hotelId },
-    });
-  }
+    this.hotelIdService.setProviderId(providerId);
+    this.hotelIdService.setProviderHotelId(hotelId);
+  
+    // Use absolute path for navigation
+    this.router.navigate(['/hotel-service/service-hotel']);
+  }  
 }

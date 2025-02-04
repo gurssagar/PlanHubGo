@@ -75,6 +75,7 @@ export class CabService {
         id: bookingId,
         cab: finalCabDetails,
         user: userDetails,
+        status: 'pending',
         timestamp: Date.now() 
       };
       this.bookingData=await fetch(`${this.url2}`);
@@ -198,6 +199,7 @@ export class CabService {
           name: string;
           email: string;
         };
+        status:"completed";
         timestamp: number;
       }
   

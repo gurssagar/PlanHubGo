@@ -1,10 +1,17 @@
+/* Admin Container */
+.admin-container {
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100vh;
+}
+
+/* Main Content */
 .main-content {
   position: relative;
   left: 250px;
   background-color: #f5f5f5;
   min-height: 100vh;
   width: calc(100% - 250px);
-  /* padding: 10px 14px; */
   transition: all 0.3s ease;
 }
 
@@ -13,153 +20,154 @@
   width: calc(100% - 100px);
 }
 
+/* Top Bar */
 .top {
-    position: fixed;
-    top: 0;
-    left: 250px;
-    display: flex;
-    width: calc(100% - 250px);
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 14px;
-    background-color: #fff;
-    transition: all 0.3s ease;
-    z-index: 10;
-    height: 60px;
-  }
-  
-  .main-content.expanded .top {
-    left: 90px;
-    width: calc(100% - 78px);
-  }
-  
-  .search_box {
-    position: relative;
-    height: 45px;
-    /* max-width: 600px; */
-    width: 100%;
-    margin: 0 15px 0 0;
-  }
-  
-  .search_box input {
-    position: absolute;
-    border: 1px solid #CCCCCC;
-    background-color: #F5F5F5;
-    padding: 0 25px 0 50px;
-    border-radius: 5px;
-    height: 100%;
-    width: 100%;
-    color: #161a2d;
-    font-size: 15px;
-    font-weight: 400;
-    outline: none;
-  }
-  
-  .search_box i {
-    position: absolute;
-    left: 15px;
-    font-size: 22px;
-    z-index: 10;
-    top: 50%;
-    transform: translateY(-50%);
-    color: #161a2d;
-  }
-  
-  .toggle_btn {
-    font-size: 26px;
-    color: #161a2d;
-    cursor: pointer;
-    margin-right: 15px;
-  }
+  position: fixed;
+  top: 0;
+  left: 250px;
+  display: flex;
+  width: calc(100% - 250px);
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  background-color: #fff;
+  transition: all 0.3s ease;
+  z-index: 10;
+  height: 60px;
+}
 
-  a.btn.btn-success.btn-sm {
-    margin-right: 10px;
-  }
+.main-content.expanded .top {
+  left: 90px;
+  width: calc(100% - 78px);
+}
 
-  .card {
-    background-color: white;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .card-header {
-    padding: 15px 20px;
-    border-bottom: 1px solid #eee;
-  }
-  
-  .card-content {
-    padding: 20px;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  th, td {
-    text-align: left;
-    padding: 12px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  th {
-    background-color: #f2f2f2;
-  }
-  
-  .btn-view {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .popup-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .popup-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 4px;
-    max-width: 500px;
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  
-  .popup-actions {
-    text-align: right;
-    margin-top: 20px;
-  }
-  
-  .btn-close {
-    background-color: #f44336;
-    color: white;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .loading, .no-bookings {
-    text-align: center;
-    padding: 20px;
-  }
+/* Search Box */
+.search_box {
+  position: relative;
+  height: 45px;
+  width: 100%;
+  margin: 0 15px 0 0;
+}
 
-  section.content {
-    margin: 15px;
-    padding-top: 10px;
+.search_box input {
+  position: absolute;
+  border: 1px solid #CCCCCC;
+  background-color: #F5F5F5;
+  padding: 0 25px 0 50px;
+  border-radius: 5px;
+  height: 100%;
+  width: 100%;
+  color: #161a2d;
+  font-size: 15px;
+  font-weight: 400;
+  outline: none;
+}
+
+.search_box i {
+  position: absolute;
+  left: 15px;
+  font-size: 22px;
+  z-index: 10;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #161a2d;
+}
+
+/* Toggle Button */
+.toggle_btn {
+  font-size: 26px;
+  color: #161a2d;
+  cursor: pointer;
+  margin-right: 15px;
+}
+
+/* Card and Table */
+.card {
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-content {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+.btn-view {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Popup */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 4px;
+  max-width: 500px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.popup-actions {
+  text-align: right;
+  margin-top: 20px;
+}
+
+.btn-close {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* Loading and No Bookings */
+.loading, .no-bookings {
+  text-align: center;
+  padding: 20px;
+}
+
+section.content {
+  margin: 15px;
+  padding-top: 10px;
 }
 
 .booking-details {
@@ -167,3 +175,115 @@
   margin-top: 20px;
 }
 
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .admin-container {
+    flex-direction: column;
+  }
+
+  .top {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    padding: 10px 14px;
+    height: 60px;
+    z-index: 10;
+  }
+
+  .main-content {
+    left: 0;
+    width: 100%;
+  }
+
+  .main-content.expanded {
+    left: 0;
+    width: 100%;
+  }
+
+  .search_box {
+    margin: 10px 0;
+  }
+
+  .card {
+    margin-top: 10px;
+  }
+
+  .popup-content {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    left: 0;
+    width: 100%;
+  }
+
+  .top {
+    left: 0;
+    width: 100%;
+  }
+
+  .search_box {
+    margin: 10px 0;
+  }
+
+  .toggle_btn {
+    font-size: 24px;
+  }
+
+  table th, table td {
+    font-size: 14px;
+  }
+
+  .btn-view {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  .popup-overlay {
+    padding: 20px;
+  }
+
+  .popup-content {
+    max-width: 100%;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .main-content {
+    position: relative;
+    min-height: 100vh;
+    width: 100vw;
+  }
+  .top {
+    align-items: center;
+  }
+
+  .toggle_btn {
+    font-size: 22px;
+  }
+
+  .search_box input {
+    font-size: 14px;
+  }
+
+  .card-content {
+    padding: 15px;
+    width: 100%;
+    overflow: auto;
+    scrollbar-width: 2px;
+  }
+
+
+  table th, table td {
+    font-size: 12px;
+  }
+
+  .btn-view {
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+}

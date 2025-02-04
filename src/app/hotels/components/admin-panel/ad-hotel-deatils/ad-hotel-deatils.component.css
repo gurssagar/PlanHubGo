@@ -499,3 +499,62 @@ button {
   padding: 8px;
   font-size: 14px;
 }
+
+
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .d-flex {
+    flex-direction: column;
+  }
+
+  .ad-hotel {
+    margin-left: 0;
+    flex: 1;
+  }
+
+  .card-item {
+    width: calc(50% - 20px);
+  }
+
+  .hotel-name {
+    font-size: 1rem;
+  }
+
+  .price {
+    font-size: 1rem;
+  }
+
+  .search_box input {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-item {
+    width: 100%;
+  }
+
+  .hotel-name {
+    font-size: 0.9rem;
+  }
+
+  .price {
+    font-size: 0.9rem;
+  }
+
+  .top {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search_box {
+    margin-top: 10px;
+  }
+
+  .hotel-add-popup,
+  .hotel-popup,
+  .delete-popup {
+    padding: 15px;
+  }
+}

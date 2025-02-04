@@ -13,7 +13,6 @@
     </div>
 
     <div class="container mt-4 pt-2">
-      <h2 class="tag-head mt-5">Room Details</h2>
       <div *ngIf="loading" class="text-center">Loading...</div>
       <div *ngIf="!loading && filteredRooms.length === 0" class="text-center">No rooms available.</div>
 
@@ -37,7 +36,7 @@
                 <a class="btn btn-primary float-end" (click)="openAddRoomPopup()">Add Room</a>
               </h4>
             </div>
-            <div class="card-body">
+            <div class="card-body new-card">
               <table class="table table-bordered table-striped text-center">
                 <thead>
                   <tr>
@@ -85,14 +84,6 @@
               <option *ngFor="let hotel of hotels" [value]="hotel.id">{{ hotel.name }}</option>
             </select>
           </div>
-          <!-- <div class="form-group">
-            <label for="roomId">Room ID</label>
-            <input type="text" id="roomId" [(ngModel)]="newRoom.roomId" name="roomId" placeholder="Add 'r0' at start. ex: r001" readonly
-              (ngModelChange)="checkRoomIdAvailability()" />
-            <div *ngIf="roomIdDuplicate" class="error-message">
-              This Room ID already exists for the selected hotel.
-            </div>
-          </div> -->
         </div>
         <div class="form-row">
           <div class="form-group">

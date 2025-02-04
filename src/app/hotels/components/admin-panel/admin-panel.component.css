@@ -357,10 +357,13 @@
   .chart-container {
     flex: 1 1 100%;
     width: 100vw;
+    display: flex;
+    justify-content: center;
   }
 
 
   .chart-content {
+    width: 100%;
     flex-direction: column;
   }
 
@@ -368,12 +371,11 @@
     flex: 0 0 auto;
     padding-right: 0;
     padding-bottom: 20px;
-    width: 100%;
   }
 
   .chart-canvas {
     flex: 0 0 auto;
-    width: 100%;
+    align-self: center;
   }
 }
 
@@ -403,7 +405,6 @@
 
   .chart-canvas {
     flex: 0 0 auto;
-    width: 100%;
   }
 }
 

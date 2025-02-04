@@ -5,6 +5,8 @@ import { Injectable } from '@angular/core';
 })
 export class HotelIdService {
   private hotelId: string = '';
+  private providerId: string = '';
+  private providerhotelId: string = '';
   private bookingData: any;
 
   // Method to set the booking data
@@ -25,5 +27,25 @@ export class HotelIdService {
   // Method to get the hotel ID
   getHotelId(): string {
     return this.hotelId;
+  }
+
+  // Method to set the hotel ID
+  setProviderId(id: string): void {
+    this.providerId = id;
+  }
+
+  // Method to get the hotel ID
+  getProviderId(): string {
+    return this.providerId;
+  }
+
+  // Method to set the hotel ID
+  setProviderHotelId(id: string): void {
+    this.providerhotelId = id;
+  }
+
+  // Method to get the hotel ID
+  getProviderHotelId(): string {
+    return this.providerhotelId;
   }
 }

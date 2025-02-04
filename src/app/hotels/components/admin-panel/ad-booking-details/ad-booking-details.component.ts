@@ -4,6 +4,7 @@ import { Booking } from '../../../models/interfaces';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AdSidebarComponent } from '../ad-sidebar/ad-sidebar.component';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-ad-booking-details',
@@ -20,9 +21,24 @@ export class AdminBookingDetailsComponent implements OnInit {
   loading = true;
   selectedBooking: Booking | null = null;
 
-  constructor(private adminService: AdminService) {}
+  constructor(private adminService: AdminService, private router: Router) {}
 
   ngOnInit(): void {
+    // Scroll to the top of the page
+          window.scrollTo(0, 0);
+    
+          // Subscribe to router events to handle scrolling when route changes
+          this.router.events.subscribe((event) => {
+            if (event instanceof NavigationEnd) {
+              // This ensures the page scrolls to the top on navigation end
+              window.scrollTo(0, 0);
+              // Smoothly scroll to the #hotel-room-section if it exists
+              const element = document.getElementById('hotel-room-section');
+              if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+              }
+            }
+          });
     this.fetchBookings();
   }
 

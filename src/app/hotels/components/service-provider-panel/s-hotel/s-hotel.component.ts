@@ -1,10 +1,11 @@
 import { CommonModule, Location } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
 import { FormsModule } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, NavigationEnd, Router } from "@angular/router";
 import Chart, { TooltipItem } from "chart.js/auto";
 import { ServiceProviderService } from "../../../services/service-provider.service";
 import { Booking, Hotel } from "../../../models/interfaces";
+import { HotelIdService } from "../../../services/hotel-id.service";
 
 @Component({
   selector: "app-service-hotel",
@@ -22,12 +23,31 @@ export class ServiceHotelComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private serviceProvider: ServiceProviderService,
-    private location: Location
+    private location: Location,
+    private hotelIdService: HotelIdService,
+    private router: Router
   ) {}
 
   ngOnInit() {
-    const providerId = this.route.snapshot.queryParamMap.get("providerId") || "";
-    this.hotelid = this.route.snapshot.queryParamMap.get("hotelId") || "";
+    // Scroll to the top of the page
+              window.scrollTo(0, 0);
+        
+              // Subscribe to router events to handle scrolling when route changes
+              this.router.events.subscribe((event) => {
+                if (event instanceof NavigationEnd) {
+                  // This ensures the page scrolls to the top on navigation end
+                  window.scrollTo(0, 0);
+                  // Smoothly scroll to the #hotel-room-section if it exists
+                  const element = document.getElementById('hotel-room-section');
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }
+              });
+    const providerId = this.hotelIdService.getProviderId() || "";
+    this.hotelid = this.hotelIdService.getProviderHotelId() || "";
+    console.log("Provider ID:", providerId);
+    console.log("Hotel ID:", this.hotelid);
     this.fetchHotelData(providerId, this.hotelid);
   }
 

@@ -5,6 +5,7 @@ import { ActivatedRoute } from "@angular/router";
 import Chart, { TooltipItem } from "chart.js/auto";
 import { ServiceProviderService } from "../../../services/service-provider.service";
 import { Booking, Hotel } from "../../../models/interfaces";
+import { HotelIdService } from "../../../services/hotel-id.service";
 
 @Component({
   selector: "app-service-hotel",
@@ -22,12 +23,15 @@ export class ServiceHotelComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private serviceProvider: ServiceProviderService,
-    private location: Location
+    private location: Location,
+    private hotelIdService: HotelIdService
   ) {}
 
   ngOnInit() {
-    const providerId = this.route.snapshot.queryParamMap.get("providerId") || "";
-    this.hotelid = this.route.snapshot.queryParamMap.get("hotelId") || "";
+    const providerId = this.hotelIdService.getProviderId() || "";
+    this.hotelid = this.hotelIdService.getProviderHotelId() || "";
+    console.log("Provider ID:", providerId);
+    console.log("Hotel ID:", this.hotelid);
     this.fetchHotelData(providerId, this.hotelid);
   }
 

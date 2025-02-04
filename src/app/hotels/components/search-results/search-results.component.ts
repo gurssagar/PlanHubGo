@@ -16,6 +16,8 @@ import { subscribe } from "diagnostics_channel"
   styleUrls: ["./search-results.component.css"],
 })
 export class SearchResultsComponent implements OnInit {
+  filterPanelVisible: boolean = false;
+  resizeListener: any;
   hotelcity: string = ""
   searchResults: Hotel[] = []
   filteredResults: Hotel[] = []
@@ -65,6 +67,14 @@ export class SearchResultsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.updateFilterPanelVisibility();
+
+    // Add a resize listener to update panel visibility dynamically.
+    this.resizeListener = () => {
+      this.updateFilterPanelVisibility();
+    };
+    window.addEventListener('resize', this.resizeListener);
+
     if (isPlatformBrowser(this.platformId)) {
       const navigation = history.state as any
       this.searchResults = navigation.results || []
@@ -80,6 +90,11 @@ export class SearchResultsComponent implements OnInit {
       console.warn("SSR environment: history.state is not accessible")
       this.searchResults = []
     }
+  }
+
+  ngOnDestroy(): void {
+    // Clean up the event listener
+    window.removeEventListener('resize', this.resizeListener);
   }
 
   getAmenityNames(amenities: Amenity[]): string {
@@ -196,6 +211,25 @@ export class SearchResultsComponent implements OnInit {
       }
     });
     console.log("Updated Amenities:", this.filterForm.value.amenities);
+  }
+
+  toggleFilterPanel(): void {
+    if (window.innerWidth < 768) {
+      this.filterPanelVisible = !this.filterPanelVisible;
+    }
+  }
+  
+  /**
+   * Updates the filter panel visibility based on the current window width.
+   * - For screens less than 768px: hide the panel by default.
+   * - For screens 768px or wider: always show the panel.
+   */
+  updateFilterPanelVisibility(): void {
+    if (window.innerWidth < 768) {
+      this.filterPanelVisible = false;
+    } else {
+      this.filterPanelVisible = true;
+    }
   }
 }
 

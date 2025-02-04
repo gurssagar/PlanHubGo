@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,OnInit} from '@angular/core';
 import {Router, RouterLink} from '@angular/router';
 import { AuthService } from '../../services/services/auth.service';
 import { MessageService } from 'primeng/api';
@@ -36,7 +36,17 @@ export class LoginComponent {
     private router: Router,
     private messageService: MessageService
   ) {}
-
+ ngOnInit() {
+  this.authService.getId().subscribe(
+    (res) => {
+      console.log(res);
+      // Process the response here
+    },
+    (error) => {
+      console.error('Error:', error);
+    }
+  );
+}
   onLogin() {
     const { email, password } = this.login;
 

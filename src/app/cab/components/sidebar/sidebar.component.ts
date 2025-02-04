@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
         <nav>
           <ul class="nav-links">
             <li>
-              <img src="/assets/house-solid.svg" alt="">
+            <i class="fa-solid fa-house" style="color: #ffffff; font-size: 20px;"></i>
               <a routerLink="/" routerLinkActive="active" class="tc" >Home</a>
             </li>
             <li>
@@ -20,16 +20,16 @@ import { RouterLink } from '@angular/router';
               <a routerLink="/search" routerLinkActive="active" class="tc" >Search</a>
             </li>
             <li>
-              <img src="/assets/clock-rotate-left-solid.svg" alt="">
+            <i class="fa-solid fa-clock-rotate-left" style="color: #FFFFFF; font-size: 20px;"></i>
               <a  routerLink="/history" routerLinkActive="active">History</a>
             </li>
             <li>
-              <img src="/assets/comment-slash-solid.svg" alt="">
+            <i class="fa-solid fa-comment-slash" style="color: #FFFFFF; font-size: 20px;"></i>
               <a routerLink="/cancellation" routerLinkActive="active">Cancel</a>
               <!-- cab cancelation-->
             </li>
             <li>
-              <img src="/assets/car-side-solid.svg" alt="">
+            <i class="fa-solid fa-car-side" style="color: #FFFFFF; font-size: 20px;"></i>
               <a routerLink="/updates" routerLinkActive="active">Update</a>
             </li>
             </ul>
@@ -38,13 +38,13 @@ import { RouterLink } from '@angular/router';
           <nav>
             <ul class="nav-links">
               <li>
-                <img src="/assets/gear-solid.svg" alt="">
+              <i class="fa-solid fa-gear" style="color: #FFFFFF; font-size: 20px;"></i>
                 <a href="#">settings</a>
               </li>
             </ul>
             <ul class="nav-links">
               <li>
-                <img src="/assets/helicopter-symbol-solid.svg" alt="">
+              <i class="fa-solid fa-helicopter-symbol" style="color: #FFFFFF; font-size: 20px;"></i>
                 <a href="#">Help</a>
               </li>
             </ul>

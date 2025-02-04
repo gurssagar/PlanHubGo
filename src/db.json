@@ -7115,42 +7115,6 @@
   {
     "CabCardDetailsList": [
       {
-        "id": "cb_dpoijhtpid85",
-        "FullName": "Rohan Kumar Sharma",
-        "dob": "August 12, 1992 (31)",
-        "Language": "Hindi",
-        "Rider": "R12345",
-        "Licence": "DL123456",
-        "rideType": "Sedan CAB",
-        "pickupLocation": "Bangalore, Hebbal",
-        "dropoffLocation": "Bangalore, Jayanagar",
-        "time": "10:00 AM",
-        "price": 1000,
-        "available": true,
-        "Booked": false,
-        "Cancelled": true,
-        "Completed": false,
-        "Rating": 3
-      },
-      {
-        "id": "cb_613foiewfhb",
-        "FullName": "Rajesh Kumar Yadav",
-        "dob": "April 10, 1991 (32)",
-        "Language": "Hindi",
-        "Rider": "R90123",
-        "Licence": "UP234567",
-        "rideType": "VAN CAB",
-        "pickupLocation": "Bangalore, Cyber City",
-        "dropoffLocation": "Gurugram, Sohna Road",
-        "time": "10:00 AM",
-        "price": 1000,
-        "available": true,
-        "Booked": false,
-        "Cancelled": true,
-        "Completed": false,
-        "Rating": 2
-      },
-      {
         "id": "cb_613dsgfib",
         "FullName": "Nalini Reddy Konduru",
         "dob": "January 15, 1985 (38)",
@@ -7419,6 +7383,24 @@
         "Cancelled": true,
         "Completed": false,
         "Rating": 2
+      },
+      {
+        "id": "cb_ak9ejltiu",
+        "FullName": "Sneha Sharma Chaudhary",
+        "dob": "February 7, 2025 (0)",
+        "Language": "Hindi",
+        "Rider": "cb3946964",
+        "Licence": "DL123456",
+        "rideType": "Sedan CAB",
+        "pickupLocation": "Bangalore, Indiranagar",
+        "dropoffLocation": "Bangalore, Electronic City",
+        "time": "08:00 PM",
+        "price": 1000,
+        "available": true,
+        "Booked": false,
+        "Cancelled": false,
+        "Completed": false,
+        "Rating": 0
       }
     ],
     "BookedCabList": [

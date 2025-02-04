@@ -310,45 +310,143 @@ export class CabService {
   }
 
   async getPickupLocations(): Promise<string[]> {
-    const response = await fetch(`${this.url2}/pickupLocations`);
+    const response = await fetch(`${this.url2}`);
     const data = await response.json();
-    return data.map((location: any) => Object.values(location)[0]); // Extract location names
+    const locations = data['pickupLocations']
+    return locations.map((location: any) => Object.values(location)[0]);
   }
 
   async getDropoffLocations(): Promise<string[]> {
-    const response = await fetch(`${this.url2}/dropoffLocations`);
+    const response = await fetch(`${this.url2}`);
     const data = await response.json();
-    return data.map((location: any) => Object.values(location)[0]); // Extract location names
+     const locations = data['dropoffLocations']
+    return locations.map((location: any) => Object.values(location)[0]);
   }
+  
   async deleteCab(cabId: string): Promise<void> {
     try {
-      const response = await fetch(`${this.url}/${cabId}`, {
-        method: 'DELETE'
+      const response = await fetch(`${this.url2}`);
+      const data = await response.json();
+      let cabList = data['CabCardDetailsList'];
+      const updatedCabs = cabList.filter((cab: any) => cab.id !== cabId);
+
+       const finalDat={...data,CabCardDetailsList:updatedCabs};
+      await fetch(`${this.url2}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(finalDat)
       });
-      if(!response.ok) {
-        throw new Error(`Failed to delete cab with ID: ${cabId}`);
-      }
-    } catch(error) {
-        console.error('Error deleting cab', error);
-        throw error
+      
+    } catch (error) {
+      console.error('Error deleting cab', error);
+      throw error;
     }
   }
 
   async updateCab(cabId: string, cabData: CabCardDetails): Promise<void> {
     try {
-      const response = await fetch(`${this.url}/${cabId}`, {
+       const response = await fetch(`${this.url2}`);
+        const data = await response.json();
+      let cabList = data['CabCardDetailsList'];
+       const updatedCabs = cabList.map((cab: any) => {
+        if (cab.id === cabId) {
+          return cabData;
+        }
+        return cab;
+      });
+      const finalDat={...data,CabCardDetailsList:updatedCabs};
+        await fetch(`${this.url2}`, {
         method: 'PUT',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify(cabData),
+        body: JSON.stringify(finalDat)
       });
-      if (!response.ok) {
-        throw new Error(`Failed to update cab with ID: ${cabId}`);
-      }
     } catch (error) {
       console.error('Error updating cab', error);
+      throw error;
+    }
+  }
+  async getBookingsByRiderId(riderId: string): Promise<Booking[]> {
+    const response = await fetch(`${this.url2}`);
+    const data = await response.json();
+    const bookings = data['Bookings'];
+    return bookings.filter((booking:any) => booking.cab.Rider === riderId);
+  }
+
+  async updateRideStatus(bookingId: string, status: Booking['status']): Promise<void> {
+    try {
+        const response = await fetch(`${this.url2}`);
+        const data = await response.json();
+        let bookings = data['Bookings'];
+        const updatedBookings = bookings.map((booking:any) => {
+            if (booking.id === bookingId) {
+                booking.status = status;
+            }
+            return booking;
+        });
+        const finalDat={...data,Bookings:updatedBookings};
+        await fetch(`${this.url2}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(finalDat)
+        });
+    } catch (error) {
+      console.error('Error updating ride status', error);
         throw error
     }
   }
+
+  async finalizeRide(bookingId: string, status: 'completed' | 'rejected'): Promise<void> {
+    try {
+        const response = await fetch(`${this.url2}`);
+        const data = await response.json();
+        let bookings = data['Bookings'];
+        let bookedCabs = data['BookedCabList'];
+        let cabList = data['CabCardDetailsList'];
+        
+        const booking = bookings.find((b:any) => b.id === bookingId);
+         if (!booking) {
+            throw new Error('Booking not found');
+        }
+        const updatedBookings = bookings.map((book:any)=>{
+            if(book.id===bookingId){
+              book.cab.Booked = false;
+              book.cab.Cancelled = status === 'rejected';
+                book.cab.Completed = status === 'completed';
+              book.cab.available = true;
+              book.status=status
+            }
+          return book;
+        })
+        const updatedBookedCabs = bookedCabs.filter((b:any) => b.id !== bookingId);
+
+
+      const cabDetails = booking.cab;
+       cabDetails.Booked = false;
+        cabDetails.available = true;
+        cabDetails.Cancelled = status === 'rejected';
+        cabDetails.Completed = status === 'completed';
+
+      const finalCabCard = [...cabList, cabDetails];
+
+        const finalDat = {...data, Bookings: updatedBookings, BookedCabList: updatedBookedCabs, CabCardDetailsList: finalCabCard};
+        
+      
+        await fetch(`${this.url2}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(finalDat)
+        });
+    } catch (error) {
+        console.error('Error finalizing ride:', error);
+        throw error;
+    }
+}
 }

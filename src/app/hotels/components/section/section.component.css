@@ -6,19 +6,21 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Open Sans', sans-serif;
+    
 }
 
 body {
-    background: #ecececdb;
-}
+    background: #ecececdb;}
 
 .home-image {
     position: relative;
     text-align: center;
+    background-image: url('https://wallpaperaccess.com/full/3261057.jpg');
+    padding: 5%;
   }
   
   .home-image img {
-   display: none;
+   display: center;
   }
   
   .search-bar-container {

@@ -27,14 +27,14 @@ export class AuthService {
         map(response => !response.users.some(user => user.email === email))
     );
   }
-  getId() {
-    return this.http.get(`${this.baseUrl}/7`).pipe(
+  getId(employeeEmail: string) {
+    return this.http.get(`${this.baseUrl}/7?email=${employeeEmail}`).pipe(
       map(response => {
         const users: any = response;
-        const employee: any = 'cabEmployee';
-        const tobe = users[employee].map((user: any) => user.id);
-        return tobe;
+        const employee = users['cabEmployee'].find((user: any) => user.email === employeeEmail);
+        return employee ? employee.cabId : null;
       })
     );
   }
+
 }

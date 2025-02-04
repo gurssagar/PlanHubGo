@@ -1212,6 +1212,18 @@
         "phone": "sagar2003",
         "website": "https://new.com",
         "description": "We are New to business"
+      },
+      {
+        "id": "1jda",
+        "fullName": "Ridam Sinha",
+        "email": "ridamsinha20@gmail.com",
+        "password": "1234",
+        "gender": "Male",
+        "age": 20,
+        "role": "Customer",
+        "type": "none",
+        "description": "ok",
+        "profileImage": "https://phg.s3.tebi.io/uploads/1738654298002-Capture001.png"
       }
     ]
   },

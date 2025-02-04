@@ -108,7 +108,7 @@ export class ServiceProviderComponent implements OnInit {
         .subscribe(() => {
           const currentRoute = this.router.url;
           console.log(currentRoute);
-          this.isChildRoute = currentRoute.includes('service-hotel?providerId');
+          this.isChildRoute = currentRoute.includes('service-hotel');
 
           sessionStorage.setItem('isChildRoute', JSON.stringify(this.isChildRoute));
 

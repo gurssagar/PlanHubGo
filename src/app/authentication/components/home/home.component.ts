@@ -1,16 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'app-home',
-  standalone: true,
-  imports: [ButtonModule],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css',
+  standalone: true,
+  imports: []
 })
 export class HomeComponent {
-  private router = inject(Router);
+  constructor(private router: Router) {}
+
   logout() {
     localStorage.clear();
     this.router.navigate(['login']);

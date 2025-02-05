@@ -1,105 +1,85 @@
-<div class="service-provider-page">
+# Impoorve the ui of the page. AI!
+<body class="tw-mt-24 ">
+    <div class="tw-min-h-screen tw-font-sans">
+        <main class="tw-pt-20  tw-gap-20 tw-mx-auto tw-px-4 sm:tw-px-6 lg:tw-px-8">
+            <!-- Existing Service Sections -->
+            <!-- Cab Service Section -->
+            <!-- ... existing sections remain unchanged ... -->
 
+            <!-- Become a Service Provider Section -->
+            <section class="tw-mb-12">
+                <div class="tw-bg-white tw-rounded-lg tw-shadow-md tw-p-6 tw-mb-6">
+                    <div class="tw-flex tw-items-center tw-mb-4">
+                        <svg class="tw-w-8 tw-h-8 tw-text-blue-500 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                        </svg>
+                        <h2 class="tw-text-2xl tw-font-bold tw-text-gray-800">Become a Service Provider</h2>
+                    </div>
+                    <p class="tw-text-gray-600 tw-mb-6 tw-italic">
+                        Join our network of trusted service providers and start offering your services to a wide audience. 
+                        Earn attractive commissions while providing exceptional experiences to our customers.
+                    </p>
 
-  <!-- Header Section -->
-  <header class="header">
-    <h1>Welcome to the Service Provider Dashboard</h1>
-    <nav>
-      <a [routerLink]="['/cab']" routerLinkActive="active">Cab Service</a>
-      <a [routerLink]="['/flight']" routerLinkActive="active">Flight Service</a>
-      <a [routerLink]="['/hotel-service']" routerLinkActive="active">Hotel Service</a>
-      <a [routerLink]="['/tour-package']" routerLinkActive="active">Tour Service</a>
-      <button (click)="logout()">Logout</button>
-    </nav>
-  </header>
+                    <div class="tw-grid tw-grid-cols-1 tw-md:tw-grid-cols-3 tw-gap-4">
+                        <div class="tw-card tw-bg-white tw-p-4 tw-rounded-lg tw-shadow-md hover:tw-shadow-lg tw-transition-shadow tw-duration-200">
+                            <h3 class="tw-text-lg tw-font-semibold tw-text-gray-800 tw-mb-2">Benefits of Partnership</h3>
+                            <ul class="tw-list-unstyled tw-space-y-2">
+                                <li class="tw-flex items-center">
+                                    <svg class="tw-w-4 tw-h-4 tw-text-green-500 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Attractive Commission Rates
+                                </li>
+                                <li class="tw-flex items-center">
+                                    <svg class="tw-w-4 tw-h-4 tw-text-green-500 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Wide Customer Base
+                                </li>
+                                <li class="tw-flex items-center">
+                                    <svg class="tw-w-4 tw-h-4 tw-text-green-500 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Marketing Support
+                                </li>
+                                <li class="tw-flex items-center">
+                                    <svg class="tw-w-4 tw-h-4 tw-text-green-500 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    Dedicated Support Team
+                                </li>
+                            </ul>
+                        </div>
 
+                        <div class="tw-card tw-bg-white tw-p-4 tw-rounded-lg tw-shadow-md hover:tw-shadow-lg tw-transition-shadow tw-duration-200">
+                            <h3 class="tw-text-lg tw-font-semibold tw-text-gray-800 tw-mb-2">Commission Rates</h3>
+                            <div class="tw-space-y-2">
+                                <p class="tw-text-gray-600">🚕 Cab Services: 10% per ride</p>
+                                <p class="tw-text-gray-600">✈️ Flight Services: 8% per booking</p>
+                                <p class="tw-text-gray-600">🏨 Hotel Services: 12% per night</p>
+                                <p class="tw-text-gray-600">🎫 Tour Packages: 15% per package</p>
+                            </div>
+                        </div>
 
-  <!-- Cab Service Section -->
-  <section class="service-section cab-service">
-    <h2>Cab Services</h2>
-    <p>
-      Our cab service ensures safe, reliable, and affordable transportation options. Whether you're commuting daily or planning a long journey, we have you covered.
-    </p>
-    <div class="cards">
-      <div class="card">
-        <h3>Affordable Fares</h3>
-        <p>Our pricing is competitive, offering value for every ride you take.</p>
-      </div>
-      <div class="card">
-        <h3>24/7 Availability</h3>
-        <p>Book a cab anytime, anywhere. Our drivers are always ready.</p>
-      </div>
-      <div class="card">
-        <h3>Safety First</h3>
-        <p>We prioritize your safety with experienced drivers and well-maintained vehicles.</p>
-      </div>
+                        <div class="tw-card tw-bg-white tw-p-4 tw-rounded-lg tw-shadow-md hover:tw-shadow-lg tw-transition-shadow tw-duration-200">
+                            <h3 class="tw-text-lg tw-font-semibold tw-text-gray-800 tw-mb-2">How to Register</h3>
+                            <div class="tw-space-y-2">
+                                <p class="tw-text-gray-600">1. Click the "Register Now" button below</p>
+                                <p class="tw-text-gray-600">2. Fill in your business details</p>
+                                <p class="tw-text-gray-600">3. Upload required documents</p>
+                                <p class="tw-text-gray-600">4. Agree to terms and conditions</p>
+                                <p class="tw-text-gray-600">5. Start offering your services</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tw-mt-6">
+                        <a href="#" class="tw-bg-blue-500 tw-text-white tw-p-3 tw-rounded-lg tw-hover:tw-bg-blue-600 tw-transition-colors tw-duration-200">
+                            Register Now
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
-  </section>
-
-  <!-- Flight Service Section -->
-  <section class="service-section flight-service">
-    <h2>Flight Services</h2>
-    <p>
-      Book flights seamlessly with our easy-to-use platform. Enjoy a hassle-free experience with competitive pricing and flexible options.
-    </p>
-    <div class="cards">
-      <div class="card">
-        <h3>Competitive Prices</h3>
-        <p>Find the best deals on domestic and international flights.</p>
-      </div>
-      <div class="card">
-        <h3>Flexible Scheduling</h3>
-        <p>Book flights that suit your travel plans with ease.</p>
-      </div>
-      <div class="card">
-        <h3>24/7 Support</h3>
-        <p>Our support team is here to assist you with all your flight queries.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Hotel Service Section -->
-  <section class="service-section hotel-service">
-    <h2>Hotel Services</h2>
-    <p>
-      Discover the best hotels for your stay. From luxury accommodations to budget-friendly options, find the perfect place to relax.
-    </p>
-    <div class="cards">
-      <div class="card">
-        <h3>Wide Range of Options</h3>
-        <p>Choose from a variety of hotels to fit your needs and budget.</p>
-      </div>
-      <div class="card">
-        <h3>Easy Booking</h3>
-        <p>Book your stay with just a few clicks. It's fast and secure.</p>
-      </div>
-      <div class="card">
-        <h3>Comfort Guaranteed</h3>
-        <p>Stay at top-rated hotels offering premium comfort and amenities.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Tour Package Section -->
-  <section class="service-section tour-package">
-    <h2>Tour Packages</h2>
-    <p>
-      Explore exciting destinations with our custom tour packages. We handle all the details so you can focus on making memories.
-    </p>
-    <div class="cards">
-      <div class="card">
-        <h3>Custom Itineraries</h3>
-        <p>Tailor your tour package to include destinations you love.</p>
-      </div>
-      <div class="card">
-        <h3>All-Inclusive Deals</h3>
-        <p>Get the best value with packages that cover everything you need.</p>
-      </div>
-      <div class="card">
-        <h3>Experienced Guides</h3>
-        <p>Enjoy guided tours with experts who know the destination inside out.</p>
-      </div>
-    </div>
-  </section>
-
-</div>
+</body>

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { UserinfoComponent } from '../userinfo/userinfo.component';
-import {TourService} from "../../../tour/components/tour.service";
+import {TourService} from "../../../tour/services/tour.service";
 import {AuthService} from "../../services/services/auth.service";
 import {ManageBookingComponent} from "../../../tour/components/manage-booking/manage-booking.component";
 import {NgIf} from "@angular/common";

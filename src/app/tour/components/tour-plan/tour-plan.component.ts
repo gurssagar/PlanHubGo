@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {TourService} from "../tour.service";
+import {TourService} from "../../services/tour.service";
 
 @Component({
   selector: 'app-tour-plan',

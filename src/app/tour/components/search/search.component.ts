@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import * as JsSearch from 'js-search';
 import {FormsModule} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
-import {TourService} from "../tour.service";
+import {TourService} from "../../services/tour.service";
 import {RouterLink} from "@angular/router";
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
-import { TourService } from '../tour.service';
+import { TourService } from '../../services/tour.service';
 import { forkJoin } from 'rxjs';
 import {NgForOf} from "@angular/common";
 

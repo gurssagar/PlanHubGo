@@ -98,10 +98,10 @@ export const routes: Routes = [
     ]
   },
   {
-    path: 'hotel-service', component: serviceProvider, canActivate: [ServiceAuthGuard],
+    path: 'service-hotel', component: serviceProvider, canActivate: [ServiceAuthGuard],
     children: [
       {
-        path: 'service-hotel',
+        path: 'hotel-service',
         component: ServiceHotelComponent, canActivate: [ServiceAuthGuard],
       },
     ]

@@ -5,7 +5,7 @@ import { GalleryComponent } from "../gallery/gallery.component";
 import { LocationComponent } from "../location/location.component";
 import { BookComponent } from "../book/book.component";
 import { ActivatedRoute } from "@angular/router";
-import { TourService } from "../tour.service";
+import { TourService } from "../../services/tour.service";
 import {MenuComponent} from "../menu/menu.component";
 import {ShowcompanyComponent} from "../showcompany/showcompany.component";
 

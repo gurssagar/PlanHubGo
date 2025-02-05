@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {SearchComponent} from "../search/search.component";
-import {TourService} from "../tour.service";
+import {TourService} from "../../services/tour.service";
 import {MatPaginatorModule, PageEvent} from "@angular/material/paginator";
 import {NgxPaginationModule} from 'ngx-pagination';
 import {MenuComponent} from "../menu/menu.component";

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TourService} from "../tour.service";
+import {TourService} from "../../services/tour.service";
 import {NgFor, NgForOf, NgIf} from "@angular/common";
 import {ActivatedRoute} from "@angular/router";
 

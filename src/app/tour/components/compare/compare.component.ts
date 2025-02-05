@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {CurrencyPipe, NgForOf, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
-import {TourService} from "../tour.service";
+import {TourService} from "../../services/tour.service";
 
 @Component({
   selector: 'app-compare',

@@ -28,12 +28,8 @@
             </nav>
             <nav class="tw-flex tw-space-x-6 tw-align-end " *ngIf="localStorage.getItem('email')  && localStorage.getItem('role')=='Service Provider'">
                 <a href="/home" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors ">Home</a>
-                <a href="hotel/service-hotel" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Hotel</a>
-                <a href="/flight" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Flight</a>
+                <a href="/service-hotel" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Hotel</a>
                 <a href="/tour/tourcompany" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Tour</a>
-                <a href="/cab" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Cab</a>
-                <a href="/contact" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Contact</a>
-
 
                 <p-button  label="Sign Out"
                            class="tw-bg-red-600 tw-hover:bg-red-700 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"

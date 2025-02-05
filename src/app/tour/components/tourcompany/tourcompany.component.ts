@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TourService} from "../tour.service";
+import {TourService} from "../../services/tour.service";
 import {NgForOf, NgIf} from "@angular/common";
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";

@@ -2,11 +2,7 @@
     <button class="back-button2" (click)="goBack()"><i class="bi bi-arrow-left"></i>Back</button>
     <div class="main-page">
         <section class="page-info">
-            <div class="container m-4">
-                <!-- Display the first image dynamically -->
-                <!-- <div class="card" *ngIf="hotelDetails">
-                    <img [src]="hotelDetails.images[0]" alt="Hotel Image" />
-                </div> -->
+            <div class="container p-4">
                 <div id="carouselExample" class="carousel slide card">
                     <div class="carousel-inner">
                         <div class="carousel-item" *ngFor="let img of rotatingImages; let i = index"
@@ -32,17 +28,7 @@
                     <p class="hotel-description">
                         {{ hotelDetails?.description || 'A luxurious hotel providing exceptional services, premium rooms, and world-class amenities for a memorable stay.' }}
                       </p>
-                      
-                      <!-- <div class="d-flex align-items-center mb-3">
-                        <strong class="d-inline-block text-primary-emphasis">Rating:</strong>
-                        <span class="ms-2">({{ hotelDetails?.ratings?.ratingsCount || 120 }} reviews)</span>
-                      </div> -->
                     
-                      <!-- <ul class="list-unstyled hotel-rules">
-                        <li *ngFor="let rule of hotelDetails?.rules || ['No pets allowed', 'Check-in after 3 PM', 'Check-out before 11 AM']">
-                          <i class="bi bi-check-circle text-success"></i> {{ rule }}
-                        </li>
-                      </ul> -->
                       
                       <div class="mt-2 d-flex align-items-baseline">
                         <h2 class="h-price"><i class="bi bi-currency-rupee"></i>{{ hotelDetails?.pricePerNight }}</h2>
@@ -113,7 +99,7 @@
 
     <!-- Display Amenities -->
     <div class="amenities">
-        <h4 class="mb-2">AMENITIES</h4>
+        <h4 class="mb-2 fw-bold fs-5">AMENITIES</h4>
         <ul class="amenity-list mt-3">
             <li *ngFor="let amenity of hotelDetails?.amenities" class="list-item five-column">
                 <!-- Only display amenities that are available -->
@@ -128,7 +114,7 @@
 
     <!-- Display Rules -->
     <div class="rules mt-0 amenities">
-        <h4 class="mb-2">Property Rules</h4>
+        <h4 class="mb-3 fw-bold fs-5">Property Rules</h4>
         <div class="checkin-out mb-3">
             <h5 class="fw-nomal">Check-in: {{ hotelDetails?.checkin }}</h5>
             <h5 class="fw-nomal">Check-out: {{ hotelDetails?.checkout }}</h5>
@@ -151,9 +137,9 @@
 
     <!--**********************    Location    ***************-->
 
-    <div class="amenities location">
-        <h2>Our Location</h2>
-        <div style="width: 100%; height: 400px; margin-bottom: 20px;">
+    <div class="amenities">
+        <h2 class="fs-4 mb-2 fw-bold">Our Location</h2>
+        <div class="location">
             <iframe *ngIf="safeMapUrl" [src]="safeMapUrl" width="100%" height="100%" style="border:0;"
                 allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
             </iframe>
@@ -167,7 +153,7 @@
                 <a class="card-item">
                   <img [src]="hotel.images[0]"  alt="{{ hotel.name }}" >
                   <h3 class="hotel-name">{{ hotel.name }}</h3>
-                  <p class="location"><i class="bi bi-geo-alt-fill"></i> {{ hotel.city }}</p>
+                  <p id="location"><i class="bi bi-geo-alt-fill"></i> {{ hotel.city }}</p>
                   <h2 class="price"><i class="bi bi-currency-rupee"></i>{{ hotel.pricePerNight }}/Night</h2>
                 </a>
             </div>

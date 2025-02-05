@@ -7,14 +7,14 @@
 </ul>
 <div class="map-and-cabs-container">
          <div class="map-section">
-                  <app-update></app-update>
+                  <app-update [bookedCab]="displayedCabs[0]"></app-update>
          </div>
          <div class="cabs-section">
                   <h3>Booked Cabs</h3>
                   <div *ngIf="bookedCabs.length > 0; else noBookings">
-                           <app-cabcards *ngFor="let cab of displayedCabs" [cabCardDetails]="cab">
-                           </app-cabcards>
-
+                           @for (cab of displayedCabs; track cab.id) {
+                                    <app-cabcards [cabCardDetails]="cab"></app-cabcards>
+                           }
                            <div class="pagination">
                                     <button class="nav-button" (click)="previousPage()" [disabled]="currentPage === 1"
                                              [class.disabled]="currentPage === 1">

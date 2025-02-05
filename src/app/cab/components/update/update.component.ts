@@ -1,6 +1,9 @@
 import { Component, AfterViewInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { Input } from '@angular/core';
+import { boundingExtent } from 'ol/extent';
+import { CabCardDetails } from '../../model/cabcard-details';
 import 'ol/ol.css';
 import Map from 'ol/Map';
 import View from 'ol/View';
@@ -69,6 +72,43 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
       style: this.createDefaultStyle()
     });
   }
+
+  @Input() set bookedCab(cab: CabCardDetails | null) {
+    if (cab) {
+      this.showCabRoute(cab.pickupLocation, cab.dropoffLocation);
+    }
+  }
+  
+  private async showCabRoute(pickupLocation: string, dropoffLocation: string) {
+    try {
+      // Convert locations to coordinates
+      const pickupCoords = await this.geocodeLocation(pickupLocation);
+      const dropoffCoords = await this.geocodeLocation(dropoffLocation);
+      
+      if (pickupCoords && dropoffCoords) {
+        await this.calculateRoute(pickupCoords, dropoffCoords);
+      }
+    } catch (error) {
+      console.error('Error showing cab route:', error);
+    }
+  }
+  
+  private async geocodeLocation(location: string): Promise<[number, number] | null> {
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`
+      );
+      const results = await response.json();
+      
+      if (results.length > 0) {
+        return [parseFloat(results[0].lon), parseFloat(results[0].lat)];
+      }
+      return null;
+    } catch (error) {
+      console.error('Geocoding error:', error);
+      return null;
+    }
+  }
   
   async searchLocation(): Promise<void> {
     if (!this.searchQuery) return;
@@ -104,36 +144,27 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
     try {
       this.routeInstructions = ['Calculating route...'];
       const response = await this.routeService.getRoute(start, end);
-      console.log("Full API response:", response);
-  
-      // Check if response and routes exist
+      
       if (!response || !response.routes || !response.routes[0]) {
         throw new Error('Invalid route data from API');
       }
   
       const route = response.routes[0];
-      
-      // The geometry comes as an encoded string that needs to be decoded
-      // You need to decode the geometry string to get the coordinates
-      if (!route.geometry) {
-        throw new Error('No geometry data in route');
-      }
-  
-      // Convert encoded polyline to coordinates
-      // You'll need to add a polyline decoder here
       const coordinates = this.decodeGeometry(route.geometry);
-      
-      // Convert coordinates to the correct projection
-      const routeCoords = coordinates.map(coord => 
-        fromLonLat([coord[0], coord[1]])
-      );
+      const routeCoords = coordinates.map(coord => fromLonLat(coord));
   
-      // Update map with route
-      const routeLine = new LineString(routeCoords);
+      // Clear previous route and markers
       this.routeSource.clear();
+      this.vectorLayer.getSource()?.clear();
+  
+      // Add the route
+      const routeLine = new LineString(routeCoords);
       this.routeSource.addFeature(new Feature(routeLine));
   
-      // Update UI
+      // Adding markers and fit view
+      this.highlightRoute(start, end);
+  
+      // Updating  UI with route info
       this.routeDistance = `${(route.summary.distance / 1000).toFixed(1)} km`;
       this.routeTime = `${Math.ceil(route.summary.duration / 60)} min`;
       this.routeInstructions = route.segments[0].steps.map(step => step.instruction);
@@ -144,8 +175,9 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
       this.routeDistance = '';
       this.routeTime = '';
       this.routeSource.clear();
+      this.vectorLayer.getSource()?.clear();
     }
-  }
+}
   
   // Add this method to decode the geometry string
   private decodeGeometry(str: string): [number, number][] {
@@ -163,6 +195,7 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
     // Coordinates have variable length when encoded, so just keep
     // track of whether we've hit the end of the string. In each
     // loop iteration, a single coordinate is decoded.
+    // this just for my help
     while (index < str.length) {
       // Reset shift, result, and byte
       byte = null;
@@ -194,6 +227,7 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
     }
   
     return coordinates;
+    
 }
 
   startRouting(): void {
@@ -256,7 +290,7 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
       this.initMap();
       this.setupMapLayers();
       this.initPopup();
-      this.initGeolocation(); // Add this line
+      this.initGeolocation(); 
     }
   }
 
@@ -455,5 +489,40 @@ export class UpdateComponent implements AfterViewInit, OnDestroy {
     if (this.geolocation) {
       this.geolocation.setTracking(false);
     }
+  }
+  private highlightRoute(pickupCoords: [number, number], dropoffCoords: [number, number]) {
+    // Add markers for pickup and dropoff
+    const pickupFeature = new Feature({
+      geometry: new Point(fromLonLat(pickupCoords))
+    });
+    const dropoffFeature = new Feature({
+      geometry: new Point(fromLonLat(dropoffCoords))
+    });
+  
+    // Style for pickup point
+    pickupFeature.setStyle(new Style({
+      image: new CircleStyle({
+        radius: 8,
+        fill: new Fill({ color: '#4CAF50' }),
+        stroke: new Stroke({ color: '#fff', width: 2 })
+      })
+    }));
+  
+    // Style for dropoff point
+    dropoffFeature.setStyle(new Style({
+      image: new CircleStyle({
+        radius: 8,
+        fill: new Fill({ color: '#f44336' }),
+        stroke: new Stroke({ color: '#fff', width: 2 })
+      })
+    }));
+  
+    // Add features to vector layer to make the magic happen
+    this.vectorLayer.getSource()?.addFeature(pickupFeature);
+    this.vectorLayer.getSource()?.addFeature(dropoffFeature);
+  
+    // Fitting map to show both points
+    const extent = boundingExtent([fromLonLat(pickupCoords), fromLonLat(dropoffCoords)]);
+    this.map?.getView().fit(extent, { padding: [50, 50, 50, 50] });
   }
 }

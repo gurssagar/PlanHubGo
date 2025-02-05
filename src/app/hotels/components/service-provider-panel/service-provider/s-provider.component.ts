@@ -135,6 +135,7 @@ export class ServiceProviderComponent implements OnInit {
   async checkUserAndInitializeProvider(): Promise<void> {
     try {
       if (typeof window !== 'undefined') {
+        const name = localStorage.getItem('name');
         const email = localStorage.getItem('email');
         const role = localStorage.getItem('role');
   
@@ -151,7 +152,8 @@ export class ServiceProviderComponent implements OnInit {
               // Add new provider to the backend
               const newProvider: Provider = {
                 provider_id: providerId,
-                name: `Provider for ${email}`, // Adjust naming convention as needed
+                email: email,
+                name: name || `${email} Provider`,
               };
   
               await this.serviceProviderService.addProvider(newProvider).toPromise();

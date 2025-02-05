@@ -6465,11 +6465,8 @@
       },
       {
         "provider_id": "Provider1218206823",
-        "name": "Provider for ridamsinha20+01@gmail.com"
-      },
-      {
-        "provider_id": "Provider1274021506",
-        "name": "Provider for nothing@gmail.com"
+        "email": "ridamsinha20+01@gmail.com",
+        "name": "Hotel Agency Z"
       }
     ],
     "users": [

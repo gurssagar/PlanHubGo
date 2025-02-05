@@ -437,3 +437,68 @@ hr {
 .no-rooms {
   margin-left: 37%;
 }
+
+
+
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1024px) {
+  .card-item2 {
+    flex: 1 1 calc(50% - 20px); /* 2 items per row */
+    max-width: calc(50% - 20px);
+  }
+
+  .headline h4 {
+    font-size: 1.5rem; /* Adjust headline size */
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-item,
+  .filter-button {
+    width: 100%;
+  }
+
+  .card-item2 {
+    flex: 1 1 100%; /* Full width for smaller screens */
+    max-width: 100%;
+  }
+
+  .main {
+    width: 95vw; /* Adjust main container width */
+  }
+
+  .hotel-container h3 {
+    font-size: 1.5rem; /* Reduce font size for small screens */
+  }
+
+  .back-button2 {
+    width: 80px; /* Adjust button width */
+    margin-left: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hotel-container h3 {
+    font-size: 1.3rem; /* Further reduce font size */
+  }
+
+  .card-item2 {
+    flex: 1 1 100%; /* Full width for small screens */
+    max-width: 100%;
+  }
+
+  .room-price {
+    font-size: 1.5rem; /* Smaller price font */
+  }
+
+  .select-room-btn {
+    padding: 8px 16px;
+    font-size: 0.9rem; /* Adjust button size */
+  }
+}

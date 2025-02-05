@@ -40,23 +40,21 @@ export class ProviderRegisterComponent {
     {name: 'Flight Booking'},
   ];
 
+  // In provider-register.component.ts
   registerForm = new FormGroup({
-    fullName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [
-      Validators.required,
-      Validators.pattern(/[a-z0-9\._%\+\-]+@[a-z0-9\.\-]+\.[a-z]{2,}$/)
-    ]),
-    type : new FormControl('', [Validators.required]),
-    phone : new FormControl('', [Validators.required]),
-    website : new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required]),
-    description : new FormControl('', ),
-    address : new FormControl('', [Validators.required]),
-
-  }, {
-    validators: passwordMismatchValidator
-  });
+  fullName: new FormControl('', [Validators.required]),
+  email: new FormControl('', [Validators.required, Validators.pattern(/[a-z0-9\._%\+\-]+@[a-z0-9\.\-]+\.[a-z]{2,}$/)]),
+  password: new FormControl('', [Validators.required]),
+  confirmPassword: new FormControl('', [Validators.required]),
+  description: new FormControl(''),
+  address: new FormControl('', [Validators.required]),
+  phone: new FormControl('', [Validators.required]),
+  website: new FormControl('', [Validators.required]),
+  type: new FormControl('', [Validators.required]),
+  role: new FormControl('Service Provider')
+   }, {
+  validators: passwordMismatchValidator
+   });
 
   // Getter methods for form controls
   get address() {
@@ -64,7 +62,7 @@ export class ProviderRegisterComponent {
   }
   get description() {
     return this.registerForm.get('description')!;
-  }
+  } 
   get phone() {
     return this.registerForm.get('phone')!;
   }

@@ -107,7 +107,7 @@ export class AdminPanelComponent implements OnInit, AfterViewInit {
   }
 
   goToHotelDetails(): void {
-    this.router.navigate(['/admin-panel/ad-booking-history']);
+    this.router.navigate(['/admin/hotel/ad-booking-history']);
   }
 
   renderBookingsByProviderChart(): void {

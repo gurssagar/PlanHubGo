@@ -7,160 +7,129 @@ import { RouterLink } from '@angular/router';
   imports: [RouterLink],
   //"https://m.media-amazon.com/images/I/71cR+sc93tL.jpg"
   template: `
-  <div class="container-c">
-  <img src="https://m.media-amazon.com/images/I/71cR+sc93tL.jpg" alt="Norway" style="width:100%;">
-  <div class="text-block" style="width:100%;height:100%; overflow:hidden;">
-    <div class="heading">
-      <div></div>
-      <div></div>
-      <div><h1>World Around 24/7</h1>
-      <h1>CAB service</h1></div>
-    </div>
+#improve the ui. Ai!
+<body class="tw-bg-gray-100">
+    <!-- Hero Section -->
+    <div class="tw-container tw-mx-auto tw-px-4">
+        <div class="tw-relative tw-w-full">
+            <img src="https://m.media-amazon.com/images/I/71cR+sc93tL.jpg" 
+                 alt="Norway" 
+                 class="tw-w-full tw-h-[600px] tw-object-cover">
+            
+            <div class="tw-absolute tw-top-0 tw-left-0 tw-right-0 tw-bottom-0 tw-bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
+                <div class="tw-text-center tw-p-8">
+                    <div class="tw-space-y-4">
+                        <div class="tw-w-full"></div>
+                        <div class="tw-w-full"></div>
+                        <div>
+                            <h1 class="tw-text-5xl tw-font-bold tw-text-white tw-shadow-md">
+                                World Around 24/7
+                            </h1>
+                            <h1 class="tw-text-5xl tw-font-bold tw-text-white tw-shadow-md">
+                                CAB service
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-  </div>
-</div>
-<div class="navbar-home">
-<ul class="snip1217">
-  <li class="current"><a routerLink="/" routerLinkActive="active" class="tc" >Home</a></li>
-  <li><a routerLink="/search" routerLinkActive="active" class="tc" >Search And Book</a></li>
-  <li><a  routerLink="/history" routerLinkActive="active">History</a></li>
-  <li><a routerLink="/cancellation" routerLinkActive="active">Cancel</a></li>
-  <li><a routerLink="/updates" routerLinkActive="active">Update</a></li>
-  <li><a routerLink="/admin" routerLinkActive="active">Admin</a></li>
-</ul>
-</div>
-<div class="container">
-  <p class="container-title">Here are the features<br>we’re proud of</p>
+        <!-- Navigation -->
+        <nav class="tw-nav tw-bg-gray-900 tw-px-6 tw-py-6 tw-rounded-lg tw-shadow-xl">
+            <ul class="tw-space-y-4 tw-flex tw-justify-center">
+                <li class="tw-group">
+                    <a routerLink="/" routerLinkActive="active" class="tw-block tw-px-6 tw-py-3 tw-text-white tw-hover:text-gray-400 tw-transition-all duration-300 hover:tw-bg-gray-800 rounded-full">
+                        Home
+                    </a>
+                </li>
+                <li class="tw-group">
+                    <a routerLink="/search" routerLinkActive="active" class="tw-block tw-px-6 tw-py-3 tw-text-white tw-hover:text-gray-400 tw-transition-all duration-300 hover:tw-bg-gray-800 rounded-full">
+                        Search And Book
+                    </a>
+                </li>
+                <li class="tw-group">
+                    <a routerLink="/history" routerLinkActive="active" class="tw-block tw-px-6 tw-py-3 tw-text-white tw-hover:text-gray-400 tw-transition-all duration-300 hover:tw-bg-gray-800 rounded-full">
+                        History
+                    </a>
+                </li>
+                <li class="tw-group">
+                    <a routerLink="/cancellation" routerLinkActive="active" class="tw-block tw-px-6 tw-py-3 tw-text-white tw-hover:text-gray-400 tw-transition-all duration-300 hover:tw-bg-gray-800 rounded-full">
+                        Cancel
+                    </a>
+                </li>
+                <li class="tw-group">
+                    <a routerLink="/updates" routerLinkActive="active" class="tw-block tw-px-6 tw-py-3 tw-text-white tw-hover:text-gray-400 tw-transition-all duration-300 hover:tw-bg-gray-800 rounded-full">
+                        Update
+                    </a>
+                </li>
+                <li class="tw-group">
+                    <a routerLink="/admin" routerLinkActive="active" class="tw-block tw-px-6 tw-py-3 tw-text-white tw-hover:text-gray-400 tw-transition-all duration-300 hover:tw-bg-gray-800 rounded-full">
+                        Admin
+                    </a>
+                </li>
+            </ul>
+        </nav>
 
-  <div class="gradient-cards">
-    <div class="card">
-      <div class="container-card bg-green-box">
-      <p class="card-title">Advanced Booking</p>
-        <p class="card-description">Riders can wish to opt for a scheduled ride for planned trip instead of booking on the spot.</p>
-      </div>
-    </div>
-   
-    <div class="card">
-      <div class="container-card bg-white-box">
-        <p class="card-title">Verified Drivers</p>
-        <p class="card-description">Provides verified and professional drivers who are trained and examined before being sent to customers.</p>
-      </div>
-    </div>
+        <!-- Features Section -->
+        <div class="tw-container tw-mx-auto tw-px-4 tw-py-12">
+            <p class="tw-text-4xl tw-font-bold tw-text-center tw-mb-12 tw-text-gray-800">
+                Here are the features<br>
+                we’re proud of
+            </p>
 
-    <div class="card">
-      <div class="container-card bg-yellow-box">
-        <p class="card-title">Ride History </p>
-        <p class="card-description">A feature that allows riders to view details of all their completed and canceled rides.</p>
-      </div>
-    </div>
+            <div class="tw-grid tw-grid-cols-1 tw-md:grid-cols-2 tw-lg:grid-cols-4 tw-gap-8">
+                <div class="tw-card tw-bg-green-500 tw-p-8 tw-rounded-xl tw-shadow-2xl transform transition-all duration-300 hover:scale-105">
+                    <h3 class="tw-text-2xl tw-font-bold tw-text-white tw-mb-4">Advanced Booking</h3>
+                    <p class="tw-text-lg tw-text-white tw-text-sm">Riders can wish to opt for a scheduled ride for planned trip instead of booking on the spot.</p>
+                </div>
 
-    <div class="card">
-      <div class="container-card bg-blue-box">
-        <p class="card-title">Easy cancellation</p>
-        <p class="card-description">Refunds the full advance deposit if the booking is canceled more than 24 hours before the pickup time.</p>
-      </div>
-    </div>
-  </div>
+                <div class="tw-card tw-bg-white tw-p-8 tw-rounded-xl tw-shadow-2xl transform transition-all duration-300 hover:scale-105">
+                    <h3 class="tw-text-2xl tw-font-bold tw-text-gray-800 tw-mb-4">Verified Drivers</h3>
+                    <p class="tw-text-lg tw-text-gray-600 tw-text-sm">Provides verified and professional drivers who are trained and examined before being sent to customers.</p>
+                </div>
 
-  <div class="box-rev">
-  <p class="container-title">Here are the review<br>of costomers</p>
-</div>
-<!--
-------------
-review part 
-------------
--->
-<div class="outerdiv">
-    <div class="innerdiv">
-      <!-- div1 -->
-      <div class="div1 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-daniel.jpg" alt="">
-          </div>
-          <div class="detbox">
-            <p class="name">Daniel Clifford</p>
-            <p class="designation">Verified Graduate</p>
-          </div>
+                <div class="tw-card tw-bg-yellow-400 tw-p-8 tw-rounded-xl tw-shadow-2xl transform transition-all duration-300 hover:scale-105">
+                    <h3 class="tw-text-2xl tw-font-bold tw-text-gray-800 tw-mb-4">Ride History</h3>
+                    <p class="tw-text-lg tw-text-gray-600 tw-text-sm">A feature that allows riders to view details of all their completed and canceled rides.</p>
+                </div>
+
+                <div class="tw-card tw-bg-blue-500 tw-p-8 tw-rounded-xl tw-shadow-2xl transform transition-all duration-300 hover:scale-105">
+                    <h3 class="tw-text-2xl tw-font-bold tw-text-white tw-mb-4">Easy cancellation</h3>
+                    <p class="tw-text-lg tw-text-white tw-text-sm">Refunds the full advance deposit if the booking is canceled more than 24 hours before the pickup time.</p>
+                </div>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="tw-container tw-mx-auto tw-px-4 tw-py-12">
+                <p class="tw-text-4xl tw-font-bold tw-text-center tw-mb-12 tw-text-gray-800">
+                    Here are the reviews<br>of customers
+                </p>
+
+                <div class="tw-grid tw-grid-cols-1 tw-md:grid-cols-2 tw-lg:grid-cols-3 tw-gap-8">
+                    <div class="tw-card tw-bg-white tw-p-8 tw-rounded-xl tw-shadow-2xl transform transition-all duration-300 hover:scale-105">
+                        <div class="tw-flex tw-items-center tw-space-x-4">
+                            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-daniel.jpg" 
+                                 alt="" 
+                                 class="tw-w-20 tw-h-20 tw-rounded-full tw-border-4 tw-border-white">
+                            <div>
+                                <p class="tw-text-xl tw-font-bold">Daniel Clifford</p>
+                                <p class="tw-text-gray-600">Verified Graduate</p>
+                            </div>
+                        </div>
+                        <div class="tw-mt-6">
+                            <h4 class="tw-text-xl tw-font-bold">It was an Excellent Service</h4>
+                            <p class="tw-text-gray-600 tw-text-sm tw-mt-3">
+                                "The driver went above and beyond to ensure a positive and enjoyable experience, exceeding typical expectations of a cab ride."
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Repeat for other review cards -->
+                </div>
+            </div>
         </div>
-        <div class="review">
-          <h4>It was an Excellent Service, The driver was an Unforgettable Driver well trained and professional</h4>
-        <p>“ The driver went above and beyond to ensure a positive and enjoyable experience, exceeding typical expectations of a cab ride.
-        The driver was incredibly friendly and engaging, offering helpful local tips and recommendations to enhance my trip.
-            ”</p>
-        </div>
-      </div>
-      <!-- div2 -->
-      <div class="div2 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jonathan.jpg" alt="">
-          </div>
-          <div class="detbox">
-            <p class="name">Jonathan Walters</p>
-            <p class="designation">Verified Graduate</p>
-          </div>
-        </div>
-        <div class="review">
-          <h4>Very Affordable, Convenient, Comfortable</h4>
-        <p>“ The cost of the ride was reasonable and competitive compared to other transportation options,s
-  making it an affordable choice. ”</p>
-        </div>
-      </div>
-      <!-- div3 -->
-      <div class="div3 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-kira.jpg" alt="">
-          </div>
-          <div class="detbox">
-            <p class="name">Kira Whittle</p>
-            <p class="designation">Verified Graduate</p>
-          </div>
-        </div>
-        <div class="review">
-          <h4>Smooth and Efficient Ride and experience, Highly recommended!</h4>
-          <p>“ This ride was a breeze! The driver arrived on time, the car was clean and comfortable, and the ride itself was smooth and efficient.
-            The driver was courteous and professional, and I felt safe throughout the journey.The driver arrived precisely at the scheduled pick-up time, 
-            demonstrating respect for my schedule.The car was impeccably clean, both inside and out, creating a pleasant and hygienic environment for the journey. Highly recommend! ”</p>
-        </div>
-      </div>
-      <!-- div4 -->
-      <div class="div4 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-jeanette.jpg" alt="">
-          </div>
-          <div class="detbox">
-            <p class="name">Jeanette Harmon</p>
-            <p class="designation">Verified Graduate</p>
-          </div>
-        </div>
-        <div class="review">
-          <h4>An Overall Wonderful and Memorable Experience</h4>
-        <p>“ The driver prioritized safety and ensured I arrived at my destination safely and on time, despite any potential challenges. ”</p>
-        </div>
-      </div>
-      <!-- div5 -->
-      <div class="div5 eachdiv">
-        <div class="userdetails">
-          <div class="imgbox">
-            <img src="https://raw.githubusercontent.com/RahulSahOfficial/testimonials_grid_section/5532c958b7d3c9b910a216b198fdd21c73112d84/images/image-patrick.jpg" alt="">
-          </div>
-          <div class="detbox">
-            <p class="name">Patrick Abrams</p>
-            <p class="designation">Verified Graduate</p>
-          </div>
-        </div>
-        <div class="review">
-          <h4>Awesome ride which exceeded my expectations and made my journey wonderfull.</h4>
-        <p>“ I was very impressed with the service. The driver was friendly and helpful, and the ride was even
-           faster than I expected. Highly recommend! The driver arrived on time and was very professional. The car was clean and the ride was smooth and comfortable.
-            I felt safe and secure throughout the journey. ”</p>
-        </div>
-      </div>
     </div>
-</div>
+</body>
+
   `,
   styleUrl: './homepage.component.css'
 })

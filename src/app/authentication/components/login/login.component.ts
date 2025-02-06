@@ -58,6 +58,7 @@ onLogin() {
           (u: { email: string; password: string }) => u.email === email && u.password === password
       );
       if (user) {
+        localStorage.setItem('name', user.fullName);
         localStorage.setItem('email', email);
         localStorage.setItem('role', user.role);
 

@@ -59,6 +59,7 @@ export interface Amenity {
   
   export interface Provider {
     provider_id: string;
+    email: string;
     name: string;
   }
 

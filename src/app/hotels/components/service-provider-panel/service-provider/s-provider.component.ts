@@ -90,6 +90,9 @@ export class ServiceProviderComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     try {
+      // Scroll to the top of the page
+      window.scrollTo(0, 0);
+      
       await this.checkUserAndInitializeProvider(); // Wait for the check to complete
       // console.log('Provider ID:', this.providerId);
       if(this.providerId){
@@ -108,7 +111,7 @@ export class ServiceProviderComponent implements OnInit {
         .subscribe(() => {
           const currentRoute = this.router.url;
           console.log(currentRoute);
-          this.isChildRoute = currentRoute.includes('service-hotel');
+          this.isChildRoute = currentRoute.includes('hotel-service');
 
           sessionStorage.setItem('isChildRoute', JSON.stringify(this.isChildRoute));
 
@@ -132,6 +135,7 @@ export class ServiceProviderComponent implements OnInit {
   async checkUserAndInitializeProvider(): Promise<void> {
     try {
       if (typeof window !== 'undefined') {
+        const name = localStorage.getItem('name');
         const email = localStorage.getItem('email');
         const role = localStorage.getItem('role');
   
@@ -148,7 +152,8 @@ export class ServiceProviderComponent implements OnInit {
               // Add new provider to the backend
               const newProvider: Provider = {
                 provider_id: providerId,
-                name: `Provider for ${email}`, // Adjust naming convention as needed
+                email: email,
+                name: name || `${email} Provider`,
               };
   
               await this.serviceProviderService.addProvider(newProvider).toPromise();
@@ -610,6 +615,6 @@ generateUniqueRoomId(callback: (uniqueId: string) => void): void {
     this.hotelIdService.setProviderHotelId(hotelId);
   
     // Use absolute path for navigation
-    this.router.navigate(['/hotel-service/service-hotel']);
+    this.router.navigate(['/service-hotel/hotel-service']);
   }  
 }

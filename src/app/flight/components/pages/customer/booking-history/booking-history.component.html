@@ -20,7 +20,7 @@
         </div>
 
         <div class="tw-space-y-6">
-            <div *ngFor="let data of combinedData" class="tw-bg-gray-50 tw-rounded-lg tw-p-6 tw-shadow">
+            <div *ngFor="let data of combinedData" class="tw-ml-40 tw-bg-gray-50 tw-rounded-lg tw-p-6 tw-shadow">
                 <div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
                     <div class="tw-flex tw-items-center tw-gap-8">
                         <div class="tw-text-center">
@@ -119,20 +119,20 @@
 <!-- Modal -->
 <div class="tw-fixed tw-inset-0 tw-bg-black tw-bg-opacity-50 tw-flex tw-items-center tw-justify-center" *ngIf="isView">
     <div class="tw-bg-white tw-rounded-lg tw-p-6 tw-w-full tw-max-w-md">
-        <div class="tw-flex tw-justify-between tw-items-center tw-mb-4">
+        <div class=" tw-justify-between tw-items-center tw-mb-4">
             <h2 class="tw-text-xl tw-font-bold">Passenger Details</h2>
-
+            <ul class="tw-space-y-4">
+                <li *ngFor="let passenger of selectedPassengers" class="tw-border-b tw-pb-4">
+                    <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Name:</span>{{ passenger.name }}</p>
+                    <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Age:</span>{{ passenger.age }}</p>
+                    <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Gender:</span>{{ passenger.gender }}</p>
+                    <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Passport:</span>{{ passenger.passportNumber }}</p>
+                    <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Phone:</span>{{ passenger.phoneNumber }}</p>
+                </li>
+            </ul>
             </div>
         </div>
-        <ul class="tw-space-y-4">
-            <li *ngFor="let passenger of selectedPassengers" class="tw-border-b tw-pb-4">
-                <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Name:</span>{{ passenger.name }}</p>
-                <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Age:</span>{{ passenger.age }}</p>
-                <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Gender:</span>{{ passenger.gender }}</p>
-                <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Passport:</span>{{ passenger.passportNumber }}</p>
-                <p class="tw-flex tw-justify-between"><span class="tw-font-semibold">Phone:</span>{{ passenger.phoneNumber }}</p>
-            </li>
-        </ul>
+        
     </div>
 </div>
 

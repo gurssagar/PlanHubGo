@@ -29,8 +29,9 @@ export class FlightBookingHistoryComponent implements OnInit {
   onOpenView(id: string): void {
     const booking = this.combinedData.find((item) => item.id === id);
 
-    if (booking && booking.passengers) {
+    if (booking && booking.passengers ) {
       this.selectedPassengers = booking.passengers;
+      console.log(this.selectedPassengers)
       console.log(this.selectedPassengers);
       this.isView = !this.isView;
     }
@@ -78,7 +79,7 @@ export class FlightBookingHistoryComponent implements OnInit {
     this.spinner.show();
     this.flightBookingService.getCombinedData().subscribe({
       next: (data: any) => {
-
+        
         this.combinedData = data
           .filter((item: any) => item?.date && item?.userEmail === localStorage.getItem('email'))
           .sort(

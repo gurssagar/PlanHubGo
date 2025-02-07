@@ -188,7 +188,7 @@ export const routes: Routes = [
   //cab routes
     { path: 'cab', component: HomepageComponent, canActivate: [authGuard] },
     { path: 'search', component: CabMainComponent, canActivate: [authGuard] },
-    { path: 'history', component: CabHistoryComponent, canActivate: [authGuard] },
+    { path: 'cab/dashboard', component: CabHistoryComponent, canActivate: [authGuard] },
     { path: 'updates', component: MapsandcabsComponent, canActivate: [authGuard] },
       { path: 'cancellation', component: CabCancellationComponent, canActivate: [authGuard] },
     { path: 'admin/cab', component: CabDashboardComponent },

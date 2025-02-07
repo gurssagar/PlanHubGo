@@ -9,8 +9,8 @@ import { UserDetailsFormModule } from '../user-details-form/user-details.module'
   standalone: true,
   imports: [CommonModule, CabDetailsPopupComponent, UserDetailsFormModule],
   template: `
-    <div class="cabcard-body">
-      <div class="cabcard" [class.available]="cabCardDetails.available">
+    <div class="tw-mx-auto cabcard-body">
+      <div class="tw-mx-auto cabcard" [class.available]="cabCardDetails.available">
         <div class="cabcard-header">
           <div class="ride-type">
             <i class="fas fa-car"></i>
@@ -28,7 +28,8 @@ import { UserDetailsFormModule } from '../user-details-form/user-details.module'
             {{ cabCardDetails.available ? 'Available' : 'Booked' }}
           </div>
         </div>
-        <div class="cabcard-content">
+        <div class="tw-grid tw-grid-cols-2">
+        <div class="tw-grid tw-grid-cols-3 cabcard-content">
           <div class="location">
             <i class="fas fa-map-marker-alt"></i>
             <div>
@@ -43,12 +44,12 @@ import { UserDetailsFormModule } from '../user-details-form/user-details.module'
               <p>{{ cabCardDetails.dropoffLocation }}</p>
             </div>
           </div>
-          <div class="details">
-            <div class="time">
+          <div class=" tw-gap-6">
+            <div class="tw-gap-2 tw-flex time">
               <i class="fas fa-clock"></i>
               <p>Time: {{ cabCardDetails.time }}</p>
             </div>
-            <div class="price">
+            <div class="tw-gap-2 tw-flex price">
               <i class="fas fa-tag"></i>
               <p>Price: ₹{{ cabCardDetails.price }}</p>
             </div>
@@ -80,6 +81,7 @@ import { UserDetailsFormModule } from '../user-details-form/user-details.module'
             Cancel
           </button>
         </div>
+      </div>
       </div>
     </div>
     <app-user-details-form

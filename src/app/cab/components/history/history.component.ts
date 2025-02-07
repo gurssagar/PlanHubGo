@@ -5,12 +5,13 @@ import { CommonModule } from '@angular/common';
 import { Booking } from '../../model/booking';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { DashboardComponent } from '../../../authentication/components/dashboard/dashboard.component';
 @Component({
   selector: 'app-history',
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css'],
   standalone: true,
-  imports: [CabcardsComponent, CommonModule, FormsModule , RouterLink]
+  imports: [CabcardsComponent, CommonModule, FormsModule , RouterLink,DashboardComponent]
 })
 export class HistoryComponent {
   userBookings: Booking[] = [];

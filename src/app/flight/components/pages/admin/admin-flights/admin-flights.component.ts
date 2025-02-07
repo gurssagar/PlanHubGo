@@ -128,6 +128,7 @@ export class AdminFlightsComponent implements OnInit {
     this.isBookingAnalysis = true
     this.manageFlightsService.getAllBooking().subscribe((data)=>{
       this.bookings = data.bookings;
+      console.log(this.bookings,"A")
       this.calculateSummary();
     })
   }
@@ -150,7 +151,7 @@ export class AdminFlightsComponent implements OnInit {
     this.canceledBookings = this.bookings.filter(
       booking => booking.bookingStatus === 'Canceled'
     ).length;
-
+    console.log(this.confirmedBookings)
     this.totalRevenue = this.bookings
       .filter(booking => booking.bookingStatus === 'Confirmed')
       .reduce((acc, booking) => acc + booking.totalAmount, 0);

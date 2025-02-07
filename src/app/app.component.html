@@ -1,30 +1,84 @@
-<div class="tw-z-10  fixed tw-w-full tw-top-0 tw-left-0  tw-bg-white tw-shadow-lg" *ngIf="showHeaderAndFooter">
+<div class="tw-z-10 tw-py-2  fixed tw-w-full tw-top-0 tw-left-0  tw-bg-white tw-shadow-lg" *ngIf="showHeaderAndFooter">
     <div class="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6">
-        <div class="tw-flex tw-justify-between tw-items-center tw-py-4">
+        <div class="tw-flex tw-justify-between tw-items-center ">
             <!-- Logo -->
             <div >
                 <img src="/assets/images/planngohublogo.PNG" alt="PlanngoHub Logo" class="tw-h-16">
             </div>
 
             <!-- Navigation -->
-            <nav class="tw-flex tw-space-x-6 tw-align-end " *ngIf="localStorage.getItem('email')  && localStorage.getItem('role')=='Customer'">
-                <a href="/home" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors ">Home</a>
-                <a href="/hotel" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Hotel</a>
-                <a href="/flight" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Flight</a>
-                <a href="/tour" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Tour</a>
-                <a href="/cab" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Cab</a>
-                <a href="/contact" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Contact</a>
+            <nav class="tw-flex tw-space-x-6 tw-align-end" *ngIf="localStorage.getItem('email') && localStorage.getItem('role') === 'Customer'">
+                <!-- Main Navigation Items -->
+                <div class="tw-relative">
+                    <div class="nav-item flex tw-gap-6">
+                        <!-- Hotel Dropdown -->
+                        <div class="dropdown tw-relative tw-group" (mouseenter)="toggleHotelDropdown()">
+                            <a href="/hotel" class="tw-py-4 nav-item nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">
+                                Hotel
+                            </a>
+                            <!-- Hotel Dropdown Menu -->
+                            
+                        </div>
 
-                <!-- Dashboard Button -->
-                <a href="/dashboard" class="tw-px-4 tw-py-2 tw-bg-blue-600 tw-text-white tw-rounded-lg tw-hover:bg-blue-700 tw-transition-colors">
-                    Dashboard
-                </a>
+                        <!-- Flight Dropdown -->
+                        <div class="dropdown tw-relative tw-group" (mouseenter)="toggleFlightDropdown()">
+                            <a href="/flight" class="tw-py-4 nav-item nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">
+                                Flight
+                            </a>
+                            <!-- Flight Dropdown Menu -->
+                            
+                        </div>
 
-                <p-button  label="Sign Out"
-                          class="tw-bg-red-600 tw-hover:bg-red-700 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"
-                          (onClick)="logout()">
-                </p-button>
+                        <!-- Tour Dropdown -->
+                        <div class="dropdown tw-relative tw-group" (mouseenter)="toggleTourDropdown()">
+                            <a href="/tour" class="tw-py-4 nav-item nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">
+                                Tour
+                            </a>
+                            <!-- Tour Dropdown Menu -->
+                            <div [class]="isTourDropdownOpen ? 'dropdown-menu show' : 'dropdown-menu'">
+                                <a href="/tour/compare" class="tw-block tw-text-gray-700 tw-hover:text-blue-600 tw-p-2 tw-rounded-md hover:tw-bg-blue-50">
+                                    Compare
+                                </a>
+                                
+                            </div>
+                        </div>
 
+                        <!-- Cab Dropdown -->
+                        <div class="dropdown tw-relative tw-group" (mouseenter)="toggleCabDropdown()">
+                            <a href="/cab" class="tw-py-4 nav-item nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">
+                                Cab
+                            </a>
+                            <!-- Cab Dropdown Menu -->
+                            <div [class]="isCabDropdownOpen ? 'dropdown-menu show' : 'dropdown-menu'">
+                                <a href="/search" class="tw-block tw-text-gray-700 tw-hover:text-blue-600 tw-p-2 tw-rounded-md hover:tw-bg-blue-50">
+                                    Search Cabs
+                                </a>
+                                <a href="/history" class="tw-block tw-text-gray-700 tw-hover:text-blue-600 tw-p-2 tw-rounded-md hover:tw-bg-blue-50">
+                                    My Rides
+                                </a>
+                                <a href="cancellation" class="tw-block tw-text-gray-700 tw-hover:text-blue-600 tw-p-2 tw-rounded-md hover:tw-bg-blue-50" >Cancel Rides</a>
+                                <a href="updates" class="tw-block tw-text-gray-700 tw-hover:text-blue-600 tw-p-2 tw-rounded-md hover:tw-bg-blue-50">
+                                    Ride Updates
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dashboard and Logout Section -->
+                <div class="tw-flex tw-items-center tw-space-x-4">
+                    <a href="/dashboard" class="tw-px-4 tw-py-2 tw-bg-blue-600 tw-text-white tw-rounded-lg tw-hover:bg-blue-700 tw-transition-colors">
+                        Dashboard
+                    </a>
+                    
+                    <p-button
+                        label="Sign Out"
+                        class="tw-bg-red-600 tw-hover:bg-red-700 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"
+                        (onClick)="logout()"
+                        icon="pi pi-power-off"
+                    >
+                    </p-button>
+                </div>
             </nav>
             <nav class="tw-flex tw-space-x-6 tw-align-end " *ngIf="localStorage.getItem('email')  && localStorage.getItem('role')=='Service Provider'">
                 <a href="/home" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors ">Home</a>
@@ -35,7 +89,6 @@
                            class="tw-bg-red-600 tw-hover:bg-red-700 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"
                            (onClick)="logout()">
                 </p-button>
-
             </nav>
             <p-button *ngIf="!localStorage.getItem('email')" routerLink="/login" label="Sign In" class="tw-bg-blue-600 tw-hover:bg-blue-700 tw-text-white tw-rounded-lg tw-px-4 tw-py-2">
 
@@ -47,6 +100,15 @@
 <router-outlet ></router-outlet>
 <p-toast></p-toast>
 </div>
+
+<div class="fixed top-0 left-0 right-0 tw-bg-[#123462] tw-text-white tw-py-4 tw-text-center" >
+    <div><a href="/cab">Home</a></div>
+</div>
+
+
+
+
+
 <!-- Footer -->
 <footer class="tw-z-50 tw-bg-[#123462] tw-text-white tw-mt-20" *ngIf="showHeaderAndFooter">
     <div class="tw-max-w-7xl tw-mx-auto tw-px-4 tw-py-12 sm:tw-px-6">

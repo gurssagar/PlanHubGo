@@ -9,36 +9,7 @@ import { CabService } from '../../services/cab.service';
   selector: 'app-cab',
   standalone: true,
   imports: [CommonModule,CabcardsComponent, SidebarComponent, SearchbarModule],
-  template: `
-   <div class="cabcard-container">
-      <app-sidebar></app-sidebar>
-      <div>
-        <app-searchbar (searchEvent)="handleSearch($event)"></app-searchbar>
-        <div class="cabcards-only">
-        @if (errorMessage) {
-            <div class="no-results">{{ errorMessage }}</div>
-          }@else if (filteredDetailsList.length > 0) {
-          <app-cabcards
-            *ngFor="let cabCardDetails of filteredDetailsList"
-            [cabCardDetails]="cabCardDetails">
-          </app-cabcards>
-          }
-          @else {
-          <div class="no-results">
-          @if(!hasSearched){
-            <div class="searchimp">
-              <img src="https://img.freepik.com/free-vector/local-tourism-concept_23-2148606915.jpg?t=st=1735568019~exp=1735571619~hmac=c5527481b25e80b441ba0473e94ac310e526a014d42ec59a9d6cd4a235683fcf&w=740" alt="" height="300px" width="300px">
-              </div>}
-          @else{
-             <div><img src="https://img.freepik.com/free-vector/cancelled-flight-illustration-concept_23-2148559796.jpg?t=st=1735569064~exp=1735572664~hmac=fccc5dcb03716bf6352997541e40d24aa1b2e049afe60e914ea26fd5e86fb231&w=740" alt="" height="300px" width="300px"></div>
-          }
-          {{ !hasSearched ? 'Search for available cabs' : 'No cabs found matching your criteria' }}
-          </div>
-          }
-        </div>
-      </div>
-    </div>
-  `,
+  templateUrl: `./cab.component.html`,
   styleUrl: './cab.component.css'
 })
 export class CabComponent {

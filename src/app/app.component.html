@@ -87,11 +87,14 @@
             
             <!-- Dashboard and Logout Section -->
             <div class="tw-flex tw-items-center tw-space-x-4">
+                <div *ngIf="localStorage.getItem('email') && localStorage.getItem('role') === 'Customer'">
                 <a href="/dashboard" class="tw-px-4 tw-py-2 tw-bg-gray-900 tw-text-white tw-rounded-lg tw-hover:bg-blue-700 tw-transition-colors">
                     Dashboard
                 </a>
+                </div>
                 
                 <p-button
+                    *ngIf="localStorage.getItem('email') && localStorage.getItem('role') === 'Customer' "
                     label="Sign Out"
                     class="tw-bg-black tw-hover:tw-bg-gray-900 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"
                     (onClick)="logout()"
@@ -105,12 +108,11 @@
                 <a href="/tour/tourcompany" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Tour</a>
 
                 <p-button  label="Sign Out"
-                           class="tw-bg-red-600 tw-hover:bg-red-700 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"
+                           class="tw-bg-black tw-hover:tw-bg-gray-900 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"
                            (onClick)="logout()">
                 </p-button>
             </nav>
             <p-button *ngIf="!localStorage.getItem('email')" routerLink="/login" label="Sign In" class="tw-bg-blue-600 tw-hover:bg-blue-700 tw-text-white tw-rounded-lg tw-px-4 tw-py-2">
-
             </p-button>
         </div>
     </div>

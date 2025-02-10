@@ -29,7 +29,8 @@ export class AdminDashboardComponent implements OnInit {
   bookingsPerAgency: { [key: string]: number } = {};
   users: any = [];
   constructor(private tourService: TourService) {}
-
+  bookingsChartData: { name: string; value: number }[] = [];
+  view: any[] = [700, 300];
   ngOnInit() {
     forkJoin({
       tours: this.tourService.getTours(),

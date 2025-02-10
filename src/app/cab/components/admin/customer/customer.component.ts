@@ -8,49 +8,46 @@ import{CtmFormComponent} from '../ctm-form/ctm-form.component';
   template: `
 
 <!-- navbar -->
-<nav class="tw-mt-24 tw-bg-gray-800 tw-text-white tw-shadow-lg">
-  <div class="tw-max-w-7xl tw-mx-auto tw-px-4">
-    <div class="tw-flex tw-justify-between tw-items-center tw-py-4">
-      <!-- Left side - Logo/Brand -->
-      <div class="tw-flex tw-items-center">
-        <span class="tw-text-xl tw-font-bold">Admin Panel</span>
-      </div>
-      
-      <!-- Right side - Desktop Menu -->
-      <div class="tw-hidden tw-md:flex tw-space-x-8">
-        <a href="/admin" class="hover:text-gray-300 tw-transition-colors">
+<nav class="tw-bg-white tw-shadow-lg tw-fixed tw-left-0 tw-top-0 tw-bottom-0 tw-w-64 tw-z-50">
+  <div class="tw-flex tw-flex-col tw-h-full">
+    <!-- Logo -->
+    <div class="tw-p-4 tw-bg-gray-100">
+      <span class="tw-text-2xl tw-font-bold tw-text-blue-600">AdminPanel</span>
+    </div>
+    
+    <!-- Navigation Menu -->
+    <nav class="tw-flex-1 tw-overflow-y-auto">
+      <div class="tw-flex tw-flex-col tw-pt-4 tw-space-y-2">
+        <a href="/admin" class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-600 hover:tw-text-blue-600 hover:tw-bg-gray-100 tw-transition-colors tw-duration-200">
+          <svg class="tw-w-5 tw-h-5 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+          </svg>
           Dashboard
         </a>
-        <a href="/ride-manage" class="hover:text-gray-300 tw-transition-colors">
+        
+        <a href="/ride-manage" class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-600 hover:tw-text-blue-600 hover:tw-bg-gray-100 tw-transition-colors tw-duration-200">
+          <svg class="tw-w-5 tw-h-5 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+          </svg>
           Rides
         </a>
-        <a href="/customer" class="hover:text-gray-300 tw-transition-colors">
+        
+        <a href="/customer" class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-600 hover:tw-text-blue-600 hover:tw-bg-gray-100 tw-transition-colors tw-duration-200">
+          <svg class="tw-w-5 tw-h-5 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
           Customers
         </a>
-        <a href="/employee" class="hover:text-gray-300 tw-transition-colors">
+        
+        <a href="/employee" class="tw-flex tw-items-center tw-px-4 tw-py-3 tw-text-gray-600 hover:tw-text-blue-600 hover:tw-bg-gray-100 tw-transition-colors tw-duration-200">
+          <svg class="tw-w-5 tw-h-5 tw-mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+          </svg>
           Employees
         </a>
+        
       </div>
-
-      <!-- Mobile menu button -->
-      <div class="tw-md:hidden">
-        <button class="tw-p-2 tw-rounded tw-hover:bg-gray-700" (click)="toggleMobileMenu()">
-          <svg class="tw-w-6 tw-h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="tw-md:hidden tw-block" [class]="{ 'tw-hidden': !isMobileMenuOpen }">
-      <div class="tw-px-2 tw-pt-2 tw-space-y-1">
-        <a href="/admin" class="tw-block tw-px-3 tw-py-2 tw-rounded tw-hover:bg-gray-700">Dashboard</a>
-        <a href="/ride-manage" class="tw-block tw-px-3 tw-py-2 tw-rounded tw-hover:bg-gray-700">Rides</a>
-        <a href="/customer" class="tw-block tw-px-3 tw-py-2 tw-rounded tw-hover:bg-gray-700">Customers</a>
-        <a href="/employee" class="tw-block tw-px-3 tw-py-2 tw-rounded tw-hover:bg-gray-700">Employees</a>
-      </div>
-    </div>
+    </nav>
   </div>
 </nav>
 

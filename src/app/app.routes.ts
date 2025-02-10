@@ -192,9 +192,9 @@ export const routes: Routes = [
     { path: 'updates', component: MapsandcabsComponent, canActivate: [authGuard] },
       { path: 'cancellation', component: CabCancellationComponent, canActivate: [authGuard] },
     { path: 'admin/cab', component: CabDashboardComponent ,canActivate: [AdminAuthGuard]},
-      { path: 'ride-manage', component: CabRideManageComponent, canActivate: [authGuard] },
-    { path: 'customer', component: CabCustomerComponent, canActivate: [authGuard] },
-    { path: 'employee', component: CabEmployeeComponent, canActivate: [authGuard] },
+      { path: 'ride-manage', component: CabRideManageComponent, canActivate: [AdminAuthGuard] },
+    { path: 'customer', component: CabCustomerComponent, canActivate: [AdminAuthGuard] },
+    { path: 'employee', component: CabEmployeeComponent, canActivate: [AdminAuthGuard] },
     {
       path:'service-provider-cab',
       component:ServiceProviderDashboardComponent

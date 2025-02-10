@@ -1,13 +1,13 @@
-<div class="tw-z-10 tw-py-2  fixed tw-w-full tw-top-0 tw-left-0  tw-bg-white tw-shadow-lg" *ngIf="showHeaderAndFooter">
-    <div class="tw-max-w-7xl tw-mx-auto tw-px-4 sm:tw-px-6">
+<div class="tw-backdrop-blur-[20px] tw-bg-white/90 tw-backdrop-opacity-10 tw-backdrop-grayscale tw-mx-[20%] tw-rounded-full  tw-mt-10 tw-z-10   fixed tw-w-[60%] tw-top-0   tw-shadow-lg" *ngIf="showHeaderAndFooter">
+    <div class="tw-rounded-full tw-backdrop-blur-[20px] tw-bg-white/0 tw-backdrop-opacity-10 tw-backdrop-blur-md  tw-backdrop-grayscale tw-max-w-7xl tw-px-4 sm:tw-px-6">
         <div class="tw-flex tw-justify-between tw-items-center ">
             <!-- Logo -->
             <div >
-                <img src="/assets/images/planngohublogo.PNG" alt="PlanngoHub Logo" class="tw-h-16">
+                <img src="/assets/images/planngohublogo.png" alt="PlanngoHub Logo" class="tw-h-16">
             </div>
 
             <!-- Navigation -->
-            <nav class="tw-flex tw-space-x-6 tw-align-end" *ngIf="localStorage.getItem('email') && localStorage.getItem('role') === 'Customer'">
+            <nav class=" tw-flex tw-space-x-6 tw-align-end" *ngIf="localStorage.getItem('email') && localStorage.getItem('role') === 'Customer'">
                 <!-- Main Navigation Items -->
                 <div class="tw-relative">
                     <div class="nav-item flex tw-gap-6">
@@ -69,22 +69,21 @@
                         </div>
                     </div>
                 </div>
-
-                <!-- Dashboard and Logout Section -->
-                <div class="tw-flex tw-items-center tw-space-x-4">
-                    <a href="/dashboard" class="tw-px-4 tw-py-2 tw-bg-blue-600 tw-text-white tw-rounded-lg tw-hover:bg-blue-700 tw-transition-colors">
-                        Dashboard
-                    </a>
-                    
-                    <p-button
-                        label="Sign Out"
-                        class="tw-bg-red-600 tw-hover:bg-red-700 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"
-                        (onClick)="logout()"
-                        icon="pi pi-power-off"
-                    >
-                    </p-button>
-                </div>
             </nav>
+            <!-- Dashboard and Logout Section -->
+            <div class="tw-flex tw-items-center tw-space-x-4">
+                <a href="/dashboard" class="tw-px-4 tw-py-2 tw-bg-gray-900 tw-text-white tw-rounded-lg tw-hover:bg-blue-700 tw-transition-colors">
+                    Dashboard
+                </a>
+                
+                <p-button
+                    label="Sign Out"
+                    class="tw-bg-black tw-hover:tw-bg-gray-900 tw-text-white tw-rounded-lg tw-px-4 tw-py-2"
+                    (onClick)="logout()"
+                    icon="pi pi-power-off"
+                >
+                </p-button>
+            </div>
             <nav class="tw-flex tw-space-x-6 tw-align-end " *ngIf="localStorage.getItem('email')  && localStorage.getItem('role')=='Service Provider'">
                 <a href="/home" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors ">Home</a>
                 <a href="/service-hotel" class="nav-link my-2 tw-hover:text-blue-600 tw-transition-colors">Hotel</a>
@@ -101,14 +100,12 @@
         </div>
     </div>
 </div>
-<div class="tw-mt-[56px]">
+<div class="">
 <router-outlet ></router-outlet>
 <p-toast></p-toast>
 </div>
 
-<div class="fixed top-0 left-0 right-0 tw-bg-[#123462] tw-text-white tw-py-4 tw-text-center" >
-    <div><a href="/cab">Home</a></div>
-</div>
+
 
 
 

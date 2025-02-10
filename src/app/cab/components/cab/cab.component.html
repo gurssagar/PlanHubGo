@@ -4,11 +4,11 @@
     </div>
     
     <div class="tw-main-content tw-flex-1 tw-flex tw-flex-col">
-        <div class="tw-search-container tw-mt-8 tw-max-w-4xl mx-auto">
+        <div class="tw-search-container tw-mt-40 tw-max-w-4xl mx-auto">
             <app-searchbar (searchEvent)="handleSearch($event)" class="tw-shadow-md"></app-searchbar>
         </div>
 
-        <div class="tw-cards-container  tw-mx-auto tw-flex-1 tw-grid tw-grid-cols-1 md:tw-grid-cols-2 lg:tw-grid-cols-3 tw-gap-6 tw-p-4">
+        <div class="tw-cards-container  tw-mx-auto tw-flex-1 tw-grid tw-grid-cols-1 md:tw-grid-cols-1 lg:tw-grid-cols-2 tw-gap-6 tw-p-4">
             @if (errorMessage) {
                 <div class="tw-mx-auto tw-text-center tw-p-8 tw-text-green-600 tw-font-large tw-bg-white tw-rounded-lg tw-shadow-sm tw-animate-fadeIn">
                     {{ errorMessage }}

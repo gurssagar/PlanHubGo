@@ -2,6 +2,7 @@
          display: flex;
          width: 100inch;
          gap: 20px;
+         margin-top:200px;
          padding: 2rem;
          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
          background: linear-gradient(to right, #ffffff, #f8f9fa);

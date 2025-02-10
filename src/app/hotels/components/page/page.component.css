@@ -83,7 +83,7 @@
 
 
 * {
-  margin: 0;
+  padding-top: 40px;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
@@ -93,7 +93,8 @@
 .h-page {
   background-color: #f1f1f1;
   padding-bottom: 50px;
-  margin-top: 96px;
+  padding-top: 50px;
+
 }
 
 .main-page {
@@ -101,6 +102,7 @@
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
   width: 90vw;
+  padding-top: 20px;
   margin: 0 auto;
 }
 

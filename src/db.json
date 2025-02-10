@@ -1068,6 +1068,15 @@
       {
         "id": "1",
         "fullName": "John Doe",
+        "email": "admin@gmail.com",
+        "password": "password@123",
+        "gender": "Male",
+        "age": 25,
+        "role": "Admin"
+      },
+      {
+        "id": "1",
+        "fullName": "John Doe",
         "email": "john.doe@example.com",
         "password": "password123",
         "gender": "Male",

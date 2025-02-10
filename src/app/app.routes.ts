@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import {authGuard, ServiceAuthGuard} from './authentication/models/guards/auth.guard';
+import {authGuard, ServiceAuthGuard,AdminAuthGuard} from './authentication/models/guards/auth.guard';
 import { AdminComponent } from './authentication/components/admin/admin.component';
 import { HomeComponent } from './authentication/components/home/home.component';
 import { LoginComponent } from './authentication/components/login/login.component';
@@ -90,11 +90,11 @@ export const routes: Routes = [
   { path: 'booking-history', component: BookingHistoryComponent, canActivate: [authGuard] },
   { path: 'ad-sidebar', component: AdSidebarComponent, canActivate: [authGuard]},
   {
-    path: 'admin/hotel', component: AdminPanelComponent,
+    path: 'admin/hotel', component: AdminPanelComponent,canActivate: [AdminAuthGuard],
     children: [
-      { path: 'ad-hotel-deatils', component: AdHotelDeatilsComponent },
-      { path: 'ad-room-details', component: AdRoomDeatilsComponent },
-      { path: 'ad-booking-history', component: AdminBookingDetailsComponent},
+      { path: 'ad-hotel-deatils', component: AdHotelDeatilsComponent,canActivate: [AdminAuthGuard] },
+      { path: 'ad-room-details', component: AdRoomDeatilsComponent,canActivate: [AdminAuthGuard] },
+      { path: 'ad-booking-history', component: AdminBookingDetailsComponent,canActivate: [AdminAuthGuard]},
     ]
   },
   {
@@ -108,7 +108,7 @@ export const routes: Routes = [
   },
 
   { path: 'home', component: HomeComponent, canActivate: [authGuard] },
-  { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent,canActivate: [AdminAuthGuard] },
   { path: 'service-provider', component: ServiceProviderComponent, canActivate: [ServiceAuthGuard] },
   //{ path: 'flight', component: FlightComponent, canActivate: [authGuard] },  // Updated route
   //{ path: 'hotel', component: HotelComponent, canActivate: [authGuard] },  // Updated route
@@ -181,7 +181,7 @@ export const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path:'admin/tour',
+    path:'admin/tour',canActivate: [AdminAuthGuard],
     component:AdminDashboardComponent,
   },
     
@@ -191,7 +191,7 @@ export const routes: Routes = [
     { path: 'cab/dashboard', component: CabHistoryComponent, canActivate: [authGuard] },
     { path: 'updates', component: MapsandcabsComponent, canActivate: [authGuard] },
       { path: 'cancellation', component: CabCancellationComponent, canActivate: [authGuard] },
-    { path: 'admin/cab', component: CabDashboardComponent },
+    { path: 'admin/cab', component: CabDashboardComponent ,canActivate: [AdminAuthGuard]},
       { path: 'ride-manage', component: CabRideManageComponent, canActivate: [authGuard] },
     { path: 'customer', component: CabCustomerComponent, canActivate: [authGuard] },
     { path: 'employee', component: CabEmployeeComponent, canActivate: [authGuard] },
@@ -239,7 +239,7 @@ export const routes: Routes = [
     ]
   },
   {
-    path: "admin/flight",
+    path: "admin/flight",canActivate: [AdminAuthGuard],
     children: [
       {
         path:"",

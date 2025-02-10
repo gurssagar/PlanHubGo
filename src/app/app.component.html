@@ -6,6 +6,7 @@
                 <img src="/assets/images/planngohublogo.png" alt="PlanngoHub Logo" class="tw-h-16">
             </div>
 
+            
             <!-- Navigation -->
             <nav class=" tw-flex tw-space-x-6 tw-align-end" *ngIf="localStorage.getItem('email') && localStorage.getItem('role') === 'Customer'">
                 <!-- Main Navigation Items -->
@@ -70,6 +71,20 @@
                     </div>
                 </div>
             </nav>
+
+            <nav class=" tw-flex tw-space-x-6 tw-align-end" *ngIf="localStorage.getItem('email') && localStorage.getItem('role') === 'Admin'">
+                <!-- Main Navigation Items -->
+                <div class="tw-relative">
+                    <div class="tw-flex tw-items-center tw-space-x-3">
+                        <a href="/admin/tour" class="tw-px-3 tw-py-2 tw-rounded-md tw-text-gray-600 hover:tw-text-gray-800 hover:tw-bg-gray-100">Tours</a>
+                        <a href="/admin/hotel" class="tw-px-3 tw-py-2 tw-rounded-md tw-text-gray-600 hover:tw-text-gray-800 hover:tw-bg-gray-100">Hotel</a>
+                        <a href="/admin/cab" class="tw-px-3 tw-py-2 tw-rounded-md tw-text-gray-600 hover:tw-text-gray-800 hover:tw-bg-gray-100">Cab</a>
+                        <a href="/admin/flight" class="tw-px-3 tw-py-2 tw-rounded-md tw-text-gray-600 hover:tw-text-gray-800 hover:tw-bg-gray-100">Flight</a>
+                    </div>
+                    
+                </div>
+            </nav>
+            
             <!-- Dashboard and Logout Section -->
             <div class="tw-flex tw-items-center tw-space-x-4">
                 <a href="/dashboard" class="tw-px-4 tw-py-2 tw-bg-gray-900 tw-text-white tw-rounded-lg tw-hover:bg-blue-700 tw-transition-colors">

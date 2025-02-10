@@ -657,6 +657,57 @@
           "longitude": 2.3514
         },
         "tourcompany": "City Explorers"
+      },
+      {
+        "id": "sdasdas",
+        "name": "Gursagar Singh",
+        "price": 78666,
+        "duration": "10",
+        "description": "dahjksdhgashgdajg",
+        "description2": "dasdhjkashjkdkhja",
+        "image": "https://dasdasdasdasdasd.com",
+        "images": "dasdjkashjk,dsasdhasdha,dasdasd",
+        "destination": "asdasd",
+        "departure": "dsasdhashjd",
+        "departureTime": "2025-02-12T16:23",
+        "returnTime": "2025-02-19T16:24",
+        "dressCode": "dhadha",
+        "tourplans": [],
+        "serviceprovider": ""
+      },
+      {
+        "id": "sdasdas",
+        "name": "Gursagar Singh",
+        "price": 78666,
+        "duration": "10",
+        "description": "asdasdaskdas",
+        "description2": "dasjkdhjaskhjd",
+        "image": "https://dasdasdasdasdasd.com",
+        "images": "dasdjkashjk,dsasdhasdha,dasdasd",
+        "destination": "asdasd",
+        "departure": "dsasdhashjd",
+        "departureTime": "2025-02-22T16:26",
+        "returnTime": "2025-02-20T16:26",
+        "dressCode": "dhadha",
+        "tourplans": [],
+        "serviceprovider": "newone"
+      },
+      {
+        "id": "sdasdas",
+        "name": "Gursagar Singh",
+        "price": 78666,
+        "duration": "10",
+        "description": "Description",
+        "description2": "",
+        "image": "https://dasdasdasdasdasd.com",
+        "images": "dasdjkashjk,dsasdhasdha,dasdasd",
+        "destination": "asdasd",
+        "departure": "dsasdhashjd",
+        "departureTime": "2025-02-27T17:29",
+        "returnTime": "2025-02-13T17:29",
+        "dressCode": "dhadha",
+        "tourplans": [],
+        "serviceprovider": "newone"
       }
     ]
   },

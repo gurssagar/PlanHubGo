@@ -119,10 +119,12 @@ export class TourcompanyComponent implements OnInit {
             // Get Tours
             this.tourService.getTours().subscribe(
                 (response) => {
+                    console.log(response.a);
+                    console.log(this.finalCompanies,'a');
                     // Add check for finalCompanies
                         response.a.forEach((fcompany: any) => {
                             this.finalCompanies.forEach(company => {
-                                if (fcompany.tourcompany == company.fullName) {
+                                if (fcompany.serviceprovider == company.fullName) {
                                     this.records.push(fcompany);
                                 }
                             });

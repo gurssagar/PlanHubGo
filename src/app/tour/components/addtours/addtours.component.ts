@@ -43,7 +43,7 @@ export class AddtoursComponent implements OnInit {
       returnTime: ['', Validators.required],
       dressCode: [''],
       tourplans: [[]],
-      serviceprovider: [''],
+      serviceprovider: localStorage.getItem('name') || '',
     });
   }
 

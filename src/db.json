@@ -1306,7 +1306,7 @@
     "hotels": [
       {
         "id": "hT01",
-        "provider_id": "Provider1218206823",
+        "provider_id": "Provider1274021506",
         "city": "Goa",
         "name": "Goa Paradise",
         "description": "Luxurious hotel in Goa offering modern amenities, serene ambiance, and proximity to beaches, perfect for relaxation and adventure.",
@@ -2084,7 +2084,7 @@
       },
       {
         "id": "hT019",
-        "provider_id": "Provider1218206823",
+        "provider_id": "Provider1274021506",
         "city": "Goa",
         "name": "Goa Tranquil Villa",
         "description": "Charming boutique villa in Goa nestled among coconut groves, featuring cozy cottages, delicious seafood, and serene sunset views.",
@@ -2616,7 +2616,7 @@
       },
       {
         "id": "hT020",
-        "provider_id": "Provider1218206823",
+        "provider_id": "Provider1274021506",
         "city": "Mumbai",
         "name": "Mumbai City Luxe",
         "description": "Stylish hotel in Mumbai's Bandra district offering contemporary rooms, rooftop dining, and easy access to trendy cafes and nightlife.",
@@ -3426,7 +3426,7 @@
       },
       {
         "id": "hT026",
-        "provider_id": "Provider1218206823",
+        "provider_id": "Provider1274021506",
         "city": "Delhi",
         "name": "Delhi Royal Suites",
         "description": "Resort-style hotel in Delhi featuring lush gardens, opulent rooms, and traditional Indian hospitality, perfect for leisure and business trips.",
@@ -6484,7 +6484,7 @@
       },
       {
         "id": "hT0925",
-        "provider_id": "Provider1218206823",
+        "provider_id": "Provider1274021506",
         "city": "G",
         "name": "Hotel Hi",
         "description": "g",
